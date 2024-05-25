@@ -9,7 +9,7 @@ import 'package:quiz_app/screens/score/score_screen.dart';
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   // Lets animate our progress bar
 
   late AnimationController _animationController;
@@ -39,6 +39,15 @@ class QuestionController extends GetxController
 
   int _numOfCorrectAns = 0;
   int get numOfCorrectAns => this._numOfCorrectAns;
+
+  List<dynamic> buildQuestions() {
+    // if (topics[0] == true) {
+    //   //all areas
+    //   return sample_data.toList();
+    // }
+    //default
+    return sample_data.toList();
+  }
 
   // called immediately after the widget is allocated memory
   @override
