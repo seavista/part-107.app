@@ -40,6 +40,12 @@ class QuestionController extends GetxController
   int _numOfCorrectAns = 0;
   int get numOfCorrectAns => this._numOfCorrectAns;
 
+  RxInt _numOfQuestions = 0.obs;
+  RxInt get numOfQuestions => this._numOfQuestions;
+  void updateNumberOfQuestions(int count) {
+    _numOfQuestions.value = count;
+  }
+
 // List to keep track of the toggle states, initialized to true
   List<bool> isSelected = List.generate(7, (index) {
     if (index == 0) {
@@ -68,7 +74,7 @@ class QuestionController extends GetxController
             answer: question['answer_index'],
           ),
         )
-        // .take(5)
+        .take(_numOfQuestions.value)
         .toList();
 
     // Our animation duration is 60 s

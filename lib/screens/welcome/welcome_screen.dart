@@ -126,7 +126,7 @@ class IconButtonGrid extends StatefulWidget {
 }
 
 class _IconButtonGridState extends State<IconButtonGrid> {
-  double _currentValue = 10;
+  double _currentValue = 0;
 
   // List of icons and labels
   final List<Map<String, dynamic>> _iconsAndLabels = [
@@ -139,9 +139,18 @@ class _IconButtonGridState extends State<IconButtonGrid> {
     {'icon': Icons.rule, 'label': 'Regulations'},
   ];
 
+  final ctrl = Get.put(QuestionController());
+
+  @override
+  void intiState() {
+    ctrl.updateNumberOfQuestions(_currentValue.toInt());
+    ctrl.onInit();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.put(QuestionController());
+    //final ctrl = Get.put(QuestionController());
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -239,12 +248,13 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                           RoundSliderThumbShape(enabledThumbRadius: 24)),
                   child: Slider(
                     value: _currentValue,
-                    min: 1,
+                    min: 0,
                     max: 100,
                     divisions: 100,
                     label: _currentValue.round().toString(),
                     onChanged: (double value) {
                       final intVal = value.ceil();
+                      ctrl.updateNumberOfQuestions(intVal);
 
                       if (intVal > 20) {
                         showFullScreenModal(context);
@@ -253,6 +263,8 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                           _currentValue = intVal.toDouble();
                         });
                       }
+
+                      ctrl.onInit();
                     },
                   ),
                 ),
@@ -265,7 +277,12 @@ class _IconButtonGridState extends State<IconButtonGrid> {
   }
 }
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
