@@ -13,7 +13,7 @@ class FullScreenModal extends StatelessWidget {
   Future<void> _launchUrl() async {
     //launches an url
     if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
+      throw Exception('Cannnot launch $_url');
     }
   }
 
