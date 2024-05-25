@@ -11,6 +11,7 @@ class FullScreenModal extends StatelessWidget {
   final Uri _url = Uri.parse('https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh');
 
   Future<void> _launchUrl() async {
+    //launches an url
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
     }

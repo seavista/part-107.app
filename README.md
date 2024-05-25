@@ -20,7 +20,7 @@ This is a complete functional quiz app that works on both Android and iOS device
 
 # GitHub Pages
 git checkout -b gh-pages
-git rm -rf .
+
 cp -r build/web/* .
 git add .
 git commit -m "Publishing web output to gh-pages"
