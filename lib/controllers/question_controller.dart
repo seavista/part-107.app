@@ -40,22 +40,22 @@ class QuestionController extends GetxController
   int _numOfCorrectAns = 0;
   int get numOfCorrectAns => this._numOfCorrectAns;
 
-  List<dynamic> buildQuestions() {
-    // if (topics[0] == true) {
-    //   //all areas
-    //   return sample_data.toList();
-    // }
-    //default
-    return sample_data.toList();
-  }
+// List to keep track of the toggle states, initialized to true
+  List<bool> isSelected = List.generate(7, (index) {
+    if (index == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   // called immediately after the widget is allocated memory
   @override
-  void onInit() {
+  void onInit() async {
     // Shuffle the sample_data
     // Shuffle the sample_data
     var random = Random();
-    var tempList = sample_data.toList(); // Create a temporary list
+    var tempList = await buildQuestions(); // Create a temporary list
     tempList.shuffle(random); // Shuffle the temporary list
 
     // Map the shuffled data to the questions list
@@ -87,6 +87,39 @@ class QuestionController extends GetxController
     _pageController = PageController();
 
     super.onInit();
+  }
+
+  Future<List<dynamic>> buildQuestions() async {
+    List retData = [];
+    if (isSelected[0] == true) {
+      return sample_data.toList();
+    } else {
+      if (isSelected[1] == true) {
+        retData.addAll(loading_and_performance_data);
+      }
+
+      if (isSelected[2] == true) {
+        retData.addAll(airspace_data);
+      }
+
+      if (isSelected[3] == true) {
+        retData.addAll(operations_data);
+      }
+
+      if (isSelected[4] == true) {
+        retData.addAll(weather_data);
+      }
+
+      if (isSelected[5] == true) {
+        retData.addAll(risk_management_data);
+      }
+
+      if (isSelected[6] == true) {
+        retData.addAll(regulations_data);
+      }
+    }
+
+    return retData.toList();
   }
 
   // // called just before the Controller is deleted from memory

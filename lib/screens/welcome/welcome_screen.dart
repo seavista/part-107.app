@@ -102,15 +102,6 @@ void showFullScreenModal(BuildContext context) {
   );
 }
 
-// List to keep track of the toggle states, initialized to true
-List<bool> isSelected = List.generate(7, (index) {
-  if (index == 0) {
-    return true;
-  } else {
-    return false;
-  }
-}).obs;
-
 class CustomTrackShape extends RoundedRectSliderTrackShape {
   @override
   Rect getPreferredRect({
@@ -150,6 +141,8 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 
   @override
   Widget build(BuildContext context) {
+    final ctrl = Get.put(QuestionController());
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -208,13 +201,16 @@ class _IconButtonGridState extends State<IconButtonGrid> {
               return GestureDetector(
                 onTap: () {
                   if (index == 0) {
-                    isSelected = List.generate(7, (_) => isSelected[index]);
+                    ctrl.isSelected =
+                        List.generate(7, (_) => ctrl.isSelected[index]);
                   } else {
-                    isSelected[0] = false;
+                    ctrl.isSelected[0] = false;
                   }
                   setState(() {
-                    isSelected[index] = !isSelected[index];
+                    ctrl.isSelected[index] = !ctrl.isSelected[index];
                   });
+
+                  ctrl.onInit();
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -227,11 +223,12 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                           ? 80.0
                           : 100.0,
                       decoration: BoxDecoration(
-                        color: isSelected[index] ? Colors.green : Colors.grey,
+                        color:
+                            ctrl.isSelected[index] ? Colors.green : Colors.grey,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        isSelected[index]
+                        ctrl.isSelected[index]
                             ? _iconsAndLabels[index]['icon']
                             : _iconsAndLabels[index]['icon'],
                         color: Colors.white,
@@ -247,8 +244,9 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                         _iconsAndLabels[index]['label'],
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color:
-                              isSelected[index] ? Colors.green : Colors.black,
+                          color: ctrl.isSelected[index]
+                              ? Colors.green
+                              : Colors.black,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
