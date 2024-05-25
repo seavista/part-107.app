@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -8,34 +10,27 @@ import 'package:quiz_app/screens/score/score_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-  // Lets animated our progress bar
+  // Lets animate our progress bar
 
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
   // so that we can access our animation outside
   Animation get animation => this._animation;
 
-  PageController _pageController;
+  late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index']),
-      )
-      .toList();
+  List<Question> _questions = [];
+
   List<Question> get questions => this._questions;
 
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int _correctAns;
+  late int _correctAns;
   int get correctAns => this._correctAns;
 
-  int _selectedAns;
+  late int _selectedAns;
   int get selectedAns => this._selectedAns;
 
   // for more about obs please check documentation
@@ -48,6 +43,25 @@ class QuestionController extends GetxController
   // called immediately after the widget is allocated memory
   @override
   void onInit() {
+    // Shuffle the sample_data
+    // Shuffle the sample_data
+    var random = Random();
+    var tempList = sample_data.toList(); // Create a temporary list
+    tempList.shuffle(random); // Shuffle the temporary list
+
+    // Map the shuffled data to the questions list
+    _questions = tempList
+        .map(
+          (question) => Question(
+            id: question['id'],
+            question: question['question'],
+            options: question['options'],
+            answer: question['answer_index'],
+          ),
+        )
+        // .take(5)
+        .toList();
+
     // Our animation duration is 60 s
     // so our plan is to fill the progress bar within 60s
     _animationController =
@@ -62,6 +76,7 @@ class QuestionController extends GetxController
     // Once 60s is completed go to the next qn
     _animationController.forward().whenComplete(nextQuestion);
     _pageController = PageController();
+
     super.onInit();
   }
 
@@ -104,7 +119,7 @@ class QuestionController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
+      // Get package provide us simple way to navigate another page
       Get.to(ScoreScreen());
     }
   }

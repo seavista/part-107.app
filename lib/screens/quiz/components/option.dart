@@ -6,10 +6,10 @@ import '../../../constants.dart';
 
 class Option extends StatelessWidget {
   const Option({
-    Key key,
-    this.text,
-    this.index,
-    this.press,
+    required key,
+    required this.text,
+    required this.index,
+    required this.press,
   }) : super(key: key);
   final String text;
   final int index;
@@ -50,6 +50,7 @@ class Option extends StatelessWidget {
                 children: [
                   Text(
                     "${index + 1}. $text",
+                    maxLines: 2,
                     style: TextStyle(color: getTheRightColor(), fontSize: 16),
                   ),
                   Container(

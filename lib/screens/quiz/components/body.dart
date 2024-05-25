@@ -10,7 +10,7 @@ import 'question_card.dart';
 
 class Body extends StatelessWidget {
   const Body({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,9 @@ class Body extends StatelessWidget {
     // So that we have acccess our controller
     QuestionController _questionController = Get.put(QuestionController());
     return Stack(
+      fit: StackFit.expand,
       children: [
+        SizedBox(height: kDefaultPadding),
         SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
         SafeArea(
           child: Column(
@@ -27,7 +29,9 @@ class Body extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: ProgressBar(),
+                child: ProgressBar(
+                  key: this.key!,
+                ),
               ),
               SizedBox(height: kDefaultPadding),
               Padding(
@@ -40,14 +44,14 @@ class Body extends StatelessWidget {
                           "Question ${_questionController.questionNumber.value}",
                       style: Theme.of(context)
                           .textTheme
-                          .headline4
+                          .headline4!
                           .copyWith(color: kSecondaryColor),
                       children: [
                         TextSpan(
                           text: "/${_questionController.questions.length}",
                           style: Theme.of(context)
                               .textTheme
-                              .headline5
+                              .headline5!
                               .copyWith(color: kSecondaryColor),
                         ),
                       ],
@@ -65,7 +69,9 @@ class Body extends StatelessWidget {
                   onPageChanged: _questionController.updateTheQnNum,
                   itemCount: _questionController.questions.length,
                   itemBuilder: (context, index) => QuestionCard(
-                      question: _questionController.questions[index]),
+                    question: _questionController.questions[index],
+                    key: this.key!,
+                  ),
                 ),
               ),
             ],
