@@ -148,6 +148,77 @@ class _IconButtonGridState extends State<IconButtonGrid> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text(
+            'Select Test Topics',
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 20),
+          Wrap(
+            spacing: 10.0,
+            runSpacing: 10.0,
+            children: List.generate(_iconsAndLabels.length, (index) {
+              return GestureDetector(
+                onTap: () {
+                  if (index == 0) {
+                    ctrl.isSelected =
+                        List.generate(7, (_) => ctrl.isSelected[index]);
+                  } else {
+                    ctrl.isSelected[0] = false;
+                  }
+                  setState(() {
+                    ctrl.isSelected[index] = !ctrl.isSelected[index];
+                  });
+
+                  ctrl.onInit();
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width > 600
+                          ? 100.0
+                          : 80.0,
+                      height: MediaQuery.of(context).size.width > 600
+                          ? 100.0
+                          : 80.0,
+                      decoration: BoxDecoration(
+                        color:
+                            ctrl.isSelected[index] ? Colors.green : Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        ctrl.isSelected[index]
+                            ? _iconsAndLabels[index]['icon']
+                            : _iconsAndLabels[index]['icon'],
+                        color: Colors.white,
+                        size: 50.0,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Container(
+                      width: MediaQuery.of(context).size.width > 600
+                          ? 80.0
+                          : 100.0,
+                      child: Text(
+                        _iconsAndLabels[index]['label'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: ctrl.isSelected[index]
+                              ? Colors.green
+                              : Colors.white,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
+          SizedBox(
+            height: 50,
+          ),
           Container(
             width: (MediaQuery.of(context).size.width > 800)
                 ? 600
@@ -188,75 +259,6 @@ class _IconButtonGridState extends State<IconButtonGrid> {
               ],
             ),
           ),
-          SizedBox(height: 50),
-          Text(
-            'Select Test Topics',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          Wrap(
-            spacing: 10.0,
-            runSpacing: 10.0,
-            children: List.generate(_iconsAndLabels.length, (index) {
-              return GestureDetector(
-                onTap: () {
-                  if (index == 0) {
-                    ctrl.isSelected =
-                        List.generate(7, (_) => ctrl.isSelected[index]);
-                  } else {
-                    ctrl.isSelected[0] = false;
-                  }
-                  setState(() {
-                    ctrl.isSelected[index] = !ctrl.isSelected[index];
-                  });
-
-                  ctrl.onInit();
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width > 600
-                          ? 80.0
-                          : 100.0,
-                      height: MediaQuery.of(context).size.width > 600
-                          ? 80.0
-                          : 100.0,
-                      decoration: BoxDecoration(
-                        color:
-                            ctrl.isSelected[index] ? Colors.green : Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        ctrl.isSelected[index]
-                            ? _iconsAndLabels[index]['icon']
-                            : _iconsAndLabels[index]['icon'],
-                        color: Colors.white,
-                        size: 50.0,
-                      ),
-                    ),
-                    SizedBox(height: 5.0),
-                    Container(
-                      width: MediaQuery.of(context).size.width > 600
-                          ? 80.0
-                          : 100.0,
-                      child: Text(
-                        _iconsAndLabels[index]['label'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: ctrl.isSelected[index]
-                              ? Colors.green
-                              : Colors.black,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
-          ),
         ],
       ),
     );
@@ -274,41 +276,50 @@ class WelcomeScreen extends StatelessWidget {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Spacer(flex: 6), //2/6
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: Image.asset("assets/icons/logo.png",
-                        fit: BoxFit.scaleDown),
+              child: SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height,
                   ),
-                  Spacer(flex: 2), //2/6
-                  IconButtonGrid(),
-
-                  Spacer(), // 1/6
-                  InkWell(
-                    onTap: () => Get.to(QuizScreen()),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
-                      decoration: BoxDecoration(
-                        gradient: kPrimaryGradient,
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                      child: Text(
-                        "Start the Test",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button!
-                            .copyWith(color: Colors.black),
-                      ),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: Image.asset("assets/icons/logo.png",
+                              fit: BoxFit.scaleDown),
+                        ),
+                        Spacer(flex: 2),
+                        IconButtonGrid(),
+                        Spacer(),
+                        InkWell(
+                          onTap: () => Get.to(QuizScreen()),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            alignment: Alignment.center,
+                            padding:
+                                EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                            decoration: BoxDecoration(
+                              gradient: kPrimaryGradient,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                            ),
+                            child: Text(
+                              "Start the Test",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .button!
+                                  .copyWith(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Spacer(flex: 2),
+                      ],
                     ),
                   ),
-                  Spacer(flex: 2), // it will take 2/6 spaces
-                ],
+                ),
               ),
             ),
           ),
