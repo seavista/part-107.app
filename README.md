@@ -13,4 +13,4 @@ git checkout gh-pages
 cp -r build/web/* .
 git add .
 git commit -m "Publishing web output to gh-pages"
-git push -u origin gh-pages
+git push -u origin gh-pages --force
