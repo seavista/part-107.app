@@ -276,50 +276,38 @@ class WelcomeScreen extends StatelessWidget {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height,
+              child: ListView(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Image.asset("assets/icons/logo.png",
+                        fit: BoxFit.scaleDown),
                   ),
-                  child: IntrinsicHeight(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: Image.asset("assets/icons/logo.png",
-                              fit: BoxFit.scaleDown),
-                        ),
-                        Spacer(flex: 2),
-                        IconButtonGrid(),
-                        Spacer(),
-                        InkWell(
-                          onTap: () => Get.to(QuizScreen()),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            alignment: Alignment.center,
-                            padding:
-                                EdgeInsets.all(kDefaultPadding * 0.75), // 15
-                            decoration: BoxDecoration(
-                              gradient: kPrimaryGradient,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                            ),
-                            child: Text(
-                              "Start the Test",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .button!
-                                  .copyWith(color: Colors.black),
-                            ),
-                          ),
-                        ),
-                        Spacer(flex: 2),
-                      ],
+                  SizedBox(height: kDefaultPadding * 2),
+                  IconButtonGrid(),
+                  SizedBox(height: kDefaultPadding),
+                  InkWell(
+                    onTap: () => Get.to(QuizScreen()),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                      decoration: BoxDecoration(
+                        gradient: kPrimaryGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      child: Text(
+                        "Start the Test",
+                        style: Theme.of(context)
+                            .textTheme
+                            .button!
+                            .copyWith(color: Colors.black),
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(height: kDefaultPadding * 2),
+                ],
               ),
             ),
           ),
