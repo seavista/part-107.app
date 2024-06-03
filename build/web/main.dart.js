@@ -71749,7 +71749,7 @@ m=A.bN(a,i,p).w.a.a>600?80:100
 l=q[o].i(0,"label")
 k=r.fx[o]?B.qJ:B.k
 f[o]=A.w4(i,A.pO(A.a([n,new A.oo(i,5,i,i),A.eQ(i,A.h1(l,2,B.dK,new A.x(!0,k,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i),B.iI),i,i,i,i,i,m)],s),B.aH,B.b5,B.eM),B.az,!1,i,i,i,i,i,i,i,i,i,i,i,i,i,i,new A.abM(j,o),i,i,i,i,i,i)}r=A.ef(i,50,i)
-q=A.bN(a,i,p).w.a.a>800?600:A.bN(a,i,p).w.a.a/1.1
+q=A.bN(a,i,p).w.a.a>800?500:A.bN(a,i,p).w.a.a/1.1
 p=A.h1(A.i(j.d)+" Questions",i,i,A.mb(i,i,i,i,i,i,i,i,i,i,i,30,i,i,B.b1,i,i,!0,i,i,i,i,i,i,i,i),i)
 n=A.aou(a)
 m=A.aB(a).ax
