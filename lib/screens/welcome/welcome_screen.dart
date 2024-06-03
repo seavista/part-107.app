@@ -230,9 +230,10 @@ class _IconButtonGridState extends State<IconButtonGrid> {
             height: 50,
           ),
           Container(
+            padding: EdgeInsets.all(10),
             width: (MediaQuery.of(context).size.width > 800)
                 ? 500
-                : MediaQuery.of(context).size.width / 1.1,
+                : MediaQuery.of(context).size.width / 1.5,
             child: Column(
               children: [
                 Text(
