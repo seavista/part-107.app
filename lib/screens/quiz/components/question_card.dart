@@ -22,7 +22,7 @@ class QuestionCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
@@ -40,7 +40,8 @@ class QuestionCard extends StatelessWidget {
             (index) => Option(
               index: index,
               text: question.options[index],
-              press: () => _controller.checkAns(question, index), key: null,
+              press: () => _controller.checkAns(question, index),
+              key: null,
             ),
           ),
         ],
