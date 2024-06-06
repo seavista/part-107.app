@@ -18,7 +18,7 @@ class AuthGate extends StatelessWidget {
           return Container();
         }
 
-        if (!snapshot.hasData) {
+        if (!snapshot.hasData || snapshot.data!.isAnonymous) {
           return EntryScreen();
         } else {
           if (!snapshot.data!.isAnonymous) {

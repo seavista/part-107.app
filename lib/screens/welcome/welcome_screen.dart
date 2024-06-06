@@ -14,7 +14,16 @@ class FullScreenModal extends StatelessWidget {
 
   Future<void> _launchUrl() async {
     //launches an url by address
-    if (!await launchUrl(_url)) {
+    if (!await launchUrl(_url,
+        mode: LaunchMode.inAppWebView,
+        webOnlyWindowName: "_self",
+        webViewConfiguration: WebViewConfiguration(
+            enableJavaScript: true,
+            enableDomStorage: true,
+            headers: <String, String>{
+              'authorization':
+                  FirebaseAuth.instance.currentUser!.getIdToken().toString()
+            }))) {
       throw Exception('Cannnot launch $_url');
     }
   }
@@ -334,6 +343,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   IconButton.filled(
                       onPressed: () {
                         FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacementNamed(
+                            context, Routes.appWelcome);
                       },
                       icon: Icon(Icons.logout))
                 ],
