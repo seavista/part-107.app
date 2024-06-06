@@ -17,14 +17,17 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-const fulfillOrder =  (session) => {
-  console.log("Fulfilling order", session);
+//const fulfillOrder =  (request, session) => {
+const fulfillOrder = async (event, session) => {
+  console.log("Fulfilling order", event.data.object);
 
   const db = admin.firestore();
   
-  const userId =  session.billing_details.email;
-  const userEmail = session.billing_details.email;
+  // const user_id = request.query.user_id; // Access the query string value
+  // const userEmail = session.billing_details.email;
 
+  const userId = event.query.user_id; // Access the custom parameter
+  const userEmail = session.billing_details.email;
 
 
   db.collection('orders').doc(session.id).set({
@@ -39,7 +42,7 @@ const fulfillOrder =  (session) => {
 };
 
 const createOrder = (session) => {
-  console.log("Creating order", session);
+  console.log("Creating order");
 
 };
 
@@ -54,8 +57,12 @@ app.post('/', async (request, response) => {
 
 
     //  // Verify the ID token sent by the client
-      const authHeader = request.headers['authorization'];
-      console.log(authHeader);
+    // try {
+    //     const authHeader = request.headers['authorization'];
+    //     console.log(authHeader);
+    // } catch (error) {
+    //   console.log('No authHeader value');
+    // }
      // const token = authHeader.split('Bearer ')[1];
     //  const decodedToken = await admin.auth().verifyIdToken(token);
    
@@ -95,7 +102,7 @@ if(endpointSecret){
     
       const session = event.data.object;
       createOrder(session);
-      fulfillOrder(session);
+      fulfillOrder(event, session); //pass the logged in userid to Stripe
       
       break;
     }
@@ -118,5 +125,51 @@ app.use(express.json({
 
 
 exports.webhook = functions.https.onRequest(app);
+
+
+// Function to create a payment link
+exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
+  //const { userEmail } = req.body;
+  const { userEmail } = req.query.user_id;
+
+
+  try {
+    const protocol = req.protocol;
+    const host = req.get('host');
+    const baseUrl = `${protocol}://${host}`;
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Part-107.app Full Access Pass',
+              images: [`https://part-107.app/icons/logo.png`] // Logo URL
+            },
+            unit_amount: 1900,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${baseUrl}`,
+      cancel_url: `${baseUrl}/cancel`,
+      metadata: {
+        firebaseUserEmail: userEmail,
+      },
+    });
+
+    res.json({ url: session.url });
+    
+
+    res.status(200).end(); 
+    return ('Any response body', 200, {'Access-Control-Allow-Origin': '*'})
+
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 

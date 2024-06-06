@@ -1,5 +1,7 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -9,22 +11,64 @@ import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:cloud_functions/cloud_functions.dart';
+
 class FullScreenModal extends StatelessWidget {
-  final Uri _url = Uri.parse('https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh');
+  Future<Uri?> createPaymentLink() async {
+    final url = Uri.parse(
+        'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}');
+
+    try {
+      // final response = await http.post(
+      //   url,
+      //   headers: {'Content-Type': 'application/json'},
+      //   body: json.encode({
+      //     'userEmail': FirebaseAuth.instance.currentUser!.email,
+      //     'origin': kIsWeb ? Uri.base.origin : 'https://part-107.app'
+      //   }),
+      // );
+
+      final response = await http.get(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final Uri paymentLink = responseData['url'];
+        // Open the payment link in the browser
+        // You can use url_launcher or any other method to open the link
+        print('Payment link: $paymentLink');
+        return paymentLink;
+      } else {
+        print('Failed to create payment link');
+        return null;
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
+  }
+
+  final Uri _url = Uri.parse(
+      'https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh?user_id=${FirebaseAuth.instance.currentUser!.email}');
 
   Future<void> _launchUrl() async {
-    final authToken = await FirebaseAuth.instance.currentUser!.getIdToken();
+    //final Uri? _url = await createPaymentLink();
 
     //launches an url by address
-    if (!await launchUrl(_url,
-        mode: LaunchMode.inAppWebView,
-        webOnlyWindowName: "_self",
-        webViewConfiguration: WebViewConfiguration(
-            enableJavaScript: true,
-            enableDomStorage: true,
-            headers: <String, String>{
-              'authorization': authToken.toString()
-            }))) {
+    if (!await launchUrl(
+      _url!,
+      mode: LaunchMode.inAppWebView,
+      webOnlyWindowName: "_self",
+      webViewConfiguration: WebViewConfiguration(
+        enableJavaScript: true,
+        enableDomStorage: true,
+        //headers: <String, String>{'authorization': authToken.toString()},
+      ),
+    )) {
       throw Exception('Cannnot launch $_url');
     }
   }
