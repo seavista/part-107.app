@@ -1,118 +1,121 @@
 const functions = require("firebase-functions");
-
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-//
-
-
 const stripe = require('stripe')('sk_test_51PKLaQ09YdZFPzTijC4jpxct1CQUNJzfpVoIom4idR89d8qGG49Dc5at4wI1lQCdLHJDsPtvyGJicu1Zhpn8x8CL00Ss2vaa8P');
 const endpointSecret = 'whsec_NJJy11bLUESXxcXoiMz4qY848w7rHmv9';
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const admin = require('firebase-admin');
 
 const app = express();
+app.use(cors({ origin: true }));
 
-const fulfillOrder = (session) => {
-  // TODO: fill me in
+// Initialize the Firebase Admin SDK
+const serviceAccount = require('./part-107-82ca6-firebase-adminsdk-u55xq-228c0efa97.json');
+
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const fulfillOrder =  (session) => {
   console.log("Fulfilling order", session);
+
+  const db = admin.firestore();
+  
+  const userId =  session.billing_details.email;
+  const userEmail = session.billing_details.email;
+
+
+
+  db.collection('orders').doc(session.id).set({
+    userId,
+    userEmail,
+    orderData: session,
+  }).then(() => {
+    console.log(`Order fulfilled and saved to Firestore`);
+  }).catch((error) => {
+    console.error(`Error saving order to Firestore: ${error}`);
+  });
 };
 
 const createOrder = (session) => {
-  // TODO: fill me in
   console.log("Creating order", session);
+
 };
 
 const emailCustomerAboutFailedPayment = (session) => {
-  // TODO: fill me in
   console.log("Emailing customer", session);
 };
 
-app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (request, response) => {
+
+app.post('/', async (request, response) => {
+
+  console.log("Webhook POST request received");
+
+
+    //  // Verify the ID token sent by the client
+    //  const authHeader = request.headers['authorization'];
+    //  const token = authHeader.split('Bearer ')[1];
+    //  const decodedToken = await admin.auth().verifyIdToken(token);
+   
+    //  // Get the user's UID from the decoded token
+    //  const uid = decodedToken.uid;
+
+     
+   
+    //  // Retrieve the user's information
+    //  const userRecord = await admin.auth().getUser(uid);
+    //  console.log(userRecord);
+
+
   const payload = request.body;
+
+
   const sig = request.headers['stripe-signature'];
-
+ // console.log("Payload:", payload);
+  //console.log("Signature:", sig);
   let event;
+if(endpointSecret){
 
-  try {
-    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+    try {
+    event = stripe.webhooks.constructEvent(request.rawBody, sig, endpointSecret);
+    console.log("Webhook verified successfully");
   } catch (err) {
-    return response.status(400).send(`Webhook Error: ${err.message}`);
+    console.error("Webhook verification failed:", err.message);
+    return response.status(400).send("Webhook Error: " + err.message);
   }
+}
 
-  // Handle the checkout.session.completed event
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-
-    // Fulfill the purchase...
-    fulfillOrder(session);
-  }
 
   switch (event.type) {
-    case 'checkout.session.completed': {
-      const session = event.data.object;
-      // Save an order in your database, marked as 'awaiting payment'
-      createOrder(session);
+    case 'charge.succeeded': {
 
-      // Check if the order is paid (for example, from a card payment)
-      // A delayed notification payment will have an `unpaid` status, as
-      // you're still waiting for funds to be transferred from the customer's
-      // account.
-      if (session.payment_status === 'paid') {
-        fulfillOrder(session);
-      }
-
-      break;
-    }
-
-    case 'charge.succeeded':{
-               const chargeSucceeded = event.data.object;
-        // Then define and call a function to handle the event charge.succeeded
-        const session = event.data.object;
-        // Save an order in your database, marked as 'awaiting payment'
-        createOrder(session);
-            // Check if the order is paid (for example, from a card payment)
-        // A delayed notification payment will have an `unpaid` status, as
-        // you're still waiting for funds to be transferred from the customer's
-        // account.
-        if (session.payment_status === 'paid') {
-            fulfillOrder(session);
-        
-          
-        }
-        break;
-    }
-  
+      console.log('charge.succeeded Event reached');
     
-        
-
-    case 'checkout.session.async_payment_succeeded': {
       const session = event.data.object;
-
-      // Fulfill the purchase...
+      createOrder(session);
       fulfillOrder(session);
-
+      
       break;
     }
-
-    case 'checkout.session.async_payment_failed': {
-      const session = event.data.object;
-
-      // Send an email to the customer asking them to retry their order
-      emailCustomerAboutFailedPayment(session);
-
-      break;
-    }
-
+    // Add other event types here
+    default:
+      console.log(`Unhandled event type ${event.type}`);
     
   }
 
   response.status(200).end();
 });
 
+//important for using rawBody above
+app.use(express.json({
+  limit: '5mb',
+  verify: (req, res, buf) => {
+    req.rawBody = buf.toString();
+  }
+}));
+
+
 exports.webhook = functions.https.onRequest(app);
+
 
