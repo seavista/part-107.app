@@ -13,6 +13,8 @@ class FullScreenModal extends StatelessWidget {
   final Uri _url = Uri.parse('https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh');
 
   Future<void> _launchUrl() async {
+    final authToken = await FirebaseAuth.instance.currentUser!.getIdToken();
+
     //launches an url by address
     if (!await launchUrl(_url,
         mode: LaunchMode.inAppWebView,
@@ -21,8 +23,7 @@ class FullScreenModal extends StatelessWidget {
             enableJavaScript: true,
             enableDomStorage: true,
             headers: <String, String>{
-              'authorization':
-                  FirebaseAuth.instance.currentUser!.getIdToken().toString()
+              'authorization': authToken.toString()
             }))) {
       throw Exception('Cannnot launch $_url');
     }

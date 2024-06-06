@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({ origin: true }));
 
 // Initialize the Firebase Admin SDK
-const serviceAccount = require('./part-107-82ca6-firebase-adminsdk-u55xq-228c0efa97.json');
+const serviceAccount = require('./part-107-82ca6-firebase-adminsdk-u55xq-b8935fa94d.json');
 
 
 admin.initializeApp({
@@ -54,8 +54,9 @@ app.post('/', async (request, response) => {
 
 
     //  // Verify the ID token sent by the client
-    //  const authHeader = request.headers['authorization'];
-    //  const token = authHeader.split('Bearer ')[1];
+      const authHeader = request.headers['authorization'];
+      console.log(authHeader);
+     // const token = authHeader.split('Bearer ')[1];
     //  const decodedToken = await admin.auth().verifyIdToken(token);
    
     //  // Get the user's UID from the decoded token
