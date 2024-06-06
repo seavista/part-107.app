@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/screens/login/auth_gate.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)
               .copyWith(background: Colors.blueGrey)),
       home: AuthGate(),
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }

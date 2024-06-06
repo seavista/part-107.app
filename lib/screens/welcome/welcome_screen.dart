@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
@@ -280,6 +282,9 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 }
 
 class WelcomeScreen extends StatefulWidget {
+  final String id;
+  const WelcomeScreen({required this.id});
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -326,6 +331,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   SizedBox(height: kDefaultPadding * 2),
+                  IconButton.filled(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                      },
+                      icon: Icon(Icons.logout))
                 ],
               ),
             ),

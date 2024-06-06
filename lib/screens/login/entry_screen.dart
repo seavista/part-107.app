@@ -12,7 +12,10 @@ class EntryScreen extends StatelessWidget {
 
   Future<UserCredential> signInWithGoogle(context) async {
     // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAccount? googleUser = await GoogleSignIn(
+            clientId:
+                '274518596440-vokk382gksi9vl9141s7849r94dh0sq3.apps.googleusercontent.com')
+        .signIn();
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
