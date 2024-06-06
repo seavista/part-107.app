@@ -291,8 +291,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 }
 
 class WelcomeScreen extends StatefulWidget {
-  final String id;
-  const WelcomeScreen({required this.id});
+  const WelcomeScreen();
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();

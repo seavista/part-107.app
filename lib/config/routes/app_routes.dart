@@ -30,7 +30,7 @@ class AppRoutes {
       case Routes.appHome:
         return MaterialPageRoute(
             builder: (context) {
-              return WelcomeScreen(id: Routes.appHome);
+              return WelcomeScreen();
             },
             settings: routeSettings);
 

@@ -22,7 +22,7 @@ class AuthGate extends StatelessWidget {
           return EntryScreen();
         } else {
           if (!snapshot.data!.isAnonymous) {
-            return WelcomeScreen(id: Routes.appHome);
+            return WelcomeScreen();
           }
         }
         return LoginScreen();
