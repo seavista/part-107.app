@@ -36,7 +36,8 @@ class ScoreScreen extends StatelessWidget {
                 //onTap: () => Get.to(WelcomeScreen()),
                 onTap: () {
                   Get.delete<QuestionController>();
-                  Get.to(WelcomeScreen());
+
+                  Get.to(() => WelcomeScreen(), routeName: "WelcomeScreen");
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2,

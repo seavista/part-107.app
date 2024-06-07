@@ -28,13 +28,13 @@ ls build/web
 mkdir -p temp_build
 cp -r build/web/* temp_build/
 
-git checkout gh-pages
+git checkout gh-pages --force
 git rm -rf .
 
-cp -r ../temp_build/* .
+cp -r temp_build/* .
 git add .
 
 git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages --force
 
-rm -rf ../temp_build
+rm -rf temp_build

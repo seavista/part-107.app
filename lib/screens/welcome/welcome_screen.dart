@@ -183,18 +183,18 @@ class FullScreenModal extends StatelessWidget {
                             description:
                                 'Track your progress with detailed performance reports and identify areas for improvement.',
                           ),
-                          FeatureItem(
-                            icon: Icons.offline_pin,
-                            title: 'Offline Access',
-                            description:
-                                'Study anytime, anywhere with offline mode, perfect for on-the-go learning.',
-                          ),
-                          FeatureItem(
-                            icon: Icons.support_agent,
-                            title: 'Priority Support',
-                            description:
-                                'Get quick assistance and expert guidance from our dedicated support team.',
-                          ),
+                          // FeatureItem(
+                          //   icon: Icons.offline_pin,
+                          //   title: 'Offline Access',
+                          //   description:
+                          //       'Study anytime, anywhere with offline mode, perfect for on-the-go learning.',
+                          // ),
+                          // FeatureItem(
+                          //   icon: Icons.support_agent,
+                          //   title: 'Priority Support',
+                          //   description:
+                          //       'Get quick assistance and expert guidance from our dedicated support team.',
+                          // ),
                           FeatureItem(
                             icon: Icons.no_accounts,
                             title: 'Ad-Free Experience',
@@ -463,7 +463,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   InkWell(
                     onTap: () {
                       Get.delete<QuestionController>(); // Add this line
-                      Get.to(() => QuizScreen());
+                      Get.to(() => QuizScreen(), routeName: "QuizScreen");
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
