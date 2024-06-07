@@ -462,7 +462,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   SizedBox(height: kDefaultPadding),
                   InkWell(
                     onTap: () {
-                      Get.delete<QuestionController>(); // Add this line
+                      //cannot use delete??
+                      //Get.delete<QuestionController>(); // Add this line
                       Get.to(() => QuizScreen(), routeName: "QuizScreen");
                     },
                     child: Container(
