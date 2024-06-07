@@ -26598,28 +26598,26 @@ this.$ti=a},
 hA:function hA(){},
 Og:function Og(){},
 WR:function WR(){},
-azI(a,b,c,d){var s,r,q,p,o,n,m,l=null
-if(c==null)c="/"+J.V(b).k(0)
-s=A.i9(c,"() => ","")
-if(!B.b.bs(s,"/"))s="/"+s
-r=A.aVH(s)
-c=r==null?l:r.k(0)
-if(c==null)c=s
-r=$.u3()
-q=r.to.a
-if(c===q)return l
-p=r.xr
-if($.a4.M$.z.h(0,p)==null){$.u3().toString
-r=!0}else r=!1
-if(r)A.Z("You are trying to use contextless navigation without\n      a GetMaterialApp or Get.key.\n      If you are testing your app, you can use:\n      [Get.testMode = true], or if you are running your app on\n      a physical device or emulator, you must exchange your [MaterialApp]\n      for a [GetMaterialApp].\n      ")
-r=p.gN()
-if(r==null)r=l
-else{q=A.aRA(a,b,"to")
-o=$.u3()
-n=o.p2
-m=o.p4
-o=o.R8
-r=r.mM(A.aRC(l,l,B.Fr,l,!1,l,l,!0,q,l,n,c,new A.iu(c,l),!0,m,o,d))}return r},
+azI(a,b,c,d){var s,r,q,p,o,n,m=null,l=A.i9(c,"() => ","")
+if(!B.b.bs(l,"/"))l="/"+l
+s=A.aVH(l)
+c=s==null?m:s.k(0)
+if(c==null)c=l
+s=$.u3()
+r=s.to.a
+if(c===r)return m
+q=s.xr
+if($.a4.M$.z.h(0,q)==null){$.u3().toString
+s=!0}else s=!1
+if(s)A.Z("You are trying to use contextless navigation without\n      a GetMaterialApp or Get.key.\n      If you are testing your app, you can use:\n      [Get.testMode = true], or if you are running your app on\n      a physical device or emulator, you must exchange your [MaterialApp]\n      for a [GetMaterialApp].\n      ")
+s=q.gN()
+if(s==null)s=m
+else{r=A.aRA(a,b,"to")
+p=$.u3()
+o=p.p2
+n=p.p4
+p=p.R8
+s=s.mM(A.aRC(m,m,B.Fr,m,!1,m,m,!0,r,m,o,c,new A.iu(c,m),!0,n,p,d))}return s},
 aRA(a,b,c){if(t.bU.b(b))return b
 else if(b instanceof A.j){$.c4().e.$1('WARNING, consider using: "Get.'+c+'(() => Page())" instead of "Get.'+c+'(Page())".\nUsing a widget function instead of a widget fully guarantees that the widget and its controllers will be removed from memory when they are no longer used.\n      ')
 return new A.aau(b)}else throw A.c("Unexpected format,\nyou can only use widgets and widget functions here")},
@@ -89597,7 +89595,7 @@ s.fp(0)
 r.ei(0)
 A.qH(A.c1(0,0,0,2),new A.aha(r),t.P)},
 Wu(){var s=this,r=s.dx
-if(J.d(r.gl(r),s.CW.length))A.azI($.c4(),new A.Sb(null),null,t.z)
+if(J.d(r.gl(r),s.CW.length))A.azI($.c4(),new A.Sb(null),"ScoreScreen",t.z)
 s.cx=!1
 r=s.ch
 r===$&&A.b()
