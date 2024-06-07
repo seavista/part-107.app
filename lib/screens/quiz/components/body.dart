@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         SizedBox(height: kDefaultPadding),
-        SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
+        SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.cover),
         SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,8 @@ class Body extends StatelessWidget {
                 ),
               ),
               SizedBox(height: kDefaultPadding),
-              Padding(
+              Container(
+                color: Theme.of(context).colorScheme.background.withAlpha(200),
                 padding:
                     const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Obx(
@@ -43,17 +44,21 @@ class Body extends StatelessWidget {
                     TextSpan(
                       text:
                           "Question ${_questionController.questionNumber.value}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(color: kSecondaryColor),
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 36),
                       children: [
                         TextSpan(
                           text: "/${_questionController.questions.length}",
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
-                              .copyWith(color: kSecondaryColor),
+                              .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 36),
                         ),
                       ],
                     ),

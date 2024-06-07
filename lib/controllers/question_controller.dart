@@ -44,6 +44,8 @@ class QuestionController extends GetxController
   RxInt get numOfQuestions => this._numOfQuestions;
   void updateNumberOfQuestions(int count) {
     _numOfQuestions.value = count;
+    //rebuild questions
+    initQuestions();
   }
 
 // List to keep track of the toggle states, initialized to true
@@ -55,13 +57,35 @@ class QuestionController extends GetxController
     }
   });
 
-  // called immediately after the widget is allocated memory
   @override
   void onInit() async {
-    // Shuffle the sample_data
-    // Shuffle the sample_data
+    _initializeController(); // Add this line
+    super.onInit();
+  }
+
+// Add this new method to handle initialization
+  void _initializeController() {
+    _animationController =
+        AnimationController(duration: Duration(minutes: 2), vsync: this);
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
+      ..addListener(() {
+        update();
+      });
+
+    _animationController.forward().whenComplete(nextQuestion);
+    _pageController = PageController(); // Ensure this line is here
+  }
+
+  Future<void> initQuestions() async {
+    //clear previous answers
+    _isAnswered = false;
+    _questionNumber = 1.obs;
+    _questions = [];
+    _numOfCorrectAns = 0;
+
     var random = Random();
     var tempList = await buildQuestions(); // Create a temporary list
+
     tempList.shuffle(random); // Shuffle the temporary list
 
     // Map the shuffled data to the questions list
@@ -77,22 +101,7 @@ class QuestionController extends GetxController
         .take(_numOfQuestions.value)
         .toList();
 
-    // Our animation duration is 60 s
-    // so our plan is to fill the progress bar within 60s
-    _animationController =
-        AnimationController(duration: Duration(seconds: 60), vsync: this);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
-      ..addListener(() {
-        // update like setState
-        update();
-      });
-
-    // start our animation
-    // Once 60s is completed go to the next qn
-    _animationController.forward().whenComplete(nextQuestion);
-    _pageController = PageController();
-
-    super.onInit();
+    _animationController.repeat();
   }
 
   Future<List<dynamic>> buildQuestions() async {
@@ -148,28 +157,29 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    // Once user select an ans after 3s it will go to the next qn
-    Future.delayed(Duration(seconds: 3), () {
+    // Once user select an ans after 2s it will go to the next qn
+    Future.delayed(Duration(seconds: 2), () {
       nextQuestion();
     });
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != _questions.length) {
-      _isAnswered = false;
-      _pageController.nextPage(
-          duration: Duration(milliseconds: 250), curve: Curves.ease);
-
-      // Reset the counter
-      _animationController.reset();
-
-      // Then start it again
-      // Once timer is finish go to the next qn
-      _animationController.forward().whenComplete(nextQuestion);
-    } else {
+    if (_questionNumber.value == _questions.length) {
+      // score
       // Get package provide us simple way to navigate another page
       Get.to(ScoreScreen());
     }
+
+    _isAnswered = false;
+    _pageController.nextPage(
+        duration: Duration(milliseconds: 250), curve: Curves.ease);
+
+    // Reset the counter
+    _animationController.reset();
+
+    // Then start it again
+    // Once timer is finish go to the next qn
+    _animationController.forward().whenComplete(nextQuestion);
   }
 
   void updateTheQnNum(int index) {

@@ -69,6 +69,7 @@ class EntryScreen extends StatelessWidget {
           Image.asset('assets/images/slide_3.png'),
           Image.asset('assets/images/slide_4.png'),
         ],
+        centerBackground: true,
         totalPage: 4,
         speed: 1.8,
         pageBodies: [
@@ -80,7 +81,7 @@ class EntryScreen extends StatelessWidget {
                   height: 480,
                 ),
                 Text(
-                  'Pass the FAA Part 107 for Remote Pilots',
+                  'Master the skies with our comprehensive FAA Part 107 practice test.',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                         decorationStyle: TextDecorationStyle.double,
@@ -97,7 +98,7 @@ class EntryScreen extends StatelessWidget {
                   height: 480,
                 ),
                 Text(
-                  'Say Goodbye to Clutter and Confusion',
+                  'Study Anywhere! Become a FAA certified drone pilot fast.',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -113,7 +114,7 @@ class EntryScreen extends StatelessWidget {
                   height: 480,
                 ),
                 Text(
-                  'Effortlessly Organize and Locate Items',
+                  'Start your path to certification and take control of your future in the skies!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

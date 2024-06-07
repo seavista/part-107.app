@@ -13,6 +13,52 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:cloud_functions/cloud_functions.dart';
 
+class FeatureItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String description;
+
+  const FeatureItem(
+      {required this.icon, required this.title, required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    print(icon);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.check,
+            size: 28,
+            color: Colors.green,
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class FullScreenModal extends StatelessWidget {
   Future<Uri?> createPaymentLink() async {
     final url = Uri.parse(
@@ -76,73 +122,122 @@ class FullScreenModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Colors.black.withOpacity(0.7), // Add a semi-transparent background
-      body: GestureDetector(
-        onTap: () {
-          Navigator.of(context)
-              .pop(); // Dismiss the dialog when tapping outside the content
-        },
-        child: Center(
-          child: GestureDetector(
-            onTap: () {}, // Prevent dismissing when tapping inside the content
-            child: Container(
-              padding: EdgeInsets.all(16.0),
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    'assets/icons/logo.png', // Replace with your image asset path
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 20.0),
-                  Text(
-                    'Unlock Full Access',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .background, // Add a semi-transparent background
+        body: GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .pop(); // Dismiss the dialog when tapping outside the content
+          },
+          child: Center(
+            child: GestureDetector(
+              onTap:
+                  () {}, // Prevent dismissing when tapping inside the content
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Image.asset(
+                        'assets/icons/logo.png', // Replace with your image asset path
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20.0),
-                  Container(
-                    width: 300,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.grey)),
-                          onPressed: () {
-                            // Implement your unlock full access logic here
-                            Navigator.of(context)
-                                .pop(); // Dismiss the dialog when the button is pressed
-                          },
-                          child: Text('Cancel'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Implement your unlock full access logic here
-                            Navigator.of(context).pop();
-                            _launchUrl();
-                          },
-                          child: Text('Unlock Now'),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Unlock Full Lifetime Access Pass only \$9.95',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    Theme.of(context).colorScheme.background),
+                          ),
+                          SizedBox(height: 10),
+                          FeatureItem(
+                            icon: Icons.question_answer,
+                            title: 'Expanded Question Bank',
+                            description:
+                                'Gain access to over a 1000 questions, ensuring comprehensive coverage of all exam topics.',
+                          ),
+                          FeatureItem(
+                            icon: Icons.tune,
+                            title: 'Customizable Test Options',
+                            description:
+                                'Tailor your practice tests to focus on specific areas or difficulty levels, enhancing your study efficiency.',
+                          ),
+                          FeatureItem(
+                            icon: Icons.analytics,
+                            title: 'Advanced Analytics',
+                            description:
+                                'Track your progress with detailed performance reports and identify areas for improvement.',
+                          ),
+                          FeatureItem(
+                            icon: Icons.offline_pin,
+                            title: 'Offline Access',
+                            description:
+                                'Study anytime, anywhere with offline mode, perfect for on-the-go learning.',
+                          ),
+                          FeatureItem(
+                            icon: Icons.support_agent,
+                            title: 'Priority Support',
+                            description:
+                                'Get quick assistance and expert guidance from our dedicated support team.',
+                          ),
+                          FeatureItem(
+                            icon: Icons.no_accounts,
+                            title: 'Ad-Free Experience',
+                            description:
+                                'Enjoy an uninterrupted study experience with no ads.',
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20.0),
+                    Container(
+                      width: 300,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Colors.grey)),
+                            onPressed: () {
+                              // Implement your unlock full access logic here
+                              Navigator.of(context)
+                                  .pop(); // Dismiss the dialog when the button is pressed
+                            },
+                            child: Text('Cancel'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Implement your unlock full access logic here
+                              Navigator.of(context).pop();
+                              _launchUrl();
+                            },
+                            child: Text('Get Premium Access'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -199,8 +294,8 @@ class _IconButtonGridState extends State<IconButtonGrid> {
   final ctrl = Get.put(QuestionController());
 
   @override
-  void intiState() {
-    ctrl.updateNumberOfQuestions(_currentValue.toInt());
+  void initState() {
+    // ctrl.updateNumberOfQuestions(_currentValue.toInt());
     ctrl.onInit();
     super.initState();
   }
@@ -346,6 +441,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -365,7 +461,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   IconButtonGrid(),
                   SizedBox(height: kDefaultPadding),
                   InkWell(
-                    onTap: () => Get.to(QuizScreen()),
+                    onTap: () {
+                      Get.delete<QuestionController>(); // Add this line
+                      Get.to(() => QuizScreen());
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
                       alignment: Alignment.center,
