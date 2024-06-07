@@ -35,9 +35,9 @@ class ScoreScreen extends StatelessWidget {
               InkWell(
                 //onTap: () => Get.to(WelcomeScreen()),
                 onTap: () {
-                  Get.delete<QuestionController>();
-
-                  Get.to(() => WelcomeScreen(), routeName: "WelcomeScreen");
+                  // Get.delete<QuestionController>();
+                  // we need to include the routeName
+                  Get.to(() => WelcomeScreen(), routeName: "/WelcomeScreen");
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2,

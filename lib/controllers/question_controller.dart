@@ -167,7 +167,7 @@ class QuestionController extends GetxController
     if (_questionNumber.value == _questions.length) {
       // score
       // Get package provide us simple way to navigate another page
-      Get.to(ScoreScreen(), routeName: "ScoreScreen");
+      Get.to(ScoreScreen(), routeName: "/ScoreScreen");
     }
 
     _isAnswered = false;

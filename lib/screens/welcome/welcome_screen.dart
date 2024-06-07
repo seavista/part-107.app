@@ -464,7 +464,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     onTap: () {
                       //cannot use delete??
                       //Get.delete<QuestionController>(); // Add this line
-                      Get.to(() => QuizScreen(), routeName: "QuizScreen");
+
+                      Get.to(() => QuizScreen(), routeName: "/QuizScreen");
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
