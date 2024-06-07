@@ -1,0 +1,24 @@
+2024/06/07-15:42:08.717 6a07 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.xeda6U/flutter_tools_chrome_device.IUq5Yh/Default/IndexedDB/http_localhost_54767.indexeddb.leveldb/MANIFEST-000001
+2024/06/07-15:42:08.718 6a07 Recovering log #6
+2024/06/07-15:42:08.720 6a07 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.xeda6U/flutter_tools_chrome_device.IUq5Yh/Default/IndexedDB/http_localhost_54767.indexeddb.leveldb/000006.log 
+2024/06/07-15:42:08.750 14603 Level-0 table #11: started
+2024/06/07-15:42:08.755 14603 Level-0 table #11: 5838 bytes OK
+2024/06/07-15:42:08.765 14603 Delete type=0 #6
+2024/06/07-15:42:08.766 7103 Manual compaction at level-0 from '\x00\x06\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/07-15:42:09.630 14603 Level-0 table #13: started
+2024/06/07-15:42:09.635 14603 Level-0 table #13: 3865 bytes OK
+2024/06/07-15:42:09.643 14603 Delete type=0 #10
+2024/06/07-15:42:09.644 6a07 Manual compaction at level-0 from '\x00\x07\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x08\x00\x00\x00' @ 0 : 0; will stop at '\x00\x07\x00\x00\x05' @ 284 : 1
+2024/06/07-15:42:09.644 6a07 Compacting 1@0 + 1@1 files
+2024/06/07-15:42:09.649 6a07 Generated table #14@0: 72 keys, 4594 bytes
+2024/06/07-15:42:09.649 6a07 Compacted 1@0 + 1@1 files => 4594 bytes
+2024/06/07-15:42:09.657 6a07 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/07-15:42:09.657 6a07 Delete type=2 #13
+2024/06/07-15:42:09.658 6a07 Manual compaction at level-0 from '\x00\x07\x00\x00\x05' @ 284 : 1 .. '\x00\x08\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/07-15:42:54.352 7103 Compacting 1@1 + 1@2 files
+2024/06/07-15:42:54.361 7103 Generated table #15@1: 51 keys, 4424 bytes
+2024/06/07-15:42:54.361 7103 Compacted 1@1 + 1@2 files => 4424 bytes
+2024/06/07-15:42:54.374 7103 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/07-15:42:54.375 7103 Delete type=2 #14
+2024/06/07-15:42:54.375 7103 Delete type=2 #11
+2024/06/07-15:42:54.375 7103 Delete type=2 #8
