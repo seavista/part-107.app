@@ -29,9 +29,17 @@ mkdir -p temp_build
 cp -r build/web/* temp_build/
 
 git checkout gh-pages --force
+
 git rm -rf .
+    or
+git rm -rf --exclude=CNAME .
+
+
 
 cp -r temp_build/* .
+    or
+cp -rf temp_build/* .
+
 git add .
 
 git commit -m "Publishing web output to gh-pages"

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
+import 'package:quiz_app/screens/score/score_screen.dart';
 import 'package:quiz_app/screens/splash/splash.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
@@ -13,6 +14,7 @@ class Routes {
   static const String appLogin = '/app-login';
   static const String appRegister = '/app-register';
   static const String appWelcome = '/app-welcome';
+  static const String appScore = '/app-score';
 }
 
 class AppRoutes {
@@ -52,6 +54,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const EntryScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appScore:
+        return MaterialPageRoute(
+            builder: (context) {
+              return ScoreScreen();
             },
             settings: routeSettings);
 

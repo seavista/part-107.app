@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/models/Questions.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
 
@@ -66,7 +68,7 @@ class QuestionController extends GetxController
 // Add this new method to handle initialization
   void _initializeController() {
     _animationController =
-        AnimationController(duration: Duration(minutes: 2), vsync: this);
+        AnimationController(duration: Duration(minutes: 1), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
         update();
@@ -78,10 +80,7 @@ class QuestionController extends GetxController
 
   Future<void> initQuestions() async {
     //clear previous answers
-    _isAnswered = false;
-    _questionNumber = 1.obs;
-    _questions = [];
-    _numOfCorrectAns = 0;
+    resetQuestions();
 
     var random = Random();
     var tempList = await buildQuestions(); // Create a temporary list
@@ -102,6 +101,15 @@ class QuestionController extends GetxController
         .toList();
 
     _animationController.repeat();
+  }
+
+  void resetQuestions() {
+    //clear previous answers
+    _isAnswered = false;
+    _questionNumber = 1.obs;
+    _questions = [];
+    _numOfCorrectAns = 0;
+    update();
   }
 
   Future<List<dynamic>> buildQuestions() async {
@@ -165,9 +173,9 @@ class QuestionController extends GetxController
 
   void nextQuestion() {
     if (_questionNumber.value == _questions.length) {
-      // score
-      // Get package provide us simple way to navigate another page
       Get.to(ScoreScreen(), routeName: "/ScoreScreen");
+
+      //GetPage(name: '/ScoreScreen', page: () => ScoreScreen());
     }
 
     _isAnswered = false;

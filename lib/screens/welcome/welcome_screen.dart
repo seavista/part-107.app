@@ -463,7 +463,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   InkWell(
                     onTap: () {
                       //cannot use delete??
-                      //Get.delete<QuestionController>(); // Add this line
+
+                      Get.reload<QuestionController>();
 
                       Get.to(() => QuizScreen(), routeName: "/QuizScreen");
                     },

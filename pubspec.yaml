@@ -43,6 +43,7 @@ dependencies:
   rflutter_alert: ^2.0.7
   google_sign_in: ^6.1.6
   cloud_functions: ^4.6.0
+  multi_circular_slider: ^1.1.0
 
 
 
