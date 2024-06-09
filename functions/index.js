@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const functions = require("firebase-functions");
 const stripe = require('stripe')('sk_test_51PKLaQ09YdZFPzTijC4jpxct1CQUNJzfpVoIom4idR89d8qGG49Dc5at4wI1lQCdLHJDsPtvyGJicu1Zhpn8x8CL00Ss2vaa8P');
 const endpointSecret = 'whsec_NJJy11bLUESXxcXoiMz4qY848w7rHmv9';
@@ -6,16 +8,27 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
 
+
+
+
 const app = express();
 app.use(cors({ origin: true }));
 
 // Initialize the Firebase Admin SDK
-const serviceAccount = require('./part-107-82ca6-firebase-adminsdk-u55xq-b8935fa94d.json');
 
+// admin.initializeApp({
+//   credential: admin.credential.cert(functions.config().firebase.credential)
+// });
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert({
+    projectId: process.env.MY_FIREBASE_PROJECT_ID,
+    clientEmail: process.env.MY_FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.MY_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+  }),
+  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
 });
+
 
 //const fulfillOrder =  (request, session) => {
 const fulfillOrder = async (event, session) => {
