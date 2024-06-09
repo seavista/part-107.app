@@ -8,18 +8,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
 
-
-
-
 const app = express();
 app.use(cors({ origin: true }));
 
 // Initialize the Firebase Admin SDK
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(functions.config().firebase.credential)
-// });
-
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.MY_FIREBASE_PROJECT_ID,
