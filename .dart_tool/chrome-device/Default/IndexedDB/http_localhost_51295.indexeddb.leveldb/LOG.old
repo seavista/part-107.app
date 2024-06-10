@@ -1,0 +1,24 @@
+2024/06/10-19:40:52.934 9107 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.PjF8kS/flutter_tools_chrome_device.cqGyE9/Default/IndexedDB/http_localhost_51295.indexeddb.leveldb/MANIFEST-000001
+2024/06/10-19:40:52.935 9107 Recovering log #83
+2024/06/10-19:40:52.935 9107 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.PjF8kS/flutter_tools_chrome_device.cqGyE9/Default/IndexedDB/http_localhost_51295.indexeddb.leveldb/000083.log 
+2024/06/10-19:40:52.960 bb03 Level-0 table #88: started
+2024/06/10-19:40:52.966 bb03 Level-0 table #88: 8268 bytes OK
+2024/06/10-19:40:52.976 bb03 Delete type=0 #83
+2024/06/10-19:40:52.977 9107 Manual compaction at level-0 from '\x00,\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00-\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/10-19:40:53.699 bb03 Level-0 table #90: started
+2024/06/10-19:40:53.704 bb03 Level-0 table #90: 3868 bytes OK
+2024/06/10-19:40:53.714 bb03 Delete type=0 #87
+2024/06/10-19:40:53.716 9107 Manual compaction at level-0 from '\x00-\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00.\x00\x00\x00' @ 0 : 0; will stop at '\x00-\x00\x00\x05' @ 1957 : 1
+2024/06/10-19:40:53.716 9107 Compacting 1@0 + 1@1 files
+2024/06/10-19:40:53.721 9107 Generated table #91@0: 35 keys, 4077 bytes
+2024/06/10-19:40:53.722 9107 Compacted 1@0 + 1@1 files => 4077 bytes
+2024/06/10-19:40:53.729 9107 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/10-19:40:53.730 9107 Delete type=2 #90
+2024/06/10-19:40:53.731 9107 Manual compaction at level-0 from '\x00-\x00\x00\x05' @ 1957 : 1 .. '\x00.\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/10-19:41:32.960 8a03 Compacting 1@1 + 1@2 files
+2024/06/10-19:41:32.966 8a03 Generated table #92@1: 52 keys, 4442 bytes
+2024/06/10-19:41:32.966 8a03 Compacted 1@1 + 1@2 files => 4442 bytes
+2024/06/10-19:41:32.973 8a03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/10-19:41:32.976 8a03 Delete type=2 #88
+2024/06/10-19:41:32.976 8a03 Delete type=2 #91
+2024/06/10-19:41:32.976 8a03 Delete type=2 #85
