@@ -67,6 +67,7 @@ class QuestionController extends GetxController
   @override
   void onInit() async {
     super.onInit();
+
     _initializeController(); // Add this line
   }
 
@@ -79,11 +80,13 @@ class QuestionController extends GetxController
         update();
       });
 
-    _animationController.forward().whenComplete(nextQuestion);
     _pageController = PageController(); // Ensure this line is here
   }
 
   Future<void> initQuestions() async {
+    //stop animation
+    _animationController.stop();
+
     //clear previous answers
     resetQuestions();
 
@@ -105,7 +108,7 @@ class QuestionController extends GetxController
         .take(_numOfQuestions.value)
         .toList();
 
-    _animationController.repeat();
+    _animationController.forward().whenComplete(nextQuestion);
   }
 
   void resetQuestions() {
@@ -188,7 +191,9 @@ class QuestionController extends GetxController
       if (_questionNumber.value == _questions.length) {
         print(
             "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
+        _animationController.stop();
         await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
+
         return; // Exit to prevent further execution
       }
 

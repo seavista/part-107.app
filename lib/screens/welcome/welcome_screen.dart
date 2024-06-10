@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -296,8 +297,6 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 
   @override
   void initState() {
-    // ctrl.updateNumberOfQuestions(_currentValue.toInt());
-    ctrl.onInit();
     super.initState();
   }
 
@@ -408,8 +407,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                     label: _currentValue.round().toString(),
                     onChanged: (double value) {
                       final intVal = value.ceil();
-                      ctrl.updateNumberOfQuestions(intVal);
-
+                      // ctrl.updateNumberOfQuestions(intVal);
                       if (intVal > 20) {
                         showFullScreenModal(context);
                       } else {
@@ -417,9 +415,38 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                           _currentValue = intVal.toDouble();
                         });
                       }
-
-                      ctrl.onInit();
                     },
+                  ),
+                ),
+                SizedBox(height: kDefaultPadding),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () async {
+                      //setup
+                      ctrl.updateNumberOfQuestions(_currentValue.toInt());
+                      ctrl.onInit();
+
+                      await Get.to(() => QuizScreen(),
+                          routeName: "/QuizScreen");
+                      Get.reload<QuestionController>();
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 4,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(kDefaultPadding * 0.75),
+                      decoration: BoxDecoration(
+                        gradient: kPrimaryGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      child: Text(
+                        "Start the Test",
+                        style: Theme.of(context)
+                            .textTheme
+                            .button!
+                            .copyWith(color: Colors.black),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -439,13 +466,32 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  String buildNumber = '0.0.2';
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: UserInitialsCircle(),
+        ),
         actions: [
-          UserInitialsCircle(),
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, Routes.appWelcome);
+              },
+              enableFeedback: true,
+              icon: Icon(
+                Icons.logout,
+                color: Theme.of(context).colorScheme.onBackground,
+              )),
           SizedBox(
             width: 10,
           )
@@ -469,43 +515,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   SizedBox(height: kDefaultPadding * 2),
                   IconButtonGrid(),
-                  SizedBox(height: kDefaultPadding),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () async {
-                        //cannot use delete??
-
-                        await Get.to(() => QuizScreen(),
-                            routeName: "/QuizScreen");
-                        Get.reload<QuestionController>();
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 4,
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(kDefaultPadding * 0.75),
-                        decoration: BoxDecoration(
-                          gradient: kPrimaryGradient,
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                        ),
-                        child: Text(
-                          "Start the Test",
-                          style: Theme.of(context)
-                              .textTheme
-                              .button!
-                              .copyWith(color: Colors.black),
-                        ),
-                      ),
-                    ),
+                  SizedBox(
+                    height: 40,
                   ),
-                  SizedBox(height: kDefaultPadding * 2),
-                  IconButton.filled(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.pushReplacementNamed(
-                            context, Routes.appWelcome);
-                      },
-                      icon: Icon(Icons.logout))
+                  Text(
+                    'Version $buildNumber',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .inversePrimary
+                            .withAlpha(100)),
+                  )
                 ],
               ),
             ),

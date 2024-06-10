@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quiz_app/config/routes/app_routes.dart';
 
 class UserInitialsCircle extends StatefulWidget {
   @override
@@ -29,31 +30,37 @@ class _UserInitialsCircleState extends State<UserInitialsCircle> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        print('Circle tapped');
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () async {
+          print('Circle tapped');
 
-        // Navigator.of(context)
-        //     .push(
-        //       MaterialPageRoute<SettingsScreen>(
-        //         builder: (context) => const SettingsScreen(),
-        //       ),
-        //     )
-        //     .whenComplete(() {});
+          FirebaseAuth.instance.signOut();
+          Navigator.pushReplacementNamed(context, Routes.appWelcome);
 
-        // Handle tap
-      },
-      onLongPress: () {
-        print('Circle long-pressed');
-        // Handle long press
-      },
-      child: CircleAvatar(
-        minRadius: 8,
-        maxRadius: 15,
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        child: Text(
-          _initials,
-          style: TextStyle(fontSize: 20),
+          // Navigator.of(context)
+          //     .push(
+          //       MaterialPageRoute<SettingsScreen>(
+          //         builder: (context) => const SettingsScreen(),
+          //       ),
+          //     )
+          //     .whenComplete(() {});
+
+          // Handle tap
+        },
+        onLongPress: () {
+          print('Circle long-pressed');
+          // Handle long press
+        },
+        child: CircleAvatar(
+          minRadius: 6,
+          maxRadius: 12,
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          child: Text(
+            _initials,
+            style: TextStyle(fontSize: 18),
+          ),
         ),
       ),
     );
