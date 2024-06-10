@@ -59,6 +59,7 @@ cp -r build/web/* .
 git add .
 git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages --force
+rm -rf temp_build
 
 # Switch back to main branch
 git checkout main
