@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
       title: 'Part 107 Free Test',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)
-              .copyWith(background: Colors.blueGrey)),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan.shade800)
+              .copyWith(background: Colors.cyan.shade800)),
       home: AuthGate(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

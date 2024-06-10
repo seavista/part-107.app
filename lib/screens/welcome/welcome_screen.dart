@@ -147,7 +147,7 @@ class FullScreenModal extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width / 2,
                       child: Image.asset(
-                        'assets/icons/logo.png', // Replace with your image asset path
+                        'assets/images/logo.png', // Replace with your image asset path
                         fit: BoxFit.scaleDown,
                       ),
                     ),
@@ -445,43 +445,46 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.cover),
+          Image.asset("assets/images/bg.png", fit: BoxFit.cover),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: ListView(
                 children: [
                   Container(
+                    alignment: Alignment.topLeft,
                     padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: Image.asset("assets/icons/logo.png",
-                        fit: BoxFit.scaleDown),
+                    height: MediaQuery.of(context).size.height / 5,
+                    child: Image.asset("assets/images/logo.png",
+                        fit: BoxFit.fitHeight),
                   ),
                   SizedBox(height: kDefaultPadding * 2),
                   IconButtonGrid(),
                   SizedBox(height: kDefaultPadding),
-                  InkWell(
-                    onTap: () {
-                      //cannot use delete??
-
-                      Get.reload<QuestionController>();
-
-                      Get.to(() => QuizScreen(), routeName: "/QuizScreen");
-                    },
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
                     child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
+                      width: MediaQuery.of(context).size.width / 4,
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                      padding: EdgeInsets.all(kDefaultPadding * 0.75),
                       decoration: BoxDecoration(
                         gradient: kPrimaryGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
-                      child: Text(
-                        "Start the Test",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button!
-                            .copyWith(color: Colors.black),
+                      child: GestureDetector(
+                        onTap: () async {
+                          //cannot use delete??
+
+                          Get.to(() => QuizScreen(), routeName: "/QuizScreen");
+                          Get.reload<QuestionController>();
+                        },
+                        child: Text(
+                          "Start the Test",
+                          style: Theme.of(context)
+                              .textTheme
+                              .button!
+                              .copyWith(color: Colors.black),
+                        ),
                       ),
                     ),
                   ),

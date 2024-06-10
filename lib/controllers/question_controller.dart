@@ -39,8 +39,13 @@ class QuestionController extends GetxController
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
 
-  int _numOfCorrectAns = 0;
-  int get numOfCorrectAns => this._numOfCorrectAns;
+  RxInt _numOfCorrectAns = 0.obs;
+  RxInt get numOfCorrectAns => this._numOfCorrectAns;
+  void updateNumberCorrectAnswers(int count) {
+    _numOfQuestions.value = count;
+    //rebuild questions
+    initQuestions();
+  }
 
   RxInt _numOfQuestions = 0.obs;
   RxInt get numOfQuestions => this._numOfQuestions;
@@ -108,7 +113,7 @@ class QuestionController extends GetxController
     _isAnswered = false;
     _questionNumber = 1.obs;
     _questions = [];
-    _numOfCorrectAns = 0;
+    _numOfCorrectAns = 0.obs;
     update();
   }
 

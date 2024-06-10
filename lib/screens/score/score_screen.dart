@@ -16,7 +16,8 @@ class ScoreScreen extends StatelessWidget {
     //get score
 
     final scorePercentage =
-        (_qnController.correctAns / _qnController.numOfQuestions.value * 100)
+        ((_qnController.numOfCorrectAns / _qnController.numOfQuestions.value) *
+                100)
             .round();
 
     return Scaffold(
@@ -25,7 +26,7 @@ class ScoreScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Spacer(flex: 12),
-          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.cover),
+          Image.asset("assets/images/bg.png", fit: BoxFit.cover),
           Column(
             children: [
               Spacer(),
@@ -69,34 +70,36 @@ class ScoreScreen extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               Text(
-                "${_qnController.correctAns}/${_qnController.numOfQuestions} Correct Answers",
+                "${_qnController.numOfCorrectAns}/${_qnController.numOfQuestions} Correct Answers",
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               Spacer(flex: 1),
-              InkWell(
-                //onTap: () => Get.to(WelcomeScreen()),
-                onTap: () {
-                  Get.delete<QuestionController>();
-                  _qnController.resetQuestions();
-
-                  // we need to include the routeName
-                  Get.to(() => WelcomeScreen(), routeName: "/WelcomeScreen");
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
-                  decoration: BoxDecoration(
-                    gradient: kPrimaryGradient,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                  child: Text(
-                    "Try Again",
-                    style: Theme.of(context)
-                        .textTheme
-                        .button!
-                        .copyWith(color: Colors.black),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  //onTap: () => Get.to(WelcomeScreen()),
+                  onTap: () {
+                    // we need to include the routeName
+                    Get.delete<QuestionController>();
+                    _qnController.resetQuestions();
+                    Get.to(() => WelcomeScreen(), routeName: "/WelcomeScreen");
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                    decoration: BoxDecoration(
+                      gradient: kPrimaryGradient,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: Text(
+                      "Try Again",
+                      style: Theme.of(context)
+                          .textTheme
+                          .button!
+                          .copyWith(color: Colors.black),
+                    ),
                   ),
                 ),
               ),

@@ -64,64 +64,64 @@ class EntryScreen extends StatelessWidget {
           Navigator.popAndPushNamed(context, Routes.appLogin);
         },
         background: [
-          Image.asset('assets/images/slide_1.png'),
-          Image.asset('assets/images/slide_2.png'),
-          Image.asset('assets/images/slide_3.png'),
-          Image.asset('assets/images/slide_4.png'),
+          Image.asset('assets/images/bg.png'),
+          //Image.asset('assets/images/bg.png'),
+          // Image.asset('assets/images/bg.png'),
+          // Image.asset('assets/images/bg.png'),
         ],
         centerBackground: true,
-        totalPage: 4,
+        totalPage: 1,
         speed: 1.8,
         pageBodies: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text(
-                  'Master the skies with our comprehensive FAA Part 107 practice test.',
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        decorationStyle: TextDecorationStyle.double,
-                      ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text(
-                  'Study Anywhere! Become a FAA certified drone pilot fast.',
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text(
-                  'Start your path to certification and take control of your future in the skies!',
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-              ],
-            ),
-          ),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 40),
+          //   child: Column(
+          //     children: <Widget>[
+          //       SizedBox(
+          //         height: 480,
+          //       ),
+          //       Text(
+          //         'Master the skies with our comprehensive FAA Part 107 practice test.',
+          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+          //               fontWeight: FontWeight.bold,
+          //               decorationStyle: TextDecorationStyle.double,
+          //             ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 40),
+          //   child: Column(
+          //     children: <Widget>[
+          //       SizedBox(
+          //         height: 480,
+          //       ),
+          //       Text(
+          //         'Study Anywhere! Become a FAA certified drone pilot fast.',
+          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 40),
+          //   child: Column(
+          //     children: <Widget>[
+          //       SizedBox(
+          //         height: 480,
+          //       ),
+          //       Text(
+          //         'Start your path to certification and take control of your future in the skies!',
+          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Container(
             height: 480,
             child: Padding(

@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         SizedBox(height: kDefaultPadding),
-        SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.cover),
+        Image.asset("assets/images/bg.png", fit: BoxFit.cover),
         SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
