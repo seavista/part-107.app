@@ -66,8 +66,8 @@ class QuestionController extends GetxController
 
   @override
   void onInit() async {
-    _initializeController(); // Add this line
     super.onInit();
+    _initializeController(); // Add this line
   }
 
 // Add this new method to handle initialization
@@ -110,6 +110,7 @@ class QuestionController extends GetxController
 
   void resetQuestions() {
     //clear previous answers
+
     _isAnswered = false;
     _questionNumber = 1.obs;
     _questions = [];
@@ -159,40 +160,57 @@ class QuestionController extends GetxController
   }
 
   void checkAns(Question question, int selectedIndex) {
-    // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
-    // It will stop the counter
     _animationController.stop();
     update();
 
-    // Once user select an ans after 2s it will go to the next qn
-    Future.delayed(Duration(seconds: 2), () {
-      nextQuestion();
+    print(
+        "${DateTime.now()} - Answer checked: Correct: $_correctAns, Selected: $_selectedAns");
+
+    Future.delayed(Duration(seconds: 3), () {
+      try {
+        print(
+            "${DateTime.now()} - 3 seconds delay completed, calling nextQuestion");
+        nextQuestion();
+      } catch (e) {
+        print("${DateTime.now()} - Error during nextQuestion: $e");
+      }
     });
   }
 
-  void nextQuestion() {
-    if (_questionNumber.value == _questions.length) {
-      Get.to(ScoreScreen(), routeName: "/ScoreScreen");
+  void nextQuestion() async {
+    try {
+      if (_questionNumber.value == _questions.length) {
+        print(
+            "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
+        Get.to(ScoreScreen(), routeName: "/ScoreScreen");
+        return; // Exit to prevent further execution
+      }
 
-      //GetPage(name: '/ScoreScreen', page: () => ScoreScreen());
+      _isAnswered = false;
+      print("${DateTime.now()} - Moving to next question");
+
+      await _pageController.nextPage(
+        duration: Duration(milliseconds: 250),
+        curve: Curves.ease,
+      );
+
+      _animationController.reset();
+      print("${DateTime.now()} - Animation controller reset");
+
+      await _animationController.forward().whenComplete(() {
+        print(
+            "${DateTime.now()} - Animation complete, calling nextQuestion again");
+        nextQuestion();
+      });
+    } catch (e) {
+      print("${DateTime.now()} - Error in nextQuestion: $e");
     }
-
-    _isAnswered = false;
-    _pageController.nextPage(
-        duration: Duration(milliseconds: 250), curve: Curves.ease);
-
-    // Reset the counter
-    _animationController.reset();
-
-    // Then start it again
-    // Once timer is finish go to the next qn
-    _animationController.forward().whenComplete(nextQuestion);
   }
 
   void updateTheQnNum(int index) {

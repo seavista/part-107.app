@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Scaffold(
         extendBody: true,
-        backgroundColor: Theme.of(context).primaryColor.withAlpha(200),
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -41,7 +41,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text('Login'),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        padding: EdgeInsets.all(10),
+                        height: MediaQuery.of(context).size.height / 5,
+                        child: Image.asset("assets/images/logo.png",
+                            fit: BoxFit.fitHeight),
+                      ),
+                      Text(
+                        'Login',
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onPrimary),
+                      ),
                       TextField(
                           onChanged: (value) {
                             _email = value;

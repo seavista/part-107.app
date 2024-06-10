@@ -36,7 +36,7 @@ class Option extends StatelessWidget {
             return getTheRightColor() == kRedColor ? Icons.close : Icons.done;
           }
 
-          return InkWell(
+          return GestureDetector(
             onTap: press,
             child: Container(
               margin: EdgeInsets.only(top: kDefaultPadding),

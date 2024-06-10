@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/components/user_initials.widget.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
@@ -442,6 +443,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        actions: [
+          UserInitialsCircle(),
+          SizedBox(
+            width: 10,
+          )
+        ],
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -463,21 +472,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   SizedBox(height: kDefaultPadding),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 4,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(kDefaultPadding * 0.75),
-                      decoration: BoxDecoration(
-                        gradient: kPrimaryGradient,
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                      child: GestureDetector(
-                        onTap: () async {
-                          //cannot use delete??
+                    child: GestureDetector(
+                      onTap: () async {
+                        //cannot use delete??
 
-                          Get.to(() => QuizScreen(), routeName: "/QuizScreen");
-                          Get.reload<QuestionController>();
-                        },
+                        await Get.to(() => QuizScreen(),
+                            routeName: "/QuizScreen");
+                        Get.reload<QuestionController>();
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 4,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(kDefaultPadding * 0.75),
+                        decoration: BoxDecoration(
+                          gradient: kPrimaryGradient,
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                        ),
                         child: Text(
                           "Start the Test",
                           style: Theme.of(context)
