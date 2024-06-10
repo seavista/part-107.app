@@ -9,8 +9,6 @@ git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages
 
 # GitHub Pages
-git checkout main
-flutter build web
 git checkout gh-pages
 cp -r build/web/* .
 git add .
@@ -35,8 +33,6 @@ git checkout gh-pages --force
 git rm -rf .
     or
 git rm -rf --exclude=CNAME .
-    or
-git rm -rf . $(git ls-files --exclude=temp_build)
 
 
 
@@ -50,3 +46,19 @@ git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages --force
 
 rm -rf temp_build
+
+# Build the web app
+git checkout main
+flutter build web
+
+# Deploy to gh-pages
+git checkout gh-pages
+git reset --hard origin/gh-pages
+git rm -rf .
+cp -r build/web/* .
+git add .
+git commit -m "Publishing web output to gh-pages"
+git push -u origin gh-pages --force
+
+# Switch back to main branch
+git checkout main
