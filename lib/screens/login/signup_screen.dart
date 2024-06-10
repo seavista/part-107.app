@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const TopScreenImage(screenImageName: 'signup.png'),
+                const TopScreenImage(screenImageName: 'logo.png'),
                 Expanded(
                   flex: 2,
                   child: Padding(

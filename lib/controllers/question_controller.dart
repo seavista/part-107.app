@@ -188,13 +188,23 @@ class QuestionController extends GetxController
     });
   }
 
+  void previousQuestion() async {
+    await _pageController.previousPage(
+      duration: Duration(milliseconds: 250),
+      curve: Curves.ease,
+    );
+  }
+
   void nextQuestion() async {
     try {
       if (_questionNumber.value == _questions.length) {
         print(
             "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
         _animationController.stop();
-        await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
+
+        Navigator.pushReplacementNamed(Get.context!, Routes.appScore);
+
+        //await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
 
         return; // Exit to prevent further execution
       }

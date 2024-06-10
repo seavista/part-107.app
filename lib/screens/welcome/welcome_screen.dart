@@ -423,16 +423,22 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: () async {
-                      //setup
-                      ctrl.updateNumberOfQuestions(_currentValue.toInt());
-                      ctrl.onInit();
+                      if (_currentValue > 0) {
+                        //setup
+                        ctrl.updateNumberOfQuestions(_currentValue.toInt());
+                        ctrl.onInit();
 
-                      await Get.to(() => QuizScreen(),
-                          routeName: "/QuizScreen");
-                      Get.reload<QuestionController>();
+                        await Get.to(() => QuizScreen(), routeName: "/quiz");
+                        //Get.reload<QuestionController>();
+                      } else {
+                        Get.snackbar('Number of Questions Needed',
+                            'Select at least one question for your quiz',
+                            icon: Icon(Icons.info),
+                            snackPosition: SnackPosition.BOTTOM);
+                      }
                     },
                     child: Container(
-                      width: MediaQuery.of(context).size.width / 4,
+                      width: MediaQuery.of(context).size.width / 1.25,
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(kDefaultPadding * 0.75),
                       decoration: BoxDecoration(
@@ -516,7 +522,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   SizedBox(height: kDefaultPadding * 2),
                   IconButtonGrid(),
                   SizedBox(
-                    height: 40,
+                    height: 80,
                   ),
                   Text(
                     'Version $buildNumber',
@@ -526,7 +532,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             .colorScheme
                             .inversePrimary
                             .withAlpha(100)),
-                  )
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
                 ],
               ),
             ),

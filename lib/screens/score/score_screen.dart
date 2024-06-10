@@ -25,17 +25,18 @@ class ScoreScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Spacer(flex: 12),
           Image.asset("assets/images/bg.png", fit: BoxFit.cover),
           Column(
             children: [
-              Spacer(),
+              SizedBox(
+                height: 50,
+              ),
               Text(
                 "Score",
                 style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onPrimaryContainer),
               ),
-              Spacer(),
+              Spacer(flex: 1),
               MultiCircularSlider(
                 size: MediaQuery.of(context).size.width * 0.5,
                 progressBarType: MultiCircularSliderType.circular,
@@ -83,7 +84,8 @@ class ScoreScreen extends StatelessWidget {
                     // we need to include the routeName
                     Get.delete<QuestionController>();
                     _qnController.resetQuestions();
-                    Get.to(() => WelcomeScreen(), routeName: "/WelcomeScreen");
+
+                    Get.to(() => WelcomeScreen(), routeName: "/welcome");
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width / 2,

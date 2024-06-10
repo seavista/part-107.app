@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
+import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
 import 'package:quiz_app/screens/splash/splash.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
@@ -10,11 +11,12 @@ import '../../screens/login/login_screen.dart';
 
 class Routes {
   static const String initial = '/';
-  static const String appHome = '/app-home';
-  static const String appLogin = '/app-login';
-  static const String appRegister = '/app-register';
-  static const String appWelcome = '/app-welcome';
-  static const String appScore = '/app-score';
+  static const String appHome = '/home';
+  static const String appLogin = '/login';
+  static const String appRegister = '/register';
+  static const String appWelcome = '/welcome';
+  static const String appScore = '/score';
+  static const String appQuiz = '/quiz';
 }
 
 class AppRoutes {
@@ -53,7 +55,14 @@ class AppRoutes {
       case Routes.appWelcome:
         return MaterialPageRoute(
             builder: (context) {
-              return const EntryScreen();
+              return WelcomeScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appQuiz:
+        return MaterialPageRoute(
+            builder: (context) {
+              return QuizScreen();
             },
             settings: routeSettings);
 
