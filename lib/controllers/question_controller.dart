@@ -188,7 +188,7 @@ class QuestionController extends GetxController
       if (_questionNumber.value == _questions.length) {
         print(
             "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
-        Get.to(ScoreScreen(), routeName: "/ScoreScreen");
+        await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
         return; // Exit to prevent further execution
       }
 
