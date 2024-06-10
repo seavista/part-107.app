@@ -80,6 +80,7 @@ class QuestionController extends GetxController
         update();
       });
 
+    //_animationController.forward().whenComplete(nextQuestion);
     _pageController = PageController(); // Ensure this line is here
   }
 
@@ -108,7 +109,8 @@ class QuestionController extends GetxController
         .take(_numOfQuestions.value)
         .toList();
 
-    _animationController.forward().whenComplete(nextQuestion);
+    //_animationController.repeat();
+    await _animationController.forward().whenComplete(nextQuestion);
   }
 
   void resetQuestions() {
