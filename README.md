@@ -9,6 +9,8 @@ git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages
 
 # GitHub Pages
+git checkout main
+flutter build web
 git checkout gh-pages
 cp -r build/web/* .
 git add .
