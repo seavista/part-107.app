@@ -483,21 +483,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: UserInitialsCircle(),
-        ),
+        toolbarHeight: 80,
+        leadingWidth: 200,
+        leading:
+            Image.asset("assets/images/logo-white.png", fit: BoxFit.scaleDown),
         actions: [
-          IconButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushReplacementNamed(context, Routes.appWelcome);
-              },
-              enableFeedback: true,
-              icon: Icon(
-                Icons.logout,
-                color: Theme.of(context).colorScheme.onBackground,
-              )),
+          UserInitialsCircle(),
           SizedBox(
             width: 10,
           )
@@ -512,13 +503,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: ListView(
                 children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.all(10),
-                    height: MediaQuery.of(context).size.height / 5,
-                    child: Image.asset("assets/images/logo.png",
-                        fit: BoxFit.fitHeight),
-                  ),
+                  // Container(
+                  //   alignment: Alignment.topLeft,
+                  //   padding: EdgeInsets.all(10),
+                  //   height: MediaQuery.of(context).size.height / 5,
+                  //   child: Image.asset("assets/images/logo.png",
+                  //       fit: BoxFit.fitHeight),
+                  // ),
                   SizedBox(height: kDefaultPadding * 2),
                   IconButtonGrid(),
                   SizedBox(

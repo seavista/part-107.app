@@ -36,8 +36,7 @@ class _UserInitialsCircleState extends State<UserInitialsCircle> {
         onTap: () async {
           print('Circle tapped');
 
-          FirebaseAuth.instance.signOut();
-          Navigator.pushReplacementNamed(context, Routes.appWelcome);
+          Navigator.pushNamed(context, Routes.appSettings);
 
           // Navigator.of(context)
           //     .push(
@@ -54,8 +53,8 @@ class _UserInitialsCircleState extends State<UserInitialsCircle> {
           // Handle long press
         },
         child: CircleAvatar(
-          minRadius: 6,
-          maxRadius: 12,
+          minRadius: 8,
+          maxRadius: 16,
           backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           child: Text(
             _initials,

@@ -44,6 +44,8 @@ dependencies:
   google_sign_in: ^6.1.6
   cloud_functions: ^4.6.0
   multi_circular_slider: ^1.1.0
+  shared_preferences: ^2.2.2
+  
 
 
 

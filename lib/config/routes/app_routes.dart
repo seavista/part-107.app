@@ -4,6 +4,7 @@ import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
+import 'package:quiz_app/screens/settings/settings.dart';
 import 'package:quiz_app/screens/splash/splash.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
@@ -17,6 +18,7 @@ class Routes {
   static const String appWelcome = '/welcome';
   static const String appScore = '/score';
   static const String appQuiz = '/quiz';
+  static const String appSettings = '/settings';
 }
 
 class AppRoutes {
@@ -56,6 +58,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return WelcomeScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appSettings:
+        return MaterialPageRoute(
+            builder: (context) {
+              return SettingsScreen();
             },
             settings: routeSettings);
 
