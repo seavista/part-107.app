@@ -37,8 +37,7 @@ class ProgressBar extends StatelessWidget {
               ),
               Positioned.fill(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding / 2),
+                  padding: const EdgeInsets.only(left: kDefaultPadding / 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

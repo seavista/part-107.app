@@ -43,9 +43,8 @@ class ScoreScreen extends StatelessWidget {
                             .textTheme
                             .displayLarge!
                             .copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer),
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
                       ),
                       SizedBox(height: 20),
                       Container(
@@ -70,7 +69,7 @@ class ScoreScreen extends StatelessWidget {
                           animationDuration: const Duration(milliseconds: 2000),
                           animationCurve: Curves.easeInOutCirc,
                           innerIcon: const Icon(Icons.integration_instructions),
-                          trackColor: Colors.purple,
+                          trackColor: Colors.blueAccent,
                           progressBarWidth: 56.0,
                           trackWidth: 56.0,
                           labelTextStyle: const TextStyle(),
@@ -86,12 +85,15 @@ class ScoreScreen extends StatelessWidget {
                             .displayLarge!
                             .copyWith(
                                 color:
-                                    Theme.of(context).colorScheme.onBackground),
+                                    Theme.of(context).colorScheme.onSecondary),
                       ),
                       Text(
                         "${_qnController.numOfCorrectAns}/${_qnController.numOfQuestions} Correct Answers",
                         style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: Theme.of(context).colorScheme.onBackground),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondary
+                                .withAlpha(100)),
                       ),
                       SizedBox(
                         height: 50,

@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Part 107 Free Test',
+      title: 'Free Part 107 Drone Pilot Study Guide and Resources',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan.shade800)

@@ -141,6 +141,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     //bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      primary: true,
       backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: <Widget>[
@@ -150,18 +151,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
             floating: false,
             pinned: true,
             actions: [
-              SizedBox(width: 15),
-              GestureDetector(
-                  onTap: () async {
-                    // Implement your backup function here
+              SizedBox(width: 80),
+              IconButton(
+                  onPressed: () async {
                     await GoogleSignIn().signOut();
-                    await _auth.signOut();
-                    Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, Routes.appWelcome);
+                    await _auth.signOut().whenComplete(() {
+                      Navigator.pop(context);
+                    });
                   },
-                  child: Icon(
+                  icon: Icon(
                     Icons.logout_outlined,
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.onBackground,
                   ))
             ],
             flexibleSpace: FlexibleSpaceBar(

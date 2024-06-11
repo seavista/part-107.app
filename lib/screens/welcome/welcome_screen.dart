@@ -11,9 +11,12 @@ import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import 'package:quiz_app/screens/settings/settings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:cloud_functions/cloud_functions.dart';
+
+import 'package:package_info_plus/package_info_plus.dart';
 
 class FeatureItem extends StatelessWidget {
   final IconData icon;
@@ -472,27 +475,134 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  String buildNumber = '0.0.2';
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  String buildNumber = '1.0.0.1';
   @override
   void initState() {
     super.initState();
+    getPackageInfo();
+  }
+
+  void getPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    String appName = packageInfo.appName;
+    String packageName = packageInfo.packageName;
+    String version = packageInfo.version;
+    setState(() {
+      buildNumber = packageInfo.version + "." + packageInfo.buildNumber;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         toolbarHeight: 80,
         leadingWidth: 200,
-        leading:
-            Image.asset("assets/images/logo-white.png", fit: BoxFit.scaleDown),
+        leading: Builder(
+          builder: (context) => Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+              Image.asset("assets/images/logo-white.png",
+                  fit: BoxFit.scaleDown),
+            ],
+          ),
+        ),
         actions: [
           UserInitialsCircle(),
           SizedBox(
             width: 10,
           )
         ],
+      ),
+      drawer: Drawer(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        child: Container(
+          alignment: Alignment.center,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Image.asset("assets/images/logo-white.png"),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                ),
+              ),
+              Text(
+                'Version $buildNumber',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .inversePrimary
+                        .withAlpha(100)),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ListTile(
+                title: Text(
+                  'Progress',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                onTap: () {
+                  // Handle item 3 tap
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Resources',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                onTap: () {
+                  Get.close(1);
+                  Get.to(SettingsScreen(), routeName: "settings");
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Settings',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                onTap: () {
+                  Get.close(1);
+                  Get.to(SettingsScreen(), routeName: "settings");
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ListTile(
+                title: Container(
+                  padding: EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    gradient: kPrimaryGradient,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: Text(
+                    'Unlock Pro',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
+                ),
+                onTap: () {
+                  Get.close(1);
+                  showFullScreenModal(context);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
       body: Stack(
         fit: StackFit.expand,
@@ -512,18 +622,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   // ),
                   SizedBox(height: kDefaultPadding * 2),
                   IconButtonGrid(),
-                  SizedBox(
-                    height: 80,
-                  ),
-                  Text(
-                    'Version $buildNumber',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .inversePrimary
-                            .withAlpha(100)),
-                  ),
+
                   SizedBox(
                     height: 40,
                   ),

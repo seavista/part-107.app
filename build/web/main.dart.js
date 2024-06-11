@@ -89668,7 +89668,7 @@ $S:4}
 A.G5.prototype={
 mF(a){this.LU(0)}}
 A.Oc.prototype={
-F(a){return new A.zE(new A.Jn(null),A.aXz(),"Part 107 Free Test",A.azH(B.a4,null).al7(A.aNY(B.ak,B.me).al4(B.me)),!1,null)}}
+F(a){return new A.zE(new A.Jn(null),A.aXz(),"Free Part 107 Drone Pilot Study Guide and Resources",A.azH(B.a4,null).al7(A.aNY(B.ak,B.me).al4(B.me)),!1,null)}}
 A.qO.prototype={}
 A.Jn.prototype={
 F(a){var s=$.d6,r=(s==null?$.d6=$.hW():s).hx(0,"[DEFAULT]")
