@@ -87,6 +87,10 @@ app.post('/', async (request, response) => {
   const sig = request.headers['stripe-signature'];
  // console.log("Payload:", payload);
   //console.log("Signature:", sig);
+
+
+
+
   let event;
 if(endpointSecret){
 
@@ -151,9 +155,9 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
             currency: 'usd',
             product_data: {
               name: 'Part-107.app Full Access Pass',
-              images: [`https://part-107.app/icons/logo.png`] // Logo URL
+              images: [`https://part-107.app/assets/logo.png`] // Logo URL
             },
-            unit_amount: 1900,
+            unit_amount: 995,
           },
           quantity: 1,
         },

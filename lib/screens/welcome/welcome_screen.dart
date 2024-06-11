@@ -100,14 +100,15 @@ class FullScreenModal extends StatelessWidget {
       }
     } on Exception catch (e) {
       print(e);
+      return null;
     }
   }
 
-  final Uri _url = Uri.parse(
-      'https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh?user_id=${FirebaseAuth.instance.currentUser!.email}');
+  // final Uri _url = Uri.parse(
+  //     'https://buy.stripe.com/test_bIY5mK5PCdo83WE4gh?prefilled_email=${FirebaseAuth.instance.currentUser!.email}');
 
   Future<void> _launchUrl() async {
-    //final Uri? _url = await createPaymentLink();
+    final Uri? _url = await createPaymentLink();
 
     //launches an url by address
     if (!await launchUrl(
