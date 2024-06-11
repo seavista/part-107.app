@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
 import 'package:multi_circular_slider/multi_circular_slider.dart';
