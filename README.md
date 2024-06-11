@@ -1,5 +1,8 @@
 # Part-107.app
 
+# firebase functions
+firebase deploy --only functions
+
 # flutter_launcher_icons
 flutter pub get
 flutter pub run flutter_launcher_icons
