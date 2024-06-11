@@ -1,0 +1,26 @@
+2024/06/11-11:32:08.987 8c03 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.itcJDk/flutter_tools_chrome_device.QWkUiE/Default/IndexedDB/http_localhost_64268.indexeddb.leveldb/MANIFEST-000001
+2024/06/11-11:32:08.987 8c03 Recovering log #16
+2024/06/11-11:32:08.988 8c03 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.itcJDk/flutter_tools_chrome_device.QWkUiE/Default/IndexedDB/http_localhost_64268.indexeddb.leveldb/000016.log 
+2024/06/11-11:32:09.009 8c03 Level-0 table #22: started
+2024/06/11-11:32:09.014 8c03 Level-0 table #22: 9838 bytes OK
+2024/06/11-11:32:09.029 8c03 Delete type=0 #16
+2024/06/11-11:32:09.030 8c03 Manual compaction at level-0 from '\x00\x10\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x11\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/11-11:32:09.642 b903 Manual compaction at level-0 from '\x00\x11\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x12\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/11-11:32:45.812 8c03 Compacting 1@1 + 1@2 files
+2024/06/11-11:32:45.817 8c03 Generated table #23@1: 55 keys, 4533 bytes
+2024/06/11-11:32:45.818 8c03 Compacted 1@1 + 1@2 files => 4533 bytes
+2024/06/11-11:32:45.826 8c03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/11-11:32:45.827 8c03 Delete type=2 #22
+2024/06/11-11:32:45.827 8c03 Delete type=2 #19
+2024/06/11-11:34:07.392 8c03 Level-0 table #25: started
+2024/06/11-11:34:07.397 8c03 Level-0 table #25: 8568 bytes OK
+2024/06/11-11:34:07.407 8c03 Delete type=0 #21
+2024/06/11-11:34:07.408 8c03 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2024/06/11-11:34:07.408 8c03 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x11\x00\x00\x05' @ 717 : 1
+2024/06/11-11:34:07.408 8c03 Compacting 1@1 + 1@2 files
+2024/06/11-11:34:07.415 8c03 Generated table #26@1: 50 keys, 4403 bytes
+2024/06/11-11:34:07.415 8c03 Compacted 1@1 + 1@2 files => 4403 bytes
+2024/06/11-11:34:07.426 8c03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/11-11:34:07.427 8c03 Delete type=2 #23
+2024/06/11-11:34:07.427 8c03 Delete type=2 #25
+2024/06/11-11:34:07.428 8c03 Manual compaction at level-1 from '\x00\x11\x00\x00\x05' @ 717 : 1 .. (end); will stop at (end)
