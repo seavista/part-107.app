@@ -151,18 +151,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
             floating: false,
             pinned: true,
             actions: [
-              SizedBox(width: 80),
-              IconButton(
-                  onPressed: () async {
-                    await GoogleSignIn().signOut();
-                    await _auth.signOut().whenComplete(() {
-                      Navigator.pop(context);
-                    });
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    try {
+                      GoogleSignIn().signOut();
+                      _auth.signOut().whenComplete(() {
+                        print('Sign out complete');
+                        Navigator.pop(context);
+                      });
+                    } catch (e) {
+                      print('Error signing out: $e');
+                    }
                   },
-                  icon: Icon(
-                    Icons.logout_outlined,
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ))
+                  child: Icon(
+                    Icons.logout,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                    size: 24.0, // Ensure size is set for visibility
+                  ),
+                ),
+              ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
