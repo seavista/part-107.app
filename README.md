@@ -1,5 +1,9 @@
 # Part-107.app
 
+# flutter_launcher_icons
+flutter pub get
+flutter pub run flutter_launcher_icons
+
 # GitHub Pages
 git checkout -b gh-pages
 

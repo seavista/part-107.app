@@ -28,8 +28,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  # to handle SVGs for Android, iOS, and Web
-  flutter_svg: ^0.21.0+1
+
 
   # state management, intelligent dependency injection, and route management
   get: ^4.6.5
@@ -45,12 +44,8 @@ dependencies:
   cloud_functions: ^4.6.0
   multi_circular_slider: ^1.1.0
   shared_preferences: ^2.2.2
+  flutter_launcher_icons: ^0.13.1
   
-
-
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,6 +59,28 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  adaptive_icon_background: "#171717"
+  ios: true
+  image_path: "assets/icons/icon.png"
+  adaptive_icon_foreground: "assets/icons/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icons/icon.png"
+    background_color: "#171717"
+    theme_color: "#171717"
+  windows:
+    generate: true
+    image_path: "assets/icons/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icons/icon.png"
+
+
 
   # To add assets to your application, add an assets section, like this:
   assets:
