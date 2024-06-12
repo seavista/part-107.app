@@ -20,31 +20,17 @@ class Routes {
   static const String appScore = '/score';
   static const String appQuiz = '/quiz';
   static const String appSettings = '/settings';
-  static const String appSuccess = '/success';
 }
 
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
-    Uri uri = Uri.parse(routeSettings.name ?? '');
-
     switch (routeSettings.name) {
       case Routes.initial:
-        String? sessionId = uri.queryParameters['sessionId'];
-
-        //handle the return from a payment
-        if (sessionId != null) {
-          return MaterialPageRoute(
-              builder: (context) {
-                return SuccessScreen(sessionId: sessionId);
-              },
-              settings: routeSettings);
-        } else {
-          return MaterialPageRoute(
-              builder: (context) {
-                return const SplashScreen();
-              },
-              settings: routeSettings);
-        }
+        return MaterialPageRoute(
+            builder: (context) {
+              return const SplashScreen();
+            },
+            settings: routeSettings);
 
       case Routes.appHome:
         return MaterialPageRoute(
@@ -95,15 +81,23 @@ class AppRoutes {
             },
             settings: routeSettings);
 
-      case Routes.appSuccess:
-        String? sessionId = uri.queryParameters['sessionId'];
-        return MaterialPageRoute(
-            builder: (context) {
-              return SuccessScreen(sessionId: sessionId);
-            },
-            settings: routeSettings);
-
       default:
+
+        //check for payment webhook from Stripe
+        Uri uri = Uri.parse(routeSettings.name ?? '');
+        String? sessionId = uri.queryParameters['sessionId'];
+
+        if (sessionId != null) {
+          return MaterialPageRoute(
+              builder: (context) {
+                return SuccessScreen(sessionId: sessionId);
+              },
+              settings: routeSettings);
+        }
+
+        //TODO check for direct
+
+        //return the undefined route
         return undefinedRoute();
     }
   }

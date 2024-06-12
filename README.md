@@ -70,10 +70,10 @@ cp -r build/web/* temp_build/
 git checkout gh-pages --force
 git reset --hard origin/gh-pages
 cp -rf temp_build/* .
+rm -rf temp_build
 git add .
 git commit -m "Publishing web output to gh-pages"
 git push -u origin gh-pages --force
-rm -rf temp_build
 
 # Switch back to main branch
 git checkout main
