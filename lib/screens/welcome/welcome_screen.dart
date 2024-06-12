@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'dart:html' as html;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -66,8 +67,14 @@ class FeatureItem extends StatelessWidget {
 
 class FullScreenModal extends StatelessWidget {
   Future<Uri?> createPaymentLink() async {
+    // Get the current host
+    String host = html.window.location.host;
+    print('Current host: $host');
+
     final url = Uri.parse(
-        'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}');
+        'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}&host=${host}');
+
+    print(url);
 
     try {
       // final response = await http.post(
@@ -79,17 +86,24 @@ class FullScreenModal extends StatelessWidget {
       //   }),
       // );
 
-      final response = await http.get(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-      );
+      // final response = await http.get(
+      //   url,
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Access-Control-Allow-Origin': '*'
+      //   },
+      // );
+
+      final response =
+          await http.get(url, headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
-        final Uri paymentLink = responseData['url'];
+        Uri paymentLink = Uri.parse(responseData['url']);
+
+        final stripeSessionId = responseData['sessionId'];
+        print('Stripe sessionId: $stripeSessionId');
+
         // Open the payment link in the browser
         // You can use url_launcher or any other method to open the link
         print('Payment link: $paymentLink');
@@ -109,6 +123,7 @@ class FullScreenModal extends StatelessWidget {
 
   Future<void> _launchUrl() async {
     final Uri? _url = await createPaymentLink();
+    print(_url);
 
     //launches an url by address
     if (!await launchUrl(

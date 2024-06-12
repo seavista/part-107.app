@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
+import 'package:quiz_app/screens/purchase/success.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
 import 'package:quiz_app/screens/settings/settings.dart';
@@ -19,16 +20,16 @@ class Routes {
   static const String appScore = '/score';
   static const String appQuiz = '/quiz';
   static const String appSettings = '/settings';
+  static const String appSuccess = '/success';
 }
 
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
+    Uri uri = Uri.parse(routeSettings.name ?? '');
+    switch (uri.path) {
       case Routes.initial:
         return MaterialPageRoute(
-            builder: (
-              context,
-            ) {
+            builder: (context) {
               return const SplashScreen();
             },
             settings: routeSettings);
@@ -79,6 +80,14 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return ScoreScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appSuccess:
+        String? sessionId = uri.queryParameters['sessionId'];
+        return MaterialPageRoute(
+            builder: (context) {
+              return SuccessScreen(sessionId: sessionId);
             },
             settings: routeSettings);
 
