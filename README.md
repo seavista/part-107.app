@@ -61,7 +61,6 @@ rm -rf temp_build
 set -e
 
 # Build the web app
-set -e
 git checkout main
 flutter build web
 mkdir -p temp_build
