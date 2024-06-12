@@ -153,7 +153,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${baseUrl}/success`,
+      success_url: `${baseUrl}?sessionId=${session.id}`,
       cancel_url: `${baseUrl}`,
       payment_intent_data: {
         // PAYMENT metadata
