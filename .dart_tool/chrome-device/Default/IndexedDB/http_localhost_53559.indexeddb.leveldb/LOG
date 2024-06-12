@@ -1,0 +1,24 @@
+2024/06/12-14:21:20.647 9003 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.fdwPkY/flutter_tools_chrome_device.lZKM39/Default/IndexedDB/http_localhost_53559.indexeddb.leveldb/MANIFEST-000001
+2024/06/12-14:21:20.648 9003 Recovering log #53
+2024/06/12-14:21:20.648 9003 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.fdwPkY/flutter_tools_chrome_device.lZKM39/Default/IndexedDB/http_localhost_53559.indexeddb.leveldb/000053.log 
+2024/06/12-14:21:20.672 14d03 Level-0 table #59: started
+2024/06/12-14:21:20.678 14d03 Level-0 table #59: 8333 bytes OK
+2024/06/12-14:21:20.687 14d03 Delete type=0 #53
+2024/06/12-14:21:20.687 9003 Manual compaction at level-0 from '\x00\x1c\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1d\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/12-14:21:22.923 14d03 Level-0 table #61: started
+2024/06/12-14:21:22.938 14d03 Level-0 table #61: 3868 bytes OK
+2024/06/12-14:21:22.964 14d03 Delete type=0 #58
+2024/06/12-14:21:22.965 9003 Manual compaction at level-0 from '\x00\x1d\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1e\x00\x00\x00' @ 0 : 0; will stop at '\x00\x1d\x00\x00\x05' @ 1252 : 1
+2024/06/12-14:21:22.965 9003 Compacting 1@0 + 1@1 files
+2024/06/12-14:21:23.082 9003 Generated table #62@0: 35 keys, 4069 bytes
+2024/06/12-14:21:23.082 9003 Compacted 1@0 + 1@1 files => 4069 bytes
+2024/06/12-14:21:23.110 9003 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/12-14:21:23.112 9003 Delete type=2 #61
+2024/06/12-14:21:23.113 9003 Manual compaction at level-0 from '\x00\x1d\x00\x00\x05' @ 1252 : 1 .. '\x00\x1e\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/12-14:22:03.074 9003 Compacting 1@1 + 1@2 files
+2024/06/12-14:22:03.081 9003 Generated table #63@1: 51 keys, 4579 bytes
+2024/06/12-14:22:03.081 9003 Compacted 1@1 + 1@2 files => 4579 bytes
+2024/06/12-14:22:03.090 9003 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/12-14:22:03.090 9003 Delete type=2 #62
+2024/06/12-14:22:03.090 9003 Delete type=2 #59
+2024/06/12-14:22:03.091 9003 Delete type=2 #56

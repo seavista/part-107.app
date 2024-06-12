@@ -1,0 +1,24 @@
+2024/06/12-13:24:33.282 6907 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.uUMCKk/flutter_tools_chrome_device.eNsh38/Default/IndexedDB/http_localhost_61905.indexeddb.leveldb/MANIFEST-000001
+2024/06/12-13:24:33.282 6907 Recovering log #4
+2024/06/12-13:24:33.283 6907 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.uUMCKk/flutter_tools_chrome_device.eNsh38/Default/IndexedDB/http_localhost_61905.indexeddb.leveldb/000004.log 
+2024/06/12-13:24:33.315 bb03 Level-0 table #8: started
+2024/06/12-13:24:33.320 bb03 Level-0 table #8: 14207 bytes OK
+2024/06/12-13:24:33.328 bb03 Delete type=0 #4
+2024/06/12-13:24:33.329 6907 Manual compaction at level-0 from '\x00\x08\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x09\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/12-13:24:34.079 bb03 Level-0 table #10: started
+2024/06/12-13:24:34.083 bb03 Level-0 table #10: 3867 bytes OK
+2024/06/12-13:24:34.090 bb03 Delete type=0 #7
+2024/06/12-13:24:34.091 6907 Manual compaction at level-0 from '\x00\x09\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at '\x00\x09\x00\x00\x05' @ 365 : 1
+2024/06/12-13:24:34.091 6907 Compacting 1@0 + 1@1 files
+2024/06/12-13:24:34.096 6907 Generated table #11@0: 107 keys, 4976 bytes
+2024/06/12-13:24:34.096 6907 Compacted 1@0 + 1@1 files => 4976 bytes
+2024/06/12-13:24:34.102 6907 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/12-13:24:34.103 6907 Delete type=2 #10
+2024/06/12-13:24:34.103 6907 Manual compaction at level-0 from '\x00\x09\x00\x00\x05' @ 365 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/12-13:25:13.317 8c03 Compacting 1@1 + 1@2 files
+2024/06/12-13:25:13.325 8c03 Generated table #12@1: 51 keys, 4430 bytes
+2024/06/12-13:25:13.325 8c03 Compacted 1@1 + 1@2 files => 4430 bytes
+2024/06/12-13:25:13.332 8c03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/12-13:25:13.333 8c03 Delete type=2 #5
+2024/06/12-13:25:13.333 8c03 Delete type=2 #11
+2024/06/12-13:25:13.333 8c03 Delete type=2 #8
