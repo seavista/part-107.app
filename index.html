@@ -80,15 +80,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 </script>
 
-<script>
-  // handle direct linking to routes
-  (function() {
-    var redirect = new URLSearchParams(window.location.search).get('redirect');
-    if (redirect) {
-      window.history.replaceState(null, null, redirect);
-    }
-  })();
-</script>
+
 
 </body>
 </html>
