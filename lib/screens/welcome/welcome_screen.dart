@@ -68,11 +68,14 @@ class FeatureItem extends StatelessWidget {
 class FullScreenModal extends StatelessWidget {
   Future<Uri?> createPaymentLink() async {
     // Get the current host
-    String host = html.window.location.host;
-    print('Current host: $host');
+    //String host = html.window.location.host;
+    //print('Current host: $host');
+
+    // final url = Uri.parse(
+    //     'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}&host=${host}');
 
     final url = Uri.parse(
-        'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}&host=${host}');
+        'https://us-central1-part-107-82ca6.cloudfunctions.net/createPaymentLink?user_id=${FirebaseAuth.instance.currentUser!.email}');
 
     print(url);
 

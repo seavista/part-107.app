@@ -122,10 +122,10 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
     return res.status(400).send('User email is required');
   }
 
-  const host = req.query.host;
-  if (!host || host.trim() === '') {
-    return res.status(400).send('Host is required');
-  }
+  // const host = req.query.host;
+  // if (!host || host.trim() === '') {
+  //   return res.status(400).send('Host is required');
+  // }
 
 
 
@@ -133,7 +133,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
 
   try {
     const protocol = req.protocol;
-    //const host = req.get('host');
+    const host = req.get('host');
     const baseUrl = `${protocol}://${host}`;
 
     const session = await stripe.checkout.sessions.create({
@@ -153,7 +153,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${baseUrl}?sessionId=${session.id}`,
+      success_url: `https://part-107.app/?sessionId=${session.id}`,
       cancel_url: `${baseUrl}`,
       payment_intent_data: {
         // PAYMENT metadata
