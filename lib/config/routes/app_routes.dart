@@ -26,13 +26,25 @@ class Routes {
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
     Uri uri = Uri.parse(routeSettings.name ?? '');
-    switch (uri.path) {
+
+    switch (routeSettings.name) {
       case Routes.initial:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const SplashScreen();
-            },
-            settings: routeSettings);
+        String? sessionId = uri.queryParameters['sessionId'];
+
+        //handle the return from a payment
+        if (sessionId != null) {
+          return MaterialPageRoute(
+              builder: (context) {
+                return SuccessScreen(sessionId: sessionId);
+              },
+              settings: routeSettings);
+        } else {
+          return MaterialPageRoute(
+              builder: (context) {
+                return const SplashScreen();
+              },
+              settings: routeSettings);
+        }
 
       case Routes.appHome:
         return MaterialPageRoute(
