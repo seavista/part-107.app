@@ -159,7 +159,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       GoogleSignIn().signOut();
                       _auth.signOut().whenComplete(() {
                         print('Sign out complete');
-                        Navigator.pop(context);
+                        //Navigator.pop(context);
+                        Navigator.of(context)
+                            .pushReplacementNamed(Routes.initial);
                       });
                     } catch (e) {
                       print('Error signing out: $e');

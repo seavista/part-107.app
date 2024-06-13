@@ -185,7 +185,7 @@ class EntryScreen extends StatelessWidget {
                                         // Successfully signed in
 
                                         await Navigator.pushReplacementNamed(
-                                            context, Routes.appHome);
+                                            context, Routes.initial);
                                       } else {
                                         await Navigator.popAndPushNamed(
                                             context, Routes.appLogin);
