@@ -10,7 +10,7 @@
 .svn/
 NOTES.md
 deploy.sh
-
+.env
 
 # IntelliJ related
 *.iml
