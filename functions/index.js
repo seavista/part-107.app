@@ -18,7 +18,7 @@ admin.initializeApp({
     clientEmail: process.env.MY_FIREBASE_CLIENT_EMAIL,
     privateKey: process.env.MY_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
   }),
-  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
+  databaseURL: `https://${process.env.MY_FIREBASE_PROJECT_ID}.firebaseio.com`
 });
 
 
@@ -132,9 +132,9 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
   console.error("### userEmail:", userEmail);
 
   try {
-    const protocol = req.protocol;
-    const host = req.get('host');
-    const baseUrl = `${protocol}://${host}`;
+    // const protocol = req.protocol;
+    // const host = req.get('host');
+    // const baseUrl = `${protocol}://${host}`;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -153,13 +153,13 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `https://part-107.app/?sessionId=${session.id}`,
-      cancel_url: `${baseUrl}`,
+      success_url: `https://part-107.app/?sessionId={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://part-107.app`,
       payment_intent_data: {
         // PAYMENT metadata
         metadata: {
-          firebaseUserEmail: userEmail,
-          domainOrigin:host
+          firebaseUserEmail: userEmail
+        
         },
       }
 
