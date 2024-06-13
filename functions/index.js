@@ -109,6 +109,10 @@ app.use(express.json({
 
 exports.webhook = functions.https.onRequest(app);
 
+exports.checkEnvVariables = functions.https.onRequest((req, res) => {
+  console.log('Firebase credentials:', process.env.GOOGLE_APPLICATION_CREDENTIALS);
+  res.send('Check the logs for environment variables.');
+});
 
 // Function to create a payment link
 exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
@@ -176,5 +180,9 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+
+
+
 
 
