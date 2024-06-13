@@ -103,13 +103,13 @@ class ScoreScreen extends StatelessWidget {
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
-                      //onTap: () => Get.to(WelcomeScreen()),
                       onTap: () {
                         // we need to include the routeName
                         Get.delete<QuestionController>();
                         _qnController.resetQuestions();
 
-                        Get.to(() => WelcomeScreen(), routeName: "/welcome");
+                        //Get.to(() => WelcomeScreen(), routeName: "/welcome");
+                        Navigator.of(Get.context!).pushNamed(Routes.initial);
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.25,

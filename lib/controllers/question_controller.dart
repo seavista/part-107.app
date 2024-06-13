@@ -26,6 +26,13 @@ class QuestionController extends GetxController
 
   List<Question> get questions => this._questions;
 
+  bool _isPaid = false;
+  bool get isPaid => this._isPaid;
+  void updateIsPaid(bool flag) {
+    _isPaid = flag;
+    update();
+  }
+
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
@@ -202,7 +209,7 @@ class QuestionController extends GetxController
             "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
         _animationController.stop();
 
-        Navigator.pushReplacementNamed(Get.context!, Routes.appScore);
+        await Navigator.pushReplacementNamed(Get.context!, Routes.appScore);
 
         //await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
 

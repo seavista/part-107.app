@@ -135,6 +135,28 @@ class EntryScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // ElevatedButton(
+                        //   onPressed: () async {
+                        //     final userCredential =
+                        //         await FirebaseAuth.instance.signInAnonymously();
+                        //     if (context.mounted) {
+                        //       if (userCredential.user != null) {
+                        //         // Successfully signed in
+
+                        //         Navigator.pushReplacementNamed(
+                        //             context, Routes.appHome);
+                        //       } else {
+                        //         Navigator.popAndPushNamed(
+                        //             context, Routes.appLogin);
+                        //       }
+                        //     }
+                        //   },
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(20.0),
+                        //     child: Text('Sign-In Anonomously'),
+                        //   ),
+                        // ),
+                        // SizedBox(height: 50),
                         const Text(
                           'Sign up using',
                           style: TextStyle(
@@ -162,17 +184,17 @@ class EntryScreen extends StatelessWidget {
                                       if (userCredential.user != null) {
                                         // Successfully signed in
 
-                                        Navigator.pushReplacementNamed(
+                                        await Navigator.pushReplacementNamed(
                                             context, Routes.appHome);
                                       } else {
-                                        Navigator.popAndPushNamed(
+                                        await Navigator.popAndPushNamed(
                                             context, Routes.appLogin);
                                       }
                                     }
                                   } catch (error) {
                                     // Handle errors, such as showing a dialog or a snackbar
                                     if (context.mounted) {
-                                      Navigator.popAndPushNamed(
+                                      await Navigator.popAndPushNamed(
                                           context, Routes.appLogin);
                                     }
                                   }

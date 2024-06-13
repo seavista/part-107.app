@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
+import 'package:quiz_app/controllers/question_controller.dart';
 
 class UserInitialsCircle extends StatefulWidget {
   @override
@@ -30,35 +32,46 @@ class _UserInitialsCircleState extends State<UserInitialsCircle> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () async {
-          print('Circle tapped');
+    final ctrl = Get.put(QuestionController());
 
-          Navigator.pushNamed(context, Routes.appSettings);
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () async {
+            print('Circle tapped');
 
-          // Navigator.of(context)
-          //     .push(
-          //       MaterialPageRoute<SettingsScreen>(
-          //         builder: (context) => const SettingsScreen(),
-          //       ),
-          //     )
-          //     .whenComplete(() {});
+            Navigator.pushNamed(context, Routes.appSettings);
 
-          // Handle tap
-        },
-        onLongPress: () {
-          print('Circle long-pressed');
-          // Handle long press
-        },
-        child: CircleAvatar(
-          minRadius: 8,
-          maxRadius: 16,
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-          child: Text(
-            _initials,
-            style: TextStyle(fontSize: 18),
+            // Navigator.of(context)
+            //     .push(
+            //       MaterialPageRoute<SettingsScreen>(
+            //         builder: (context) => const SettingsScreen(),
+            //       ),
+            //     )
+            //     .whenComplete(() {});
+
+            // Handle tap
+          },
+          onLongPress: () {
+            print('Circle long-pressed');
+            // Handle long press
+          },
+          child: Badge(
+            isLabelVisible: ctrl.isPaid,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            label: Text('PRO'),
+            offset: Offset(2, -7),
+            child: CircleAvatar(
+              minRadius: 8,
+              maxRadius: 16,
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              child: Text(
+                _initials,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
           ),
         ),
       ),

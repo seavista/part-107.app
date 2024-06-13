@@ -242,14 +242,25 @@ class FullScreenModal extends StatelessWidget {
                             },
                             child: Text('Cancel'),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Implement your unlock full access logic here
-                              Navigator.of(context).pop();
-                              _launchUrl();
-                            },
-                            child: Text('Get Premium Access'),
-                          ),
+                          (FirebaseAuth.instance.currentUser!.isAnonymous)
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    // Implement your unlock full access logic here
+                                    Navigator.of(context).pop();
+                                    FirebaseAuth.instance.signOut();
+                                    Navigator.of(context)
+                                        .pushReplacementNamed(Routes.initial);
+                                  },
+                                  child: Text('Login Required'),
+                                )
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    // Implement your unlock full access logic here
+                                    Navigator.of(context).pop();
+                                    _launchUrl();
+                                  },
+                                  child: Text('Get Premium Access'),
+                                ),
                         ],
                       ),
                     ),
@@ -294,6 +305,8 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
 }
 
 class IconButtonGrid extends StatefulWidget {
+  const IconButtonGrid({Key? key}) : super(key: key);
+
   @override
   _IconButtonGridState createState() => _IconButtonGridState();
 }
@@ -312,7 +325,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
     {'icon': Icons.rule, 'label': 'Regulations'},
   ];
 
-  final ctrl = Get.put(QuestionController());
+  //final ctrl = Get.put(QuestionController());
 
   @override
   void initState() {
@@ -321,7 +334,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 
   @override
   Widget build(BuildContext context) {
-    //final ctrl = Get.put(QuestionController());
+    final ctrl = Get.put(QuestionController());
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -426,13 +439,13 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                     label: _currentValue.round().toString(),
                     onChanged: (double value) {
                       final intVal = value.ceil();
+                      setState(() {
+                        _currentValue = intVal.toDouble();
+                      });
+
                       // ctrl.updateNumberOfQuestions(intVal);
-                      if (intVal > 20) {
+                      if (intVal > 20 && !ctrl.isPaid) {
                         showFullScreenModal(context);
-                      } else {
-                        setState(() {
-                          _currentValue = intVal.toDouble();
-                        });
                       }
                     },
                   ),
@@ -447,7 +460,11 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                         ctrl.updateNumberOfQuestions(_currentValue.toInt());
                         ctrl.onInit();
 
-                        await Get.to(() => QuizScreen(), routeName: "/quiz");
+                        //await Get.to(() => QuizScreen(), routeName: "/quiz");
+
+                        await Navigator.of(Get.context!)
+                            .pushNamed(Routes.appQuiz);
+
                         //Get.reload<QuestionController>();
                       } else {
                         Get.snackbar('Number of Questions Needed',
@@ -484,7 +501,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 }
 
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen();
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -497,6 +514,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
+
     getPackageInfo();
   }
 
@@ -513,6 +531,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ctrl = Get.put(QuestionController());
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -579,9 +599,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   'Resources',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                onTap: () {
+                onTap: () async {
                   Get.close(1);
-                  Get.to(SettingsScreen(), routeName: "settings");
+                  // Get.to(SettingsScreen(), routeName: "settings");
+                  await Navigator.of(Get.context!)
+                      .pushNamed(Routes.appSettings);
                 },
               ),
               ListTile(
@@ -589,32 +611,41 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   'Settings',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                onTap: () {
+                onTap: () async {
                   Get.close(1);
-                  Get.to(SettingsScreen(), routeName: "settings");
+                  //Get.to(SettingsScreen(), routeName: "settings");
+                  await Navigator.of(Get.context!)
+                      .pushNamed(Routes.appSettings);
                 },
               ),
               SizedBox(
                 height: 20,
               ),
-              ListTile(
-                title: Container(
-                  padding: EdgeInsets.all(12.0),
-                  decoration: BoxDecoration(
-                    gradient: kPrimaryGradient,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
+              Visibility(
+                visible: !ctrl.isPaid,
+                child: ListTile(
+                  title: Container(
+                    padding: EdgeInsets.all(12.0),
+                    decoration: BoxDecoration(
+                      gradient: kPrimaryGradient,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: Text(
+                      'Unlock Pro',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
+                    ),
                   ),
-                  child: Text(
-                    'Unlock Pro',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground),
-                  ),
+                  onTap: () {
+                    Get.close(1);
+                    showFullScreenModal(context);
+                  },
                 ),
-                onTap: () {
-                  Get.close(1);
-                  showFullScreenModal(context);
-                },
               ),
             ],
           ),
