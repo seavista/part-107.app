@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
+//const serviceAccount = require(functions.config().admin.service_account);
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -21,6 +22,10 @@ admin.initializeApp({
   databaseURL: `https://${process.env.MY_FIREBASE_PROJECT_ID}.firebaseio.com`
 });
 
+//store on server
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });
 
 const fulfillOrder = async (session) => {
   console.log("Fulfilling order",session);
