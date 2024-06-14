@@ -10,6 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/login_screen.dart';
+import 'package:quiz_app/screens/quiz/animations/drone_animation.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
 import '../../controllers/question_controller.dart';
@@ -40,7 +41,7 @@ class AuthGate extends StatelessWidget {
                   .get(),
               builder: (context, querySnapshot) {
                 if (querySnapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return DroneTakeoffAnimation();
                 } else if (querySnapshot.hasError) {
                   return Center(child: Text('Error: ${querySnapshot.error}'));
                 } else if (querySnapshot.hasData) {
