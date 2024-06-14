@@ -21,11 +21,11 @@ class _UserInitialsCircleState extends State<UserInitialsCircle> {
   void _getUserInitials() {
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      String fullName = user.displayName ?? "Anonymous User";
+      String fullName = user.displayName ?? (user.email ?? "Anonymous User");
       List<String> names = fullName.split(" ");
       _initials = names.length > 1
           ? names.first[0].toUpperCase() + names.last[0].toUpperCase()
-          : names.first[0].toUpperCase();
+          : names.first[0].toUpperCase() + names.first[1].toUpperCase();
       setState(() {});
     }
   }

@@ -4,6 +4,7 @@ import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
 import 'package:quiz_app/screens/purchase/success.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import 'package:quiz_app/screens/resources/resources_screen.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
 import 'package:quiz_app/screens/settings/settings.dart';
 import 'package:quiz_app/screens/splash/splash.dart';
@@ -20,6 +21,7 @@ class Routes {
   static const String appScore = '/score';
   static const String appQuiz = '/quiz';
   static const String appSettings = '/settings';
+  static const String appResources = '/resources';
 }
 
 class AppRoutes {
@@ -78,6 +80,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return ScoreScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appResources:
+        return MaterialPageRoute(
+            builder: (context) {
+              return ResourcesScreen();
             },
             settings: routeSettings);
 

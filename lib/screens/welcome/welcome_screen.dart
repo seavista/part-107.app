@@ -452,18 +452,21 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                     divisions: 100,
                     label: _currentValue.round().toString(),
                     onChanged: (double value) async {
-                      final intVal = value.ceil();
-                      setState(() {
-                        _currentValue = intVal.toDouble();
-                      });
+                      int intVal = value.ceil();
 
                       // ctrl.updateNumberOfQuestions(intVal);
-                      if (intVal > 20 && !ctrl.isPaid) {
+                      if (intVal > 15 && !ctrl.isPaid) {
                         showFullScreenModal(context);
+                        setState(() {
+                          intVal = 10;
+                        });
+                      } else {
+                        setState(() {
+                          _currentValue = intVal.toDouble();
+                        });
+                        await _updateSetting(
+                            "numberOfQuestions", _currentValue.toInt());
                       }
-
-                      await _updateSetting(
-                          "numberOfQuestions", _currentValue.toInt());
                     },
                   ),
                 ),
@@ -623,7 +626,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Get.close(1);
                   // Get.to(SettingsScreen(), routeName: "settings");
                   await Navigator.of(Get.context!)
-                      .pushNamed(Routes.appSettings);
+                      .pushNamed(Routes.appResources);
                 },
               ),
               ListTile(

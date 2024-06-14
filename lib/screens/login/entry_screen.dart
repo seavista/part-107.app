@@ -83,63 +83,63 @@ class EntryScreen extends StatelessWidget {
         },
         background: [
           Image.asset('assets/images/bg.png'),
-          //Image.asset('assets/images/bg.png'),
-          // Image.asset('assets/images/bg.png'),
-          // Image.asset('assets/images/bg.png'),
+          Image.asset('assets/images/bg.png'),
+          Image.asset('assets/images/bg.png'),
+          Image.asset('assets/images/bg.png'),
         ],
         centerBackground: true,
-        totalPage: 1,
+        totalPage: 4,
         speed: 1.8,
         pageBodies: [
-          // Container(
-          //   padding: EdgeInsets.symmetric(horizontal: 40),
-          //   child: Column(
-          //     children: <Widget>[
-          //       SizedBox(
-          //         height: 480,
-          //       ),
-          //       Text(
-          //         'Master the skies with our comprehensive FAA Part 107 practice test.',
-          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-          //               fontWeight: FontWeight.bold,
-          //               decorationStyle: TextDecorationStyle.double,
-          //             ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(horizontal: 40),
-          //   child: Column(
-          //     children: <Widget>[
-          //       SizedBox(
-          //         height: 480,
-          //       ),
-          //       Text(
-          //         'Study Anywhere! Become a FAA certified drone pilot fast.',
-          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-          //               fontWeight: FontWeight.bold,
-          //             ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(horizontal: 40),
-          //   child: Column(
-          //     children: <Widget>[
-          //       SizedBox(
-          //         height: 480,
-          //       ),
-          //       Text(
-          //         'Start your path to certification and take control of your future in the skies!',
-          //         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-          //               fontWeight: FontWeight.bold,
-          //             ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'Master the skies with our comprehensive FAA Part 107 practice test.',
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        decorationStyle: TextDecorationStyle.double,
+                      ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'Study Anywhere! Become a FAA certified drone pilot fast.',
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'Start your path to certification and take control of your future in the skies!',
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+          ),
           Container(
             height: 480,
             child: Padding(
