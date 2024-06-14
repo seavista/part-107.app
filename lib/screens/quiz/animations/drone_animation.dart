@@ -50,7 +50,8 @@ class _DroneTakeoffAnimationState extends State<DroneTakeoffAnimation>
                   return Transform.translate(
                     offset: Offset(0, _animation.value),
                     child: Image.asset('assets/images/drone.png',
-                        width: 100, height: 100),
+                        width: MediaQuery.of(context).size.width / 3,
+                        height: 155),
                   );
                 },
               ),

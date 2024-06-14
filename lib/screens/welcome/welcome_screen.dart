@@ -18,6 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FeatureItem extends StatelessWidget {
   final IconData icon;
@@ -329,7 +330,20 @@ class _IconButtonGridState extends State<IconButtonGrid> {
 
   @override
   void initState() {
+    _loadSettings();
     super.initState();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _currentValue = prefs.getInt('numberOfQuestions') as double;
+    });
+  }
+
+  Future<void> _updateSetting(String key, int value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(key, value);
   }
 
   @override
@@ -437,7 +451,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                     max: 100,
                     divisions: 100,
                     label: _currentValue.round().toString(),
-                    onChanged: (double value) {
+                    onChanged: (double value) async {
                       final intVal = value.ceil();
                       setState(() {
                         _currentValue = intVal.toDouble();
@@ -447,6 +461,9 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                       if (intVal > 20 && !ctrl.isPaid) {
                         showFullScreenModal(context);
                       }
+
+                      await _updateSetting(
+                          "numberOfQuestions", _currentValue.toInt());
                     },
                   ),
                 ),
@@ -459,6 +476,9 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                         //setup
                         ctrl.updateNumberOfQuestions(_currentValue.toInt());
                         ctrl.onInit();
+
+                        await _updateSetting(
+                            "numberOfQuestions", _currentValue.toInt());
 
                         //await Get.to(() => QuizScreen(), routeName: "/quiz");
 

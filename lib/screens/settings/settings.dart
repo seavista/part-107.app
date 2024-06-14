@@ -7,7 +7,9 @@ import 'package:flutter/rendering.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart';
+import 'package:quiz_app/controllers/question_controller.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -139,6 +141,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     //bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    QuestionController ctrl = Get.put(QuestionController());
 
     return Scaffold(
       primary: true,
@@ -210,7 +213,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     'Subscription',
                     style: TextStyle(fontSize: 20),
                   ),
-                  trailing: Text('Free - Ad Supported'),
+                  trailing: (ctrl.isPaid)
+                      ? Text('PRO User')
+                      : Text('Free - Ad Supported'),
                 ),
                 // ListTile(
                 //   title: const Text(
