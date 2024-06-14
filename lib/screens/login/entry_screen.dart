@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,17 @@ import 'package:quiz_app/config/routes/app_routes.dart';
 class EntryScreen extends StatelessWidget {
   const EntryScreen();
   static String id = 'home_screen';
+
+  Future<void> _ensureUserInFirestore() async {
+    try {
+      HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('ensureUserInFirestore');
+      final results = await callable();
+      print(results.data['message']);
+    } catch (e) {
+      print("Error calling Cloud Function: $e");
+    }
+  }
 
   Future<UserCredential> signInWithGoogle(context) async {
     // Trigger the authentication flow
@@ -28,7 +40,13 @@ class EntryScreen extends StatelessWidget {
     );
 
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential userCredntials =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    if (!userCredntials.user!.isAnonymous) {
+      await _ensureUserInFirestore();
+    }
+    return userCredntials;
   }
 
   @override

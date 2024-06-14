@@ -36,7 +36,7 @@ class AuthGate extends StatelessWidget {
           if (!user.isAnonymous) {
             return FutureBuilder<QuerySnapshot>(
               future: FirebaseFirestore.instance
-                  .collection('orders')
+                  .collection('Orders')
                   .where('firebaseUserEmail', isEqualTo: user.email)
                   .get(),
               builder: (context, querySnapshot) {

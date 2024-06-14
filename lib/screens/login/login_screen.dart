@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quiz_app/components/custom_bottom_screen.dart';
@@ -18,6 +19,17 @@ class _LoginScreenState extends State<LoginScreen> {
   late String _email;
   late String _password;
   bool _saving = false;
+
+  Future<void> _ensureUserInFirestore() async {
+    try {
+      HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('ensureUserInFirestore');
+      final results = await callable();
+      print(results.data['message']);
+    } catch (e) {
+      print("Error calling Cloud Function: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           try {
                             await _auth.signInWithEmailAndPassword(
                                 email: _email, password: _password);
+
+                            await _ensureUserInFirestore();
 
                             if (context.mounted) {
                               setState(() {

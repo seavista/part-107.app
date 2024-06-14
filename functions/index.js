@@ -38,7 +38,7 @@ const fulfillOrder = async (session) => {
   console.log(firebaseUserEmail);
  
   const db = admin.firestore();
-  await db.collection('orders').doc(session.id).set({
+  await db.collection('Orders').doc(session.id).set({
     firebaseUserEmail,
     userEmail,
     orderData: session,
@@ -114,9 +114,30 @@ app.use(express.json({
 
 exports.webhook = functions.https.onRequest(app);
 
-exports.checkEnvVariables = functions.https.onRequest((req, res) => {
-  console.log('Firebase credentials:', process.env.GOOGLE_APPLICATION_CREDENTIALS);
-  res.send('Check the logs for environment variables.');
+exports.ensureUserInFirestore = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError('failed-precondition', 'The function must be called while authenticated.');
+  }
+
+  const uid = context.auth.uid;
+  const userRef = admin.firestore().collection('Users').doc(uid);
+  
+  const userDoc = await userRef.get();
+  if (!userDoc.exists) {
+    const user = await admin.auth().getUser(uid);
+    const userData = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName || null,
+      photoURL: user.photoURL || null,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    
+    await userRef.set(userData);
+    return { message: `User ${uid} added to Firestore` };
+  } else {
+    return { message: `User ${uid} already exists in Firestore` };
+  }
 });
 
 // Function to create a payment link
