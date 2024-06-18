@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Resource {
   final String title;
   final String url;
+  final String imageUrl;
 
-  Resource(this.title, this.url);
+  Resource(this.title, this.url, this.imageUrl);
 }
 
 class ResourcesScreen extends StatelessWidget {
   final List<Resource> resources = [
-    Resource('FAA Website', 'https://www.faa.gov/uas'),
-    Resource('Register Your Drone', 'https://faadronezone-access.faa.gov'),
+    Resource('FAA Website', 'https://www.faa.gov/uas',
+        'assets/images/www.faa.gov.png'),
+    Resource('Register Your Drone', 'https://faadronezone-access.faa.gov',
+        'assets/images/faadronezone-access.faa.gov.jpg'),
     // Add more resources here
   ];
 
@@ -23,16 +27,23 @@ class ResourcesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('FAA Part 107 Remote Pilot Resources'),
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset("assets/images/bg.png", fit: BoxFit.cover),
-          ListView.builder(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: MasonryGridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
             itemCount: resources.length,
             itemBuilder: (context, index) {
               final resource = resources[index];
-              return ListTile(
-                title: Text(resource.title),
+              return GestureDetector(
                 onTap: () async {
                   if (await canLaunch(resource.url)) {
                     await launch(resource.url);
@@ -40,10 +51,47 @@ class ResourcesScreen extends StatelessWidget {
                     throw 'Could not launch ${resource.url}';
                   }
                 },
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height / 2,
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Image.asset(
+                            resource.imageUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Center(
+                                child: Text(
+                                  'Failed to load image',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Container(
+                          color: Colors.black54,
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            resource.title,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }

@@ -1,27 +1,21 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
 import 'package:quiz_app/models/Questions.dart';
-
-// We use get package for our state management
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  // Lets animate our progress bar
-
   late AnimationController _animationController;
   late Animation _animation;
-  // so that we can access our animation outside
   Animation get animation => this._animation;
 
   late PageController _pageController;
   PageController get pageController => this._pageController;
 
   List<Question> _questions = [];
-
   List<Question> get questions => this._questions;
 
   bool _isPaid = false;
@@ -42,27 +36,26 @@ class QuestionController extends GetxController
   late int _selectedAns;
   int get selectedAns => this._selectedAns;
 
-  // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
 
   RxInt _numOfCorrectAns = 0.obs;
   RxInt get numOfCorrectAns => this._numOfCorrectAns;
   void updateNumberCorrectAnswers(int count) {
-    _numOfQuestions.value = count;
-    //rebuild questions
+    _numOfCorrectAns.value = count;
     initQuestions();
   }
+
+  RxInt _numOfIncorrectAns = 0.obs;
+  RxInt get numOfIncorrectAns => this._numOfIncorrectAns;
 
   RxInt _numOfQuestions = 0.obs;
   RxInt get numOfQuestions => this._numOfQuestions;
   void updateNumberOfQuestions(int count) {
     _numOfQuestions.value = count;
-    //rebuild questions
     initQuestions();
   }
 
-// List to keep track of the toggle states, initialized to true
   List<bool> isSelected = List.generate(7, (index) {
     if (index == 0) {
       return true;
@@ -71,15 +64,18 @@ class QuestionController extends GetxController
     }
   });
 
+  Map<String, Map<String, int>> _performanceByTopic = {};
+  Map<String, Map<String, int>> get performanceByTopic => _performanceByTopic;
+
   @override
   void onInit() async {
     super.onInit();
-
-    _initializeController(); // Add this line
+    print('onInit called'); // Logging
+    _initializeController();
   }
 
-// Add this new method to handle initialization
   void _initializeController() {
+    print('Initializing controller'); // Logging
     _animationController =
         AnimationController(duration: Duration(minutes: 1), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
@@ -87,23 +83,21 @@ class QuestionController extends GetxController
         update();
       });
 
-    //_animationController.forward().whenComplete(nextQuestion);
-    _pageController = PageController(); // Ensure this line is here
+    _pageController = PageController();
   }
 
   Future<void> initQuestions() async {
-    //stop animation
+    print('initQuestions called'); // Logging
     _animationController.stop();
-
-    //clear previous answers
     resetQuestions();
 
     var random = Random();
-    var tempList = await buildQuestions(); // Create a temporary list
+    var tempList = await buildQuestions();
 
-    tempList.shuffle(random); // Shuffle the temporary list
+    print('Total questions fetched: ${tempList.length}'); // Logging
 
-    // Map the shuffled data to the questions list
+    tempList.shuffle(random);
+
     _questions = tempList
         .map(
           (question) => Question(
@@ -111,88 +105,143 @@ class QuestionController extends GetxController
               question: question['question'],
               options: question['options'],
               answer: question['answer_index'],
-              figure: question['figure']),
+              figure: question['figure'],
+              category: question['category']),
         )
         .take(_numOfQuestions.value)
         .toList();
 
-    //_animationController.repeat();
-    await _animationController.forward().whenComplete(nextQuestion);
+    print('Total questions initialized: ${_questions.length}'); // Logging
+
+    if (_questions.isNotEmpty) {
+      await _animationController.forward().whenComplete(nextQuestion);
+    } else {
+      print('No questions to initialize.');
+    }
   }
 
   void resetQuestions() {
-    //clear previous answers
-
+    print('resetQuestions called'); // Logging
     _isAnswered = false;
     _questionNumber = 1.obs;
     _questions = [];
     _numOfCorrectAns = 0.obs;
+    _numOfIncorrectAns = 0.obs;
+    _performanceByTopic.clear();
     update();
   }
 
-  Future<List<dynamic>> buildQuestions() async {
-    List retData = [];
+  Future<List<Map<String, dynamic>>> buildQuestions() async {
+    print('buildQuestions called'); // Logging
+    List<Map<String, dynamic>> retData = [];
     if (isSelected[0] == true) {
-      return sample_data.toList();
+      retData.addAll(loading_and_performance_data.map((q) =>
+          Map<String, dynamic>.from(q)
+            ..['category'] = 'Loading and Performance'));
+      retData.addAll(airspace_data
+          .map((q) => Map<String, dynamic>.from(q)..['category'] = 'Airspace'));
+      retData.addAll(operations_data.map(
+          (q) => Map<String, dynamic>.from(q)..['category'] = 'Operations'));
+      retData.addAll(airspace_weather_minimums_charts_data.map((q) =>
+          Map<String, dynamic>.from(q)
+            ..['category'] = 'Airspace Weather Minimums and Charts'));
+      retData.addAll(risk_management_data.map((q) =>
+          Map<String, dynamic>.from(q)..['category'] = 'Risk Management'));
+      retData.addAll(regulations_data.map(
+          (q) => Map<String, dynamic>.from(q)..['category'] = 'Regulations'));
     } else {
       if (isSelected[1] == true) {
-        retData.addAll(loading_and_performance_data);
+        retData.addAll(loading_and_performance_data.map((q) =>
+            Map<String, dynamic>.from(q)
+              ..['category'] = 'Loading and Performance'));
       }
-
       if (isSelected[2] == true) {
-        retData.addAll(airspace_data);
+        retData.addAll(airspace_data.map(
+            (q) => Map<String, dynamic>.from(q)..['category'] = 'Airspace'));
       }
-
       if (isSelected[3] == true) {
-        retData.addAll(operations_data);
+        retData.addAll(operations_data.map(
+            (q) => Map<String, dynamic>.from(q)..['category'] = 'Operations'));
       }
-
       if (isSelected[4] == true) {
-        retData.addAll(airspace_weather_minimums_charts_data);
+        retData.addAll(airspace_weather_minimums_charts_data.map((q) =>
+            Map<String, dynamic>.from(q)
+              ..['category'] = 'Airspace Weather Minimums and Charts'));
       }
-
       if (isSelected[5] == true) {
-        retData.addAll(risk_management_data);
+        retData.addAll(risk_management_data.map((q) =>
+            Map<String, dynamic>.from(q)..['category'] = 'Risk Management'));
       }
-
       if (isSelected[6] == true) {
-        retData.addAll(regulations_data);
+        retData.addAll(regulations_data.map(
+            (q) => Map<String, dynamic>.from(q)..['category'] = 'Regulations'));
       }
     }
 
-    return retData.toList();
+    print('Questions built: ${retData.length}'); // Logging
+    return retData;
   }
 
-  // // called just before the Controller is deleted from memory
-  @override
-  void onClose() {
-    super.onClose();
-    _animationController.dispose();
-    _pageController.dispose();
-  }
-
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(Question question, int selectedIndex) async {
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
 
-    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+    if (_correctAns == _selectedAns) {
+      _numOfCorrectAns++;
+      _updatePerformanceByTopic(question.category, true);
+    } else {
+      _numOfIncorrectAns++;
+      _updatePerformanceByTopic(question.category, false);
+    }
+
+    // Retrieve and update the performance data
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jsonString = prefs.getString('performanceByTopic');
+    Map<String, Map<String, int>> performanceData = {};
+
+    if (jsonString != null) {
+      Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+      performanceData = jsonMap
+          .map((key, value) => MapEntry(key, Map<String, int>.from(value)));
+    }
+
+    _performanceByTopic.forEach((key, value) {
+      if (!performanceData.containsKey(key)) {
+        performanceData[key] = {'correct': 0, 'incorrect': 0};
+      }
+      performanceData[key]!['correct'] =
+          performanceData[key]!['correct']! + value['correct']!;
+      performanceData[key]!['incorrect'] =
+          performanceData[key]!['incorrect']! + value['incorrect']!;
+    });
+
+    // Save the updated performance data
+    await prefs.setString('performanceByTopic', jsonEncode(performanceData));
 
     _animationController.stop();
     update();
 
-    print(
-        "${DateTime.now()} - Answer checked: Correct: $_correctAns, Selected: $_selectedAns");
-
     Future.delayed(Duration(seconds: 3), () {
       try {
-        print(
-            "${DateTime.now()} - 3 seconds delay completed, calling nextQuestion");
         nextQuestion();
       } catch (e) {
-        print("${DateTime.now()} - Error during nextQuestion: $e");
+        print("Error during nextQuestion: $e");
       }
     });
+  }
+
+  void _updatePerformanceByTopic(String category, bool isCorrect) {
+    if (!_performanceByTopic.containsKey(category)) {
+      _performanceByTopic[category] = {'correct': 0, 'incorrect': 0};
+    }
+    if (isCorrect) {
+      _performanceByTopic[category]!['correct'] =
+          _performanceByTopic[category]!['correct']! + 1;
+    } else {
+      _performanceByTopic[category]!['incorrect'] =
+          _performanceByTopic[category]!['incorrect']! + 1;
+    }
   }
 
   void previousQuestion() async {
@@ -205,19 +254,14 @@ class QuestionController extends GetxController
   void nextQuestion() async {
     try {
       if (_questionNumber.value == _questions.length) {
-        print(
-            "${DateTime.now()} - All questions answered, navigating to ScoreScreen");
         _animationController.stop();
 
         await Navigator.pushReplacementNamed(Get.context!, Routes.appScore);
 
-        //await Get.to(() => ScoreScreen(), routeName: "/ScoreScreen");
-
-        return; // Exit to prevent further execution
+        return;
       }
 
       _isAnswered = false;
-      print("${DateTime.now()} - Moving to next question");
 
       await _pageController.nextPage(
         duration: Duration(milliseconds: 250),
@@ -225,15 +269,12 @@ class QuestionController extends GetxController
       );
 
       _animationController.reset();
-      print("${DateTime.now()} - Animation controller reset");
 
       await _animationController.forward().whenComplete(() {
-        print(
-            "${DateTime.now()} - Animation complete, calling nextQuestion again");
         nextQuestion();
       });
     } catch (e) {
-      print("${DateTime.now()} - Error in nextQuestion: $e");
+      print("Error in nextQuestion: $e");
     }
   }
 

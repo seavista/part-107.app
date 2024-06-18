@@ -2,6 +2,7 @@ class Question {
   final int id, answer;
   final String question;
   final List<String> options;
+  final String category;
   final String? figure;
 
   Question(
@@ -9,6 +10,7 @@ class Question {
       required this.question,
       required this.answer,
       required this.options,
+      required this.category,
       this.figure});
 }
 

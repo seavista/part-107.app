@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quiz_app/screens/login/entry_screen.dart';
 import 'package:quiz_app/screens/login/signup_screen.dart';
+import 'package:quiz_app/screens/progress/progress_report_screen.dart';
 import 'package:quiz_app/screens/purchase/success.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/screens/resources/resources_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
   static const String appQuiz = '/quiz';
   static const String appSettings = '/settings';
   static const String appResources = '/resources';
+  static const String appProgress = '/progress';
 }
 
 class AppRoutes {
@@ -87,6 +89,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return ResourcesScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appProgress:
+        return MaterialPageRoute(
+            builder: (context) {
+              return ProgressReportScreen();
             },
             settings: routeSettings);
 

@@ -20,6 +20,9 @@ class ScoreScreen extends StatelessWidget {
                 100)
             .round();
 
+    String report = 'TODO';
+    //_qnController.generateSummaryReport();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
@@ -98,6 +101,7 @@ class ScoreScreen extends StatelessWidget {
                       SizedBox(
                         height: 50,
                       ),
+                      Text(report)
                     ],
                   ),
                   MouseRegion(

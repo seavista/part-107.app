@@ -613,8 +613,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   'Progress',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                onTap: () {
-                  // Handle item 3 tap
+                onTap: () async {
+                  Get.close(1);
+                  // Get.to(SettingsScreen(), routeName: "settings");
+                  await Navigator.of(Get.context!)
+                      .pushNamed(Routes.appProgress);
                 },
               ),
               ListTile(
