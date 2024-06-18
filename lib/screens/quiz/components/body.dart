@@ -76,11 +76,12 @@ class Body extends StatelessWidget {
                             ],
                           ),
                         ),
-                        ImageThumbnail(
-                            assetPath:
-                                '${_questionController.questions[_questionController.questionNumber.value].figure}',
-                            figureName:
-                                '${_questionController.questions[_questionController.questionNumber.value].figure.toString()}')
+                        if (!_questionController.isLastQuestion)
+                          ImageThumbnail(
+                              assetPath:
+                                  '${_questionController.questions[_questionController.questionNumber.value].figure}',
+                              figureName:
+                                  '${_questionController.questions[_questionController.questionNumber.value].figure.toString()}')
                       ],
                     ),
                   ),
