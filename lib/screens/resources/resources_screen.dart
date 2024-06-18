@@ -23,21 +23,27 @@ class ResourcesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('FAA Part 107 Remote Pilot Resources'),
       ),
-      body: ListView.builder(
-        itemCount: resources.length,
-        itemBuilder: (context, index) {
-          final resource = resources[index];
-          return ListTile(
-            title: Text(resource.title),
-            onTap: () async {
-              if (await canLaunch(resource.url)) {
-                await launch(resource.url);
-              } else {
-                throw 'Could not launch ${resource.url}';
-              }
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset("assets/images/bg.png", fit: BoxFit.cover),
+          ListView.builder(
+            itemCount: resources.length,
+            itemBuilder: (context, index) {
+              final resource = resources[index];
+              return ListTile(
+                title: Text(resource.title),
+                onTap: () async {
+                  if (await canLaunch(resource.url)) {
+                    await launch(resource.url);
+                  } else {
+                    throw 'Could not launch ${resource.url}';
+                  }
+                },
+              );
             },
-          );
-        },
+          ),
+        ],
       ),
     );
   }

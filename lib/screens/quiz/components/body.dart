@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/Questions.dart';
-
+import 'package:photo_view/photo_view.dart';
+import 'package:quiz_app/screens/quiz/components/figure.dart';
 import 'progress_bar.dart';
 import 'question_card.dart';
 
@@ -42,28 +43,50 @@ class Body extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   child: Obx(
-                    () => Text.rich(
-                      TextSpan(
-                        text:
-                            "Question ${_questionController.questionNumber.value}",
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 36),
-                        children: [
+                    () => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text.rich(
                           TextSpan(
-                            text: "/${_questionController.questions.length}",
+                            text:
+                                "Question ${_questionController.questionNumber.value}",
                             style: Theme.of(context)
                                 .textTheme
-                                .headline5!
+                                .headline4!
                                 .copyWith(
                                     color:
                                         Theme.of(context).colorScheme.onPrimary,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 36),
+                            children: [
+                              TextSpan(
+                                text:
+                                    "/${_questionController.questions.length}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 36),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        if (_questionController
+                                .questions[
+                                    _questionController.questionNumber.value -
+                                        1]
+                                .figure !=
+                            null)
+                          ImageThumbnail(
+                              assetPath:
+                                  'assets/figures/${_questionController.questions[_questionController.questionNumber.value - 1].figure}',
+                              figureName:
+                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}')
+                      ],
                     ),
                   ),
                 ),

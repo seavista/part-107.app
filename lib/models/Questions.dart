@@ -2,12 +2,14 @@ class Question {
   final int id, answer;
   final String question;
   final List<String> options;
+  final String? figure;
 
   Question(
       {required this.id,
       required this.question,
       required this.answer,
-      required this.options});
+      required this.options,
+      this.figure});
 }
 
 const List sample_data = [

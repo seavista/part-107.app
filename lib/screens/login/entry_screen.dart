@@ -96,7 +96,7 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 480,
+                  height: 400,
                 ),
                 Text(
                   'Master the skies with our comprehensive FAA Part 107 practice test.',
@@ -113,7 +113,7 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 480,
+                  height: 400,
                 ),
                 Text(
                   'Study Anywhere! Become a FAA certified drone pilot fast.',
@@ -129,7 +129,7 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 480,
+                  height: 400,
                 ),
                 Text(
                   'Start your path to certification and take control of your future in the skies!',
@@ -141,7 +141,7 @@ class EntryScreen extends StatelessWidget {
             ),
           ),
           Container(
-            height: 480,
+            height: 400,
             child: Padding(
               padding: const EdgeInsets.all(25),
               child: Column(
@@ -240,7 +240,11 @@ class EntryScreen extends StatelessWidget {
                               onPressed: () {},
                               icon: CircleAvatar(
                                 radius: 25,
-                                child: Image.asset('assets/icons/linkedin.png'),
+                                child: Image.asset(
+                                  'assets/icons/linkedin.png',
+                                  height: 70,
+                                  width: 100,
+                                ),
                               ),
                             ),
                           ],

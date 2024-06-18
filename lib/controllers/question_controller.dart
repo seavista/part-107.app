@@ -107,11 +107,11 @@ class QuestionController extends GetxController
     _questions = tempList
         .map(
           (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index'],
-          ),
+              id: question['id'],
+              question: question['question'],
+              options: question['options'],
+              answer: question['answer_index'],
+              figure: question['figure']),
         )
         .take(_numOfQuestions.value)
         .toList();
@@ -148,7 +148,7 @@ class QuestionController extends GetxController
       }
 
       if (isSelected[4] == true) {
-        retData.addAll(weather_data);
+        retData.addAll(airspace_weather_minimums_charts_data);
       }
 
       if (isSelected[5] == true) {
