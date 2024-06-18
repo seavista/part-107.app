@@ -33,6 +33,8 @@ class QuestionController extends GetxController
     update();
   }
 
+  bool get isLastQuestion => (questionNumber == questions.length);
+
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 

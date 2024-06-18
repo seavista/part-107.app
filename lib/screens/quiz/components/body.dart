@@ -45,6 +45,7 @@ class Body extends StatelessWidget {
                   child: Obx(
                     () => Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text.rich(
                           TextSpan(
@@ -75,17 +76,11 @@ class Body extends StatelessWidget {
                             ],
                           ),
                         ),
-                        if (_questionController
-                                .questions[
-                                    _questionController.questionNumber.value -
-                                        1]
-                                .figure !=
-                            null)
-                          ImageThumbnail(
-                              assetPath:
-                                  'assets/figures/${_questionController.questions[_questionController.questionNumber.value - 1].figure}',
-                              figureName:
-                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}')
+                        ImageThumbnail(
+                            assetPath:
+                                '${_questionController.questions[_questionController.questionNumber.value].figure}',
+                            figureName:
+                                '${_questionController.questions[_questionController.questionNumber.value].figure.toString()}')
                       ],
                     ),
                   ),

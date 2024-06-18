@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ImageThumbnail extends StatelessWidget {
-  final String assetPath;
-  final String figureName;
+  final String? assetPath;
+  final String? figureName;
 
   ImageThumbnail({required this.assetPath, required this.figureName});
 
   @override
   Widget build(BuildContext context) {
+    if (this.assetPath == 'null' || this.figureName == 'null') {
+      return Container();
+    }
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -17,12 +21,13 @@ class ImageThumbnail extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => FullScreenImage(
-                  assetPath: assetPath, figureName: this.figureName),
+                  assetPath: 'assets/figures/${this.assetPath!}',
+                  figureName: this.figureName!),
             ),
           );
         },
         child: Image.asset(
-          assetPath,
+          'assets/figures/${this.assetPath!}',
           width: 100,
           height: 80,
           fit: BoxFit.cover,
