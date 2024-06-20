@@ -11,12 +11,27 @@ class Resource {
 }
 
 class ResourcesScreen extends StatelessWidget {
+  // final List<Resource> resources = [
+  //   Resource('FAA Website', 'https://www.faa.gov/uas',
+  //       'assets/images/www.faa.gov.png'),
+  //   Resource('Register Your Drone', 'https://faadronezone-access.faa.gov',
+  //       'assets/images/faadronezone-access.faa.gov.jpg'),
+  //   // Add more resources here
+  // ];
+
   final List<Resource> resources = [
     Resource('FAA Website', 'https://www.faa.gov/uas',
         'assets/images/www.faa.gov.png'),
     Resource('Register Your Drone', 'https://faadronezone-access.faa.gov',
         'assets/images/faadronezone-access.faa.gov.jpg'),
-    // Add more resources here
+    Resource(
+        'Remote Pilot Study Guide',
+        'https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/remote_pilot_study_guide.pdf',
+        'assets/images/Remote Pilot Study Guide.png'),
+    Resource(
+        'Airman Certification Standards',
+        'https://www.faa.gov/training_testing/testing/acs',
+        'assets/images/Airman Certification Standards.png'),
   ];
 
   ResourcesScreen();
@@ -24,6 +39,7 @@ class ResourcesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text('FAA Part 107 Remote Pilot Resources'),
       ),

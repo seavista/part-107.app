@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quiz_app/components/countup.dart';
 import 'package:quiz_app/components/custom_bottom_screen.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class EntryScreen extends StatelessWidget {
   const EntryScreen();
@@ -96,15 +98,57 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 400,
+                  height: 100,
+                  child: TopScreenImage(screenImageName: "logo.png"),
+                ),
+                SizedBox(
+                  height: 50,
                 ),
                 Text(
-                  'Master the skies with our comprehensive FAA Part 107 practice test.',
+                  'JOIN A FAMILY OF OVER 377,000 CERTIFIED DRONE PILOTS',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        decorationStyle: TextDecorationStyle.double,
-                      ),
+                      fontWeight: FontWeight.bold,
+                      decorationStyle: TextDecorationStyle.double),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                Countup(
+                  begin: 0,
+                  end: 377447,
+                  duration: Duration(seconds: 2),
+                  separator: ',',
+                  style: TextStyle(
+                    fontSize: 36,
+                  ),
+                ),
+                Text('Certified Remote Pilots'),
+                SizedBox(
+                  height: 40,
+                ),
+                Countup(
+                  begin: 0,
+                  end: 781781,
+                  duration: Duration(seconds: 3),
+                  separator: ',',
+                  style: TextStyle(
+                    fontSize: 36,
+                  ),
+                ),
+                Text('Total Drones Registered'),
+                SizedBox(
+                  height: 40,
+                ),
+                Countup(
+                  begin: 0,
+                  end: 375226,
+                  duration: Duration(milliseconds: 2500),
+                  separator: ',',
+                  style: TextStyle(
+                    fontSize: 36,
+                  ),
+                ),
+                Text('Commercial Drones Registered'),
               ],
             ),
           ),
@@ -113,14 +157,30 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 400,
+                  height: 10,
                 ),
+                SizedBox(
+                    height: 300,
+                    child: TopScreenImage(screenImageName: "pilot.png")),
                 Text(
-                  'Study Anywhere! Become a FAA certified drone pilot fast.',
+                  'Launch your certification path and elevate your career in the skies!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
+                SizedBox(
+                  height: 50,
+                ),
+//                 Markdown(data: '''
+// * Pass the exam and become an FAA certified commercial drone pilot.
+// * Pass the exam and receive a commercial drone license.
+// * You have to miss more than 18 questions to fail the test. In that case, you’ll fail.
+// * Students and corporations use our course as a refresher before taking the FAA exam.
+// * Two 60-minute timed practice exams.
+// * Thousands of updated practice questions with explanations.
+// * Dozens of additional practice quizzes specific to each lesson.
+// * Hundreds of additional practice quizzes.
+//             ''')
               ],
             ),
           ),
@@ -129,10 +189,16 @@ class EntryScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 400,
+                  height: 100,
+                ),
+                SizedBox(
+                    height: 200,
+                    child: TopScreenImage(screenImageName: "passed.png")),
+                SizedBox(
+                  height: 50,
                 ),
                 Text(
-                  'Start your path to certification and take control of your future in the skies!',
+                  'Prepare for and pass the FAA Part 107 drone license exam with ease!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -141,7 +207,7 @@ class EntryScreen extends StatelessWidget {
             ),
           ),
           Container(
-            height: 400,
+            height: 300,
             child: Padding(
               padding: const EdgeInsets.all(25),
               child: Column(

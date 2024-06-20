@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:quiz_app/config/routes/app_routes.dart';
+
 import 'package:quiz_app/screens/quiz/animations/confetti_animation.dart';
 import 'package:quiz_app/screens/quiz/animations/drone_animation.dart';
 import 'dart:html' as html;

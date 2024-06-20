@@ -20,8 +20,7 @@ class ScoreScreen extends StatelessWidget {
                 100)
             .round();
 
-    String report = 'TODO';
-    //_qnController.generateSummaryReport();
+    List<Widget> reportWidget = _qnController.generateSummaryReport();
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -36,6 +35,8 @@ class ScoreScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         height: 20,
@@ -51,20 +52,30 @@ class ScoreScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Container(
-                        width: MediaQuery.of(context).size.width / 2,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         child: MultiCircularSlider(
                           size: MediaQuery.of(context).size.width * 0.5,
                           progressBarType: MultiCircularSliderType.circular,
-                          values: const [0.2, 0.1, 0.3, 0.18],
+                          values: const [1.0, 0.1, 0.3, 0.18, 0.5],
                           colors: const [
                             Color(0xFFFD1960),
                             Color(0xFF29D3E8),
                             Color(0xFF18C737),
-                            Color(0xFFFFCC05)
+                            Color(0xFFFFCC05),
+                            Colors.blueAccent,
                           ],
-                          innerWidget: Icon(
-                            Icons.check,
-                            size: 150,
+                          innerWidget: Center(
+                            child: Text(
+                              "${scorePercentage.toString()} %",
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                            ),
                           ),
                           showTotalPercentage: true,
                           key: key,
@@ -72,7 +83,7 @@ class ScoreScreen extends StatelessWidget {
                           animationDuration: const Duration(milliseconds: 2000),
                           animationCurve: Curves.easeInOutCirc,
                           innerIcon: const Icon(Icons.integration_instructions),
-                          trackColor: Colors.blueAccent,
+                          trackColor: Colors.transparent,
                           progressBarWidth: 56.0,
                           trackWidth: 56.0,
                           labelTextStyle: const TextStyle(),
@@ -81,15 +92,7 @@ class ScoreScreen extends StatelessWidget {
                               fontSize: 36),
                         ),
                       ),
-                      Text(
-                        "${scorePercentage.toString()} %",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayLarge!
-                            .copyWith(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary),
-                      ),
+                      SizedBox(height: 40),
                       Text(
                         "${_qnController.numOfCorrectAns}/${_qnController.numOfQuestions} Correct Answers",
                         style: Theme.of(context).textTheme.headline4!.copyWith(
@@ -101,9 +104,10 @@ class ScoreScreen extends StatelessWidget {
                       SizedBox(
                         height: 50,
                       ),
-                      Text(report)
+                      ...reportWidget,
                     ],
                   ),
+                  SizedBox(height: 20),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(

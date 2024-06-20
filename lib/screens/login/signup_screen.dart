@@ -23,8 +23,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.popAndPushNamed(context, Routes.appWelcome);
-        return true;
+        Navigator.of(context).pushReplacementNamed(Routes.initial);
+        return false;
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,

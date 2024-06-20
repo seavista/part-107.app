@@ -281,4 +281,113 @@ class QuestionController extends GetxController
   void updateTheQnNum(int index) {
     _questionNumber.value = index + 1;
   }
+
+  final List<Map<String, dynamic>> _iconsAndLabels = [
+    {'icon': Icons.check_box, 'label': 'All Topics'},
+    {'icon': Icons.speed, 'label': 'Loading and Performance'},
+    {'icon': Icons.flight, 'label': 'Airspace'},
+    {'icon': Icons.flight_takeoff, 'label': 'Operations and Procedures'},
+    {'icon': Icons.cloud, 'label': 'Weather'},
+    {'icon': Icons.warning, 'label': 'Risk Management'},
+    {'icon': Icons.rule, 'label': 'Regulations'},
+  ];
+
+  List<Widget> generateSummaryReport() {
+    List<Widget> cards = [];
+
+    _performanceByTopic.forEach((topic, performance) {
+      int correct = performance['correct']!;
+      int incorrect = performance['incorrect']!;
+      int total = correct + incorrect;
+      double percentage = total > 0 ? (correct / total) * 100 : 0;
+
+      Color backgroundColor;
+      IconData iconData;
+
+      // Customize background color and icon based on the topic
+      switch (topic) {
+        case 'All Topics':
+          backgroundColor = Color(0xFFFD1960);
+          iconData = Icons.check_box;
+          break;
+        case 'Loading and Performance':
+          backgroundColor = Color(0xFF29D3E8);
+          iconData = Icons.speed;
+          break;
+        case 'Airspace':
+          backgroundColor = Color(0xFF18C737);
+          iconData = Icons.flight;
+          break;
+        case 'Airspace Weather Minimums and Charts':
+          backgroundColor = Color(0xFF18C737);
+          iconData = Icons.flight;
+          break;
+        case 'Operations and Procedures':
+          backgroundColor = Color(0xFFFFCC05);
+          iconData = Icons.flight_takeoff;
+          break;
+        case 'Weather':
+          backgroundColor = Color(0xFF29D3E8);
+          iconData = Icons.cloud;
+          break;
+        case 'Risk Management':
+          backgroundColor = Color(0xFFFD1960);
+          iconData = Icons.warning;
+          break;
+        case 'Regulations':
+          backgroundColor = Color(0xFF18C737);
+          iconData = Icons.rule;
+          break;
+        default:
+          backgroundColor = Colors.grey;
+          iconData = Icons.help_outline;
+          break;
+      }
+
+      cards.add(Card(
+        color: backgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Icon(iconData, color: Colors.white),
+                  SizedBox(width: 8),
+                  Text(
+                    topic,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Text(
+                '${percentage.toStringAsFixed(2)}%',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                '$correct/$total correct',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ));
+    });
+
+    return cards;
+  }
 }

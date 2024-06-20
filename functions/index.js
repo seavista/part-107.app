@@ -7,7 +7,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
-//const serviceAccount = require(functions.config().admin.service_account);
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.MY_SENDGRID_API_KEY);
+
+const axios = require('axios');
+
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -22,10 +27,9 @@ admin.initializeApp({
   databaseURL: `https://${process.env.MY_FIREBASE_PROJECT_ID}.firebaseio.com`
 });
 
-//store on server
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
+
+
+
 
 const fulfillOrder = async (session) => {
   console.log("Fulfilling order",session);
@@ -47,6 +51,25 @@ const fulfillOrder = async (session) => {
   }).catch((error) => {
     console.error(`Error saving order to Firestore: ${error}`);
   });
+
+    // Send email here
+  try {
+
+    const response = await axios.post(`https://us-central1-${process.env.MY_FIREBASE_PROJECT_ID}.cloudfunctions.net/sendEmail`, {
+      to: userEmail,
+      subject: 'Order Confirmation',
+      text: `Your Part-107.app order with ID ${session.id} has been successfully fulfilled.`
+    });
+
+    if (response.status === 200) {
+      console.log('Email sent successfully');
+    } else {
+      console.error('Failed to send email:', response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error('Error sending email:', error);
+  }
+
 };
 
 const createOrder = (session) => {
@@ -134,6 +157,9 @@ exports.ensureUserInFirestore = functions.https.onCall(async (data, context) => 
     };
     
     await userRef.set(userData);
+
+ 
+
     return { message: `User ${uid} added to Firestore` };
   } else {
     return { message: `User ${uid} already exists in Firestore` };
@@ -205,6 +231,34 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
+});
+
+// EMAIL
+
+
+
+exports.sendEmail = functions.https.onRequest((req, res) => {
+  const { to, subject, text } = req.body;
+
+  const msg = {
+    to: to, // Change to your recipient
+    from: '"Part-107.app" <jason@seavista.co>', // Change to your verified sender
+    subject: subject,
+    text: text,
+    html: `<strong>${text}</strong>`,
+  }
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent');
+      res.status(200).end();
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send(error);
+    })
+
+
 });
 
 

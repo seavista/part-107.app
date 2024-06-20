@@ -47,7 +47,9 @@ class ProgressReportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color? foregroundColor = Theme.of(context).colorScheme.background;
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text('Progress Report'),
       ),
@@ -71,7 +73,9 @@ class ProgressReportScreen extends StatelessWidget {
                 domainAxis: charts.OrdinalAxisSpec(
                   renderSpec: charts.SmallTickRendererSpec(
                     labelRotation: 60,
-                    labelStyle: charts.TextStyleSpec(fontSize: 12),
+                    labelStyle: charts.TextStyleSpec(
+                        fontSize: 12,
+                        color: charts.Color.fromHex(code: '#FFFFFF')),
                   ),
                 ),
               ),

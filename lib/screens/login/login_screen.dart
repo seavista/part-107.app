@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pop(context, WelcomeScreen());
+        Navigator.of(context).pushReplacementNamed(Routes.initial);
         return false;
       },
       child: Scaffold(
