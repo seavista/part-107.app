@@ -4491,7 +4491,7 @@ const List airspace_weather_minimums_charts_data = [
   {
     "id": 4,
     "question":
-        "What does a dashed magenta line on a sectional chart indicate?",
+        "What does a dashed magenta line on a sectional chart indicate? (Refer to Figure 23)",
     "options": [
       "Class B airspace",
       "Class C airspace",
@@ -4533,7 +4533,7 @@ const List airspace_weather_minimums_charts_data = [
     "options": ["Clear skies", "Stable air", "Thunderstorms", "High humidity"],
     "answer_index": 3,
     "category": "Airspace, Weather Minimums, and Charts",
-    "figure": "Fig15.jpg",
+    "figure": null,
     "area": 3
   },
   {
@@ -4633,13 +4633,13 @@ const List airspace_weather_minimums_charts_data = [
     ],
     "answer_index": 1,
     "category": "Airspace, Weather Minimums, and Charts",
-    "figure": "Fig16.jpg",
+    "figure": null,
     "area": 6
   },
   {
     "id": 15,
     "question":
-        "Which airspace class is depicted by a dashed blue line on sectional charts?",
+        "Which airspace class is depicted by a dashed blue line on sectional charts? (Refer to Figure 34)",
     "options": ["Class B", "Class C", "Class D", "Class E"],
     "answer_index": 2,
     "category": "Airspace, Weather Minimums, and Charts",
@@ -4688,7 +4688,8 @@ const List airspace_weather_minimums_charts_data = [
   },
   {
     "id": 19,
-    "question": "What does a magenta vignette on a sectional chart represent?",
+    "question":
+        "What does a magenta vignette on a sectional chart represent? (Refer to Figure 9)",
     "options": [
       "Class B airspace",
       "Class C airspace",
@@ -4703,7 +4704,7 @@ const List airspace_weather_minimums_charts_data = [
   {
     "id": 20,
     "question":
-        "Which airspace is represented by a solid magenta line on sectional charts?",
+        "Which airspace is represented by a solid magenta line on sectional charts?  (Refer to Figure 25)",
     "options": ["Class B", "Class C", "Class D", "Class E"],
     "answer_index": 1,
     "category": "Airspace, Weather Minimums, and Charts",
@@ -4728,7 +4729,7 @@ const List airspace_weather_minimums_charts_data = [
   {
     "id": 22,
     "question":
-        "What type of airspace is depicted by a solid blue line on a sectional chart?",
+        "What type of airspace is depicted by a solid blue line on a sectional chart?  (Refer to Figure 12)",
     "options": [
       "Class B airspace",
       "Class C airspace",
@@ -4851,10 +4852,93 @@ const List airspace_weather_minimums_charts_data = [
     ],
     "answer_index": 1,
     "category": "Airspace, Weather Minimums, and Charts",
-    "figure": "Fig16.jpg",
+    "figure": null,
     "area": 11
   },
-  // Continue adding more questions until reaching 100
+  {
+    "id": 31,
+    "question":
+        "What does a dashed magenta line on a sectional chart indicate? (Refer to Figure 23)",
+    "options": [
+      "Class B airspace",
+      "Class C airspace",
+      "Class D airspace",
+      "Class E airspace"
+    ],
+    "answer_index": 3,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig23.jpg",
+    "area": 1
+  },
+  {
+    "id": 32,
+    "question":
+        "What type of airspace is depicted by a solid blue line on a sectional chart? (Refer to Figure 24)",
+    "options": [
+      "Class A airspace",
+      "Class B airspace",
+      "Class C airspace",
+      "Class D airspace"
+    ],
+    "answer_index": 1,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig24.jpg",
+    "area": 2
+  },
+  {
+    "id": 33,
+    "question":
+        "While monitoring the Cooperstown CTAF you hear an aircraft announce that they are midfield left downwind to RWY 13. Where would the aircraft be relative to the runway? (Refer to Figure 26, area 2)",
+    "options": ["East", "South", "West"],
+    "answer_index": 0,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig26.jpg",
+    "area": 2
+  },
+  {
+    "id": 34,
+    "question":
+        "What class of airspace is associated with the extensions to the SIOUX GATEWAY/COL DAY (SUX) Airport class D airspace? (Refer to Figure 78)",
+    "options": ["Class B airspace", "Class C airspace", "Class E airspace"],
+    "answer_index": 2,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig78.jpg",
+    "area": null
+  },
+  {
+    "id": 35,
+    "question":
+        "What is the required flight visibility for a remote pilot operating an unmanned aircraft near the Pender airport? (Refer to Figure 78)",
+    "options": ["2 statute miles", "3 statute miles", "4 statute miles"],
+    "answer_index": 1,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig78.jpg",
+    "area": null
+  },
+  {
+    "id": 36,
+    "question":
+        "What’s the minimum altitude/lowest elevation of the area depicted by the blue line labeled V71? (Refer to Figure 76)",
+    "options": ["700 ft. AGL", "1,200 ft. AGL", "3,500 ft. AGL"],
+    "answer_index": 1,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig76.jpg",
+    "area": null
+  },
+  {
+    "id": 37,
+    "question":
+        "What type of military flight operations should a pilot expect along IR644 in the Devil’s Lake West MOA? (Refer to Figure 21)",
+    "options": [
+      "IFR training flights above 1,500 feet AGL at speeds in excess of 250 knots",
+      "VFR training flights above 1,500 feet AGL at speeds less than 250 knots",
+      "Instrument training flights below 1,500 feet AGL at speeds in excess of 150 knots"
+    ],
+    "answer_index": 0,
+    "category": "Airspace, Weather Minimums, and Charts",
+    "figure": "Fig21.jpg",
+    "area": null
+  }
 ];
 
 const List emergency_procedures_data = [
