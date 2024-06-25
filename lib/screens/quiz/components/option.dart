@@ -37,7 +37,7 @@ class Option extends StatelessWidget {
           }
 
           return GestureDetector(
-            onTap: press,
+            onTap: qnController.isAnswered ? null : press,
             child: Container(
               margin: EdgeInsets.only(top: kDefaultPadding),
               padding: EdgeInsets.all(kDefaultPadding),

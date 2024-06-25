@@ -336,7 +336,7 @@ class _IconButtonGridState extends State<IconButtonGrid> {
     {'icon': Icons.speed, 'label': 'Loading and Performance'},
     {'icon': Icons.flight, 'label': 'Airspace'},
     {'icon': Icons.flight_takeoff, 'label': 'Operations and Procedures'},
-    {'icon': Icons.cloud, 'label': 'Weather'},
+    {'icon': Icons.cloud, 'label': 'Weather and Charts'},
     {'icon': Icons.warning, 'label': 'Risk Management'},
     {'icon': Icons.rule, 'label': 'Regulations'},
   ];
@@ -613,6 +613,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Text(
                 'Version $buildNumber',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .inversePrimary
+                        .withAlpha(100)),
+              ),
+              Text(
+                '© Seavista Software',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Theme.of(context)

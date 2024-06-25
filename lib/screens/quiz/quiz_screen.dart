@@ -13,15 +13,15 @@ class QuizScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Capture the back button press here
-            print('Back button pressed!');
-            // You can also navigate back using Get.back()
-            _controller.previousQuestion();
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     // Capture the back button press here
+        //     print('Back button pressed!');
+        //     // You can also navigate back using Get.back()
+        //     _controller.previousQuestion();
+        //   },
+        // ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
