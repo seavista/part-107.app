@@ -189,9 +189,9 @@ class FullScreenModal extends StatelessWidget {
                           SizedBox(height: 10),
                           FeatureItem(
                             icon: Icons.question_answer,
-                            title: 'Expanded Question Bank',
+                            title: 'Expanded Question Count',
                             description:
-                                'Gain access to over a 1000 questions, ensuring comprehensive coverage of all exam topics.',
+                                'Gain access to over a 1000 questions and larger quiz question count, ensuring comprehensive coverage of all exam topics.',
                           ),
                           FeatureItem(
                             icon: Icons.tune,
@@ -463,14 +463,14 @@ class _IconButtonGridState extends State<IconButtonGrid> {
                   child: Slider(
                     value: _currentValue,
                     min: 0,
-                    max: 100,
+                    max: (!ctrl.isPaid) ? 11 : 100,
                     divisions: 100,
                     label: _currentValue.round().toString(),
                     onChanged: (double value) async {
                       int intVal = value.ceil();
 
                       // ctrl.updateNumberOfQuestions(intVal);
-                      if (intVal > 15 && !ctrl.isPaid) {
+                      if (intVal > 10 && !ctrl.isPaid) {
                         showFullScreenModal(context);
                         setState(() {
                           intVal = 10;
