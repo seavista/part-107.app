@@ -20,7 +20,10 @@ const List sample_data = [
     "question":
         "What is the maximum altitude you can fly a sUAS under Part 107 regulations?",
     "options": ["500 feet AGL", "400 feet AGL", "600 feet AGL", "300 feet AGL"],
-    "answer_index": 1
+    "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 2,
@@ -33,6 +36,9 @@ const List sample_data = [
       "Maintenance logs"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 3,
@@ -44,6 +50,9 @@ const List sample_data = [
       "Night operations are prohibited under Part 107"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 4,
@@ -56,6 +65,9 @@ const List sample_data = [
       "Notify local law enforcement"
     ],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 5,
@@ -68,6 +80,9 @@ const List sample_data = [
       "10 statute miles"
     ],
     "answer_index": 1,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 6,
@@ -79,6 +94,9 @@ const List sample_data = [
       "Every 36 months"
     ],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 7,
@@ -91,6 +109,9 @@ const List sample_data = [
       "Strobe lights visible for 1 statute mile"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 8,
@@ -103,12 +124,18 @@ const List sample_data = [
       "File an accident report with the NTSB"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 9,
     "question": "What is the maximum ground speed for a sUAS under Part 107?",
     "options": ["80 knots", "87 knots", "100 knots", "120 knots"],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 10,
@@ -121,6 +148,9 @@ const List sample_data = [
       "The person manipulating the controls"
     ],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 11,
@@ -128,6 +158,9 @@ const List sample_data = [
         "Which class of airspace requires prior authorization from ATC to operate a sUAS?",
     "options": ["Class G", "Class E", "Class C", "Class F"],
     "answer_index": 2,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 12,
@@ -135,6 +168,9 @@ const List sample_data = [
         "What is the height limit for flying a sUAS in Class G airspace?",
     "options": ["200 feet AGL", "300 feet AGL", "400 feet AGL", "500 feet AGL"],
     "answer_index": 2,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 13,
@@ -146,6 +182,9 @@ const List sample_data = [
       "Visual Line of Service"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 14,
@@ -153,6 +192,9 @@ const List sample_data = [
         "Which airspace is most likely to contain heavy commercial air traffic and requires specific authorization for sUAS operations?",
     "options": ["Class A", "Class B", "Class C", "Class D"],
     "answer_index": 1,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 15,
@@ -165,6 +207,9 @@ const List sample_data = [
       "Fly below 100 feet AGL"
     ],
     "answer_index": 2,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 16,
@@ -172,6 +217,9 @@ const List sample_data = [
         "What is the minimum weather visibility required for sUAS operations?",
     "options": ["1 mile", "2 miles", "3 miles", "5 miles"],
     "answer_index": 2,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 17,
@@ -179,6 +227,9 @@ const List sample_data = [
         "Which type of weather report provides current surface weather conditions?",
     "options": ["TAF", "METAR", "SIGMET", "PIREP"],
     "answer_index": 1,
+    "category": "Weather",
+    "figure": null,
+    "area": null
   },
   {
     "id": 18,
@@ -191,6 +242,9 @@ const List sample_data = [
       "Increases battery efficiency"
     ],
     "answer_index": 1,
+    "category": "Weather",
+    "figure": null,
+    "area": null
   },
   {
     "id": 19,
@@ -198,6 +252,9 @@ const List sample_data = [
         "Which weather phenomenon is particularly hazardous to sUAS operations due to sudden and severe wind shifts?",
     "options": ["Microbursts", "Fog", "Rain showers", "Clear air turbulence"],
     "answer_index": 0,
+    "category": "Weather",
+    "figure": null,
+    "area": null
   },
   {
     "id": 20,
@@ -205,6 +262,9 @@ const List sample_data = [
         "When planning a flight, which weather source provides a forecast for a specific airport?",
     "options": ["METAR", "TAF", "NOTAM", "SIGMET"],
     "answer_index": 1,
+    "category": "Weather",
+    "figure": null,
+    "area": null
   },
   {
     "id": 21,
@@ -216,6 +276,9 @@ const List sample_data = [
       "Decreased lift"
     ],
     "answer_index": 0,
+    "category": "Loading and Performance",
+    "figure": null,
+    "area": null
   },
   {
     "id": 22,
@@ -228,6 +291,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Loading and Performance",
+    "figure": null,
+    "area": null
   },
   {
     "id": 23,
@@ -239,6 +305,9 @@ const List sample_data = [
       "Ease of assembly"
     ],
     "answer_index": 1,
+    "category": "Loading and Performance",
+    "figure": null,
+    "area": null
   },
   {
     "id": 24,
@@ -250,6 +319,9 @@ const List sample_data = [
       "Only affects camera quality"
     ],
     "answer_index": 1,
+    "category": "Loading and Performance",
+    "figure": null,
+    "area": null
   },
   {
     "id": 25,
@@ -262,6 +334,9 @@ const List sample_data = [
       "Propeller tightness"
     ],
     "answer_index": 2,
+    "category": "Loading and Performance",
+    "figure": null,
+    "area": null
   },
   {
     "id": 26,
@@ -274,6 +349,9 @@ const List sample_data = [
       "Insurance documents"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 27,
@@ -286,6 +364,9 @@ const List sample_data = [
       "Notify the FAA"
     ],
     "answer_index": 1,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 28,
@@ -298,6 +379,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 29,
@@ -309,6 +393,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 30,
@@ -316,6 +403,9 @@ const List sample_data = [
         "What is the maximum blood alcohol concentration allowed for a remote pilot during sUAS operations?",
     "options": ["0.04%", "0.08%", "0.10%", "0.02%"],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 31,
@@ -328,6 +418,9 @@ const List sample_data = [
       "Local authorities"
     ],
     "answer_index": 1,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 32,
@@ -340,6 +433,9 @@ const List sample_data = [
       "To manage the flight logs"
     ],
     "answer_index": 0,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 33,
@@ -352,6 +448,9 @@ const List sample_data = [
       "Immediately"
     ],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 34,
@@ -363,6 +462,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 35,
@@ -375,6 +477,9 @@ const List sample_data = [
       "Permission from the local airport authority"
     ],
     "answer_index": 1,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 36,
@@ -387,6 +492,9 @@ const List sample_data = [
       "Notify local emergency services"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 37,
@@ -399,6 +507,9 @@ const List sample_data = [
       "To maintain VLOS"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 38,
@@ -410,6 +521,9 @@ const List sample_data = [
       "To conduct flight operations"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 39,
@@ -422,6 +536,9 @@ const List sample_data = [
       "Notify local authorities"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 40,
@@ -429,6 +546,9 @@ const List sample_data = [
         "What is the minimum age requirement to obtain a remote pilot certificate?",
     "options": ["14 years", "16 years", "18 years", "21 years"],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 41,
@@ -440,6 +560,9 @@ const List sample_data = [
       "Daylight operations only"
     ],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 42,
@@ -447,6 +570,9 @@ const List sample_data = [
         "When operating in Class D airspace, what is the maximum altitude you can fly a sUAS?",
     "options": ["200 feet AGL", "300 feet AGL", "400 feet AGL", "500 feet AGL"],
     "answer_index": 2,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 43,
@@ -459,6 +585,9 @@ const List sample_data = [
       "Flying in uncontrolled airspace"
     ],
     "answer_index": 0,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 44,
@@ -471,6 +600,9 @@ const List sample_data = [
       "Ensure the sUAS is registered"
     ],
     "answer_index": 0,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 45,
@@ -483,6 +615,9 @@ const List sample_data = [
       "By filing a NOTAM"
     ],
     "answer_index": 0,
+    "category": "Airspace",
+    "figure": null,
+    "area": null
   },
   {
     "id": 46,
@@ -494,6 +629,9 @@ const List sample_data = [
       "Land immediately"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 47,
@@ -506,6 +644,9 @@ const List sample_data = [
       "Ignore the warning"
     ],
     "answer_index": 1,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 48,
@@ -517,6 +658,9 @@ const List sample_data = [
       "Communicating with ATC"
     ],
     "answer_index": 0,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 49,
@@ -529,6 +673,9 @@ const List sample_data = [
       "Notify ATC"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 50,
@@ -541,6 +688,9 @@ const List sample_data = [
       "Take no further action"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 51,
@@ -552,6 +702,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 52,
@@ -563,6 +716,9 @@ const List sample_data = [
       "Annually"
     ],
     "answer_index": 0,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 53,
@@ -575,6 +731,9 @@ const List sample_data = [
       "The manufacturer"
     ],
     "answer_index": 2,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 54,
@@ -586,6 +745,9 @@ const List sample_data = [
       "To record inspections and repairs"
     ],
     "answer_index": 3,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 55,
@@ -597,6 +759,9 @@ const List sample_data = [
       "During the annual inspection"
     ],
     "answer_index": 0,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 56,
@@ -609,6 +774,9 @@ const List sample_data = [
       "To comply with FAA regulations"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 57,
@@ -621,6 +789,9 @@ const List sample_data = [
       "Maintenance log"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 58,
@@ -633,6 +804,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 59,
@@ -645,6 +819,9 @@ const List sample_data = [
       "Use a first-person view camera"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 60,
@@ -657,6 +834,9 @@ const List sample_data = [
       "Notify local authorities"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 61,
@@ -669,6 +849,24 @@ const List sample_data = [
       "Enhanced vision"
     ],
     "answer_index": 1,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
+  },
+  {
+    "id": 61,
+    "question":
+        "What effect can dehydration have on a remote pilot’s performance?",
+    "options": [
+      "Improved focus",
+      "Impaired judgment",
+      "Increased energy",
+      "Enhanced vision"
+    ],
+    "answer_index": 1,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 62,
@@ -681,6 +879,9 @@ const List sample_data = [
       "Use automated flight modes"
     ],
     "answer_index": 0,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 63,
@@ -688,6 +889,9 @@ const List sample_data = [
         "Which physiological factor can affect a remote pilot’s ability to operate a sUAS?",
     "options": ["Stress", "Hunger", "Fitness level", "All of the above"],
     "answer_index": 3,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 64,
@@ -700,6 +904,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 65,
@@ -712,6 +919,9 @@ const List sample_data = [
       "Use automated flight modes"
     ],
     "answer_index": 2,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 66,
@@ -724,6 +934,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 67,
@@ -736,6 +949,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 68,
@@ -748,6 +964,9 @@ const List sample_data = [
       "Notify the FAA"
     ],
     "answer_index": 1,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 69,
@@ -759,6 +978,9 @@ const List sample_data = [
       "To provide traffic advisories"
     ],
     "answer_index": 0,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 70,
@@ -771,6 +993,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Aeronautical Decision-Making",
+    "figure": null,
+    "area": null
   },
   {
     "id": 71,
@@ -783,6 +1008,9 @@ const List sample_data = [
       "Local government approval"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 72,
@@ -795,6 +1023,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 73,
@@ -807,6 +1038,9 @@ const List sample_data = [
       "Document the incident"
     ],
     "answer_index": 0,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 74,
@@ -819,6 +1053,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 75,
@@ -830,6 +1067,9 @@ const List sample_data = [
       "Enhancing flight performance"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 76,
@@ -842,6 +1082,9 @@ const List sample_data = [
       "Advanced pilot certificate"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 77,
@@ -854,6 +1097,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 78,
@@ -866,6 +1112,9 @@ const List sample_data = [
       "Submit a written request to the FAA"
     ],
     "answer_index": 0,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 79,
@@ -873,6 +1122,9 @@ const List sample_data = [
         "What is the maximum allowable weight for a sUAS under Part 107?",
     "options": ["25 lbs", "50 lbs", "55 lbs", "75 lbs"],
     "answer_index": 2,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 80,
@@ -885,6 +1137,9 @@ const List sample_data = [
       "ATC authorization"
     ],
     "answer_index": 1,
+    "category": "Regulations",
+    "figure": null,
+    "area": null
   },
   {
     "id": 81,
@@ -896,6 +1151,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 0,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 82,
@@ -908,6 +1166,9 @@ const List sample_data = [
       "Use a backup sUAS"
     ],
     "answer_index": 1,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 83,
@@ -919,6 +1180,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 84,
@@ -930,6 +1194,9 @@ const List sample_data = [
       "To comply with FAA regulations"
     ],
     "answer_index": 0,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 85,
@@ -942,6 +1209,9 @@ const List sample_data = [
       "Announce the flight plan to local authorities"
     ],
     "answer_index": 2,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 86,
@@ -953,6 +1223,9 @@ const List sample_data = [
       "Unauthorized data capture"
     ],
     "answer_index": 0,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 87,
@@ -964,6 +1237,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 88,
@@ -976,6 +1252,9 @@ const List sample_data = [
       "Change the control frequency"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 89,
@@ -988,6 +1267,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 90,
@@ -1000,6 +1282,9 @@ const List sample_data = [
       "Notify local authorities"
     ],
     "answer_index": 1,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 91,
@@ -1012,6 +1297,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 92,
@@ -1019,6 +1307,9 @@ const List sample_data = [
         "How long should a remote pilot retain maintenance records for the sUAS?",
     "options": ["6 months", "1 year", "2 years", "5 years"],
     "answer_index": 1,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 93,
@@ -1030,6 +1321,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Operations and Procedures",
+    "figure": null,
+    "area": null
   },
   {
     "id": 94,
@@ -1042,6 +1336,9 @@ const List sample_data = [
       "To comply with insurance requirements"
     ],
     "answer_index": 1,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 95,
@@ -1053,6 +1350,9 @@ const List sample_data = [
       "Annually"
     ],
     "answer_index": 1,
+    "category": "Maintenance and Inspections",
+    "figure": null,
+    "area": null
   },
   {
     "id": 96,
@@ -1065,6 +1365,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 97,
@@ -1077,6 +1380,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 98,
@@ -1089,6 +1395,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 99,
@@ -1101,6 +1410,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 3,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   },
   {
     "id": 100,
@@ -1113,6 +1425,9 @@ const List sample_data = [
       "All of the above"
     ],
     "answer_index": 0,
+    "category": "Risk Management",
+    "figure": null,
+    "area": null
   }
 ];
 
@@ -4680,7 +4995,7 @@ const List airspace_weather_minimums_charts_data = [
     "id": 18,
     "question":
         "What is the maximum speed allowed for sUAS operations in Class C airspace?",
-    "options": ["100 knots", "120 knots", "150 knots", "200 knots"],
+    "options": ["100 knots", "120 knots", "150 knots", "87 knots"],
     "answer_index": 3,
     "category": "Airspace, Weather Minimums, and Charts",
     "figure": null,

@@ -77,9 +77,9 @@ class Body extends StatelessWidget {
                         if (!_questionController.isLastQuestion)
                           ImageThumbnail(
                               assetPath:
-                                  '${_questionController.questions[_questionController.questionNumber.value].figure}',
+                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure}',
                               figureName:
-                                  '${_questionController.questions[_questionController.questionNumber.value].figure.toString()}')
+                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}')
                       ],
                     ),
                   ),

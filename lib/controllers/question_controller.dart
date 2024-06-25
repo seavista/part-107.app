@@ -154,6 +154,10 @@ class QuestionController extends GetxController
     print('buildQuestions called'); // Logging
     List<Map<String, dynamic>> retData = [];
     if (isSelected[0] == true) {
+      //100 question merged
+      retData.addAll(sample_data.map((q) =>
+          Map<String, dynamic>.from(q)..['category'] = q['category'] ?? "All"));
+
       retData.addAll(loading_and_performance_data.map((q) =>
           Map<String, dynamic>.from(q)
             ..['category'] = 'Loading and Performance'));
