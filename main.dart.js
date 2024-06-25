@@ -100238,7 +100238,7 @@ return A.F($async$uz,r)},
 F(a){var s,r,q,p,o,n,m=null,l=A.M(a),k=A.ia(12),j=A.aN(a,m,t.w).w
 j=A.aU(m,A.dM("assets/images/logo.png",m,B.fF,m,m,m),B.j,m,m,m,m,m,m,m,m,m,m,j.a.a/2)
 s=t.p
-r=A.cP(A.a([A.b1("Unlock Full Lifetime Access Pass only $9.95",m,m,m,m,m,A.bP(m,m,A.M(a).ax.CW,m,m,m,m,m,m,m,m,20,m,m,B.ap,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),A.bk(m,10,m),new A.r8(B.HT,"Expanded Question Bank","Gain access to over a 1000 questions, ensuring comprehensive coverage of all exam topics.",m),new A.r8(B.HV,"Customizable Test Options","Tailor your practice tests to focus on specific areas or difficulty levels, enhancing your study efficiency.",m),new A.r8(B.HH,"Advanced Analytics","Track your progress with detailed performance reports and identify areas for improvement.",m),new A.r8(B.HS,"Ad-Free Experience","Enjoy an uninterrupted study experience with no ads.",m)],s),B.cG,B.M,B.F)
+r=A.cP(A.a([A.b1("Unlock Full Lifetime Access Pass only $9.95",m,m,m,m,m,A.bP(m,m,A.M(a).ax.CW,m,m,m,m,m,m,m,m,20,m,m,B.ap,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),A.bk(m,10,m),new A.r8(B.HT,"Expanded Question Count","Gain access to over a 1000 questions and larger quiz question count, ensuring comprehensive coverage of all exam topics.",m),new A.r8(B.HV,"Customizable Test Options","Tailor your practice tests to focus on specific areas or difficulty levels, enhancing your study efficiency.",m),new A.r8(B.HH,"Advanced Analytics","Track your progress with detailed performance reports and identify areas for improvement.",m),new A.r8(B.HS,"Ad-Free Experience","Enjoy an uninterrupted study experience with no ads.",m)],s),B.cG,B.M,B.F)
 q=A.bk(m,20,m)
 p=A.B1(m,m,new A.cT(B.hO,t.Il),m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m)
 p=A.adD(A.b1("Cancel",m,m,m,m,m,m,m,m,m),new A.afI(a),p)
@@ -100334,7 +100334,8 @@ k=l.k2
 l=k==null?l.c:k
 l=m.arS(l,new A.V6(24),16,new A.abM())
 m=j.d
-l=A.aRw(new A.Ga(m,new A.azp(j,h,a),0,100,100,B.f.k(B.d.a9(m)),i),l)
+k=!h.cx?11:100
+l=A.aRw(new A.Ga(m,new A.azp(j,h,a),0,k,100,B.f.k(B.d.a9(m)),i),l)
 m=A.bk(i,20,i)
 q=A.aN(a,i,q).w
 k=A.o_(new A.b_(12,12))
@@ -100361,7 +100362,7 @@ var $async$$1=A.B(function(b,c){if(b===1)return A.D(c,r)
 while(true)switch(s){case 0:n={}
 m=B.d.cK(a)
 n.a=m
-p=m>15&&!q.b.cx
+p=m>10&&!q.b.cx
 o=q.a
 s=p?2:4
 break
