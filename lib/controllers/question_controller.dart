@@ -91,12 +91,31 @@ class QuestionController extends GetxController
     _animationController.stop();
     resetQuestions();
 
-    var random = Random();
+    var random = Random(DateTime.now().millisecondsSinceEpoch);
     var tempList = await buildQuestions();
 
     print('Total questions fetched: ${tempList.length}'); // Logging
 
     tempList.shuffle(random);
+
+    // Function to shuffle options and update answer_index
+    Map<String, dynamic> shuffleOptions(Map<String, dynamic> question) {
+      List<String> options = List<String>.from(question['options']);
+      int correctIndex = question['answer_index'];
+      String correctAnswer = options[correctIndex];
+
+      options.shuffle(random);
+
+      int newCorrectIndex = options.indexOf(correctAnswer);
+
+      question['options'] = options;
+      question['answer_index'] = newCorrectIndex;
+
+      return question;
+    }
+
+    // Apply shuffling to each question
+    tempList = tempList.map((question) => shuffleOptions(question)).toList();
 
     _questions = tempList
         .map(

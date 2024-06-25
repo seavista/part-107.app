@@ -191,7 +191,7 @@ class FullScreenModal extends StatelessWidget {
                             icon: Icons.question_answer,
                             title: 'Expanded Question Count',
                             description:
-                                'Gain access to over a 1000 questions and larger quiz question count, ensuring comprehensive coverage of all exam topics.',
+                                'Gain access to over a 1000 questions, ensuring comprehensive coverage of all exam topics.',
                           ),
                           FeatureItem(
                             icon: Icons.tune,
