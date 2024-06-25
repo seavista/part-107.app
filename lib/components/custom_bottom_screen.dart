@@ -114,6 +114,7 @@ class TopScreenImage extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
+          color: Colors.transparent,
           image: DecorationImage(
             fit: BoxFit.contain,
             image: AssetImage('assets/images/$screenImageName'),
