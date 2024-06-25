@@ -99,7 +99,15 @@ class EntryScreen extends StatelessWidget {
               children: <Widget>[
                 SizedBox(
                   height: 100,
-                  child: TopScreenImage(screenImageName: "logo.png"),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/logo.png'),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 50,
@@ -160,8 +168,17 @@ class EntryScreen extends StatelessWidget {
                   height: 10,
                 ),
                 SizedBox(
-                    height: 300,
-                    child: TopScreenImage(screenImageName: "pilot.png")),
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/pilot.png'),
+                      ),
+                    ),
+                  ),
+                ),
                 Text(
                   'Launch your certification path and elevate your career in the skies!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
@@ -192,8 +209,17 @@ class EntryScreen extends StatelessWidget {
                   height: 100,
                 ),
                 SizedBox(
-                    height: 200,
-                    child: TopScreenImage(screenImageName: "passed.png")),
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/passed.png'),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -213,7 +239,18 @@ class EntryScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TopScreenImage(screenImageName: screenImage),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        image: DecorationImage(
+                          fit: BoxFit.contain,
+                          image: AssetImage('assets/images/logo.png'),
+                        ),
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
