@@ -115,6 +115,7 @@ class EntryScreen extends StatelessWidget {
                 Text(
                   'JOIN A FAMILY OF OVER 377,000 CERTIFIED DRONE PILOTS',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
                       decorationStyle: TextDecorationStyle.double),
                 ),
@@ -128,6 +129,7 @@ class EntryScreen extends StatelessWidget {
                   separator: ',',
                   style: TextStyle(
                     fontSize: 36,
+                    color: Theme.of(context).colorScheme.surfaceVariant,
                   ),
                 ),
                 Text('Certified Remote Pilots'),
@@ -141,6 +143,7 @@ class EntryScreen extends StatelessWidget {
                   separator: ',',
                   style: TextStyle(
                     fontSize: 36,
+                    color: Theme.of(context).colorScheme.surfaceVariant,
                   ),
                 ),
                 Text('Total Drones Registered'),
@@ -154,6 +157,7 @@ class EntryScreen extends StatelessWidget {
                   separator: ',',
                   style: TextStyle(
                     fontSize: 36,
+                    color: Theme.of(context).colorScheme.surfaceVariant,
                   ),
                 ),
                 Text('Commercial Drones Registered'),
@@ -182,6 +186,7 @@ class EntryScreen extends StatelessWidget {
                 Text(
                   'Launch your certification path and elevate your career in the skies!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -226,8 +231,8 @@ class EntryScreen extends StatelessWidget {
                 Text(
                   'Prepare for and pass the FAA Part 107 drone license exam with ease!',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -251,50 +256,53 @@ class EntryScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // ElevatedButton(
-                        //   onPressed: () async {
-                        //     final userCredential =
-                        //         await FirebaseAuth.instance.signInAnonymously();
-                        //     if (context.mounted) {
-                        //       if (userCredential.user != null) {
-                        //         // Successfully signed in
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // ElevatedButton(
+                      //   onPressed: () async {
+                      //     final userCredential =
+                      //         await FirebaseAuth.instance.signInAnonymously();
+                      //     if (context.mounted) {
+                      //       if (userCredential.user != null) {
+                      //         // Successfully signed in
 
-                        //         Navigator.pushReplacementNamed(
-                        //             context, Routes.appHome);
-                        //       } else {
-                        //         Navigator.popAndPushNamed(
-                        //             context, Routes.appLogin);
-                        //       }
-                        //     }
-                        //   },
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.all(20.0),
-                        //     child: Text('Sign-In Anonomously'),
-                        //   ),
-                        // ),
-                        // SizedBox(height: 50),
-                        const Text(
-                          'Sign up using',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                      //         Navigator.pushReplacementNamed(
+                      //             context, Routes.appHome);
+                      //       } else {
+                      //         Navigator.popAndPushNamed(
+                      //             context, Routes.appLogin);
+                      //       }
+                      //     }
+                      //   },
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(20.0),
+                      //     child: Text('Sign-In Anonomously'),
+                      //   ),
+                      // ),
+                      SizedBox(height: 50),
+                      const Text(
+                        'Sign up using',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
                         ),
-                        Row(
+                      ),
+
+                      SizedBox(
+                        height: 150,
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: CircleAvatar(
-                                radius: 25,
-                                child: Image.asset('assets/icons/facebook.png'),
-                              ),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {},
+                            //   icon: CircleAvatar(
+                            //     radius: 25,
+                            //     child: Image.asset('assets/icons/facebook.png'),
+                            //   ),
+                            // ),
                             IconButton(
                               onPressed: () async {
                                 try {
@@ -333,27 +341,24 @@ class EntryScreen extends StatelessWidget {
                                   ).show();
                                 }
                               },
-                              icon: CircleAvatar(
-                                radius: 25,
-                                backgroundColor: Colors.transparent,
-                                child: Image.asset('assets/icons/google.png'),
-                              ),
+                              icon: Image.asset('assets/icons/google.png'),
+                              iconSize: MediaQuery.of(context).size.width / 2,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: CircleAvatar(
-                                radius: 25,
-                                child: Image.asset(
-                                  'assets/icons/linkedin.png',
-                                  height: 70,
-                                  width: 100,
-                                ),
-                              ),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {},
+                            //   icon: CircleAvatar(
+                            //     radius: 25,
+                            //     child: Image.asset(
+                            //       'assets/icons/linkedin.png',
+                            //       height: 70,
+                            //       width: 100,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
