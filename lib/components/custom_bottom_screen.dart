@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
+
 class CustomBottomScreen extends StatelessWidget {
   const CustomBottomScreen({
     //super.key,
@@ -112,14 +115,24 @@ class TopScreenImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          image: DecorationImage(
-            fit: BoxFit.contain,
-            image: AssetImage('assets/images/$screenImageName'),
-          ),
-        ),
+      child: FutureBuilder<ByteData>(
+        future: rootBundle.load('assets/images/$screenImageName'),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: MemoryImage(
+                      Uint8List.fromList(snapshot.data!.buffer.asUint8List())),
+                ),
+              ),
+            );
+          } else {
+            return Container(); // or some loading indicator
+          }
+        },
       ),
     );
   }
