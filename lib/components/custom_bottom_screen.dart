@@ -109,30 +109,22 @@ Alert signUpAlert({
 }
 
 class TopScreenImage extends StatelessWidget {
-  const TopScreenImage({required this.screenImageName});
+  const TopScreenImage({required this.screenImageName, Key? key})
+      : super(key: key);
+
   final String screenImageName;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: FutureBuilder<ByteData>(
-        future: rootBundle.load('assets/images/$screenImageName'),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: MemoryImage(
-                      Uint8List.fromList(snapshot.data!.buffer.asUint8List())),
-                ),
-              ),
-            );
-          } else {
-            return Container(); // or some loading indicator
-          }
-        },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            fit: BoxFit.contain,
+            image: AssetImage('assets/images/$screenImageName'),
+          ),
+        ),
       ),
     );
   }
