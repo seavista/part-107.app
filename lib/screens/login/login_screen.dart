@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               });
                               Navigator.pop(context);
                               Navigator.popAndPushNamed(
-                                  context, Routes.appHome);
+                                  context, Routes.initial);
                             }
                           } catch (e) {
                             signUpAlert(

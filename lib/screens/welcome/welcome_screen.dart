@@ -255,10 +255,25 @@ class FullScreenModal extends StatelessWidget {
                                   child: Text('Login Required'),
                                 )
                               : ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    Stack(
+                                      children: [
+                                        Opacity(
+                                          opacity: 0.5,
+                                          child: ModalBarrier(
+                                            color: Colors.grey,
+                                            dismissible: false,
+                                          ),
+                                        ),
+                                        Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      ],
+                                    );
+                                    await _launchUrl();
                                     // Implement your unlock full access logic here
+
                                     Navigator.of(context).pop();
-                                    _launchUrl();
                                   },
                                   child: Text('Get Premium Access'),
                                 ),
