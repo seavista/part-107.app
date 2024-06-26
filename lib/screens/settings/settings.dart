@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:quiz_app/screens/purchase/components/purchase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +28,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _darkMode = true;
-  bool _hintsEnabled = true;
-  bool _secureScan = true;
+  late bool _darkMode;
+  late bool _showExplanations;
+  late bool _autoAdvance;
   ThemeMode _themeMode = ThemeMode.system;
   final _auth = FirebaseAuth.instance;
   String? _photoURL;
@@ -80,7 +82,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _darkMode = prefs.getBool('darkMode') ?? true;
-      // _hintsEnabled = prefs.getBool('hintsEnabled') ?? true;
+      _autoAdvance = prefs.getBool('autoAdvance') ?? true;
+      _showExplanations = prefs.getBool('showExplanations') ?? true;
       // _secureScan = prefs.getBool('secureScan') ?? true;
       // _tokenBalance = _tokenBalance;
     });
@@ -209,12 +212,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
             delegate: SliverChildListDelegate(
               [
                 ListTile(
-                  title: const Text(
-                    'Subscription',
-                    style: TextStyle(fontSize: 20),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Subscription',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      if (ctrl.isPaid) Text('')
+                    ],
                   ),
                   trailing: (ctrl.isPaid)
-                      ? Text('PRO User')
+                      ? Column(
+                          children: [
+                            Text('PRO User'),
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: TextButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Theme.of(context).colorScheme.primary)),
+                                onPressed: () {
+                                  // Create a Uri object with the full URL
+                                  final url = Uri.parse(ctrl.orderID);
+                                  launchUrl(url,
+                                      mode: LaunchMode.platformDefault,
+                                      webOnlyWindowName: "_blank");
+                                },
+                                child: Text(
+                                  'View Receipt',
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                       : Text('Free - Ad Supported'),
                 ),
                 // ListTile(
@@ -224,33 +259,66 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 //   ),
                 //   trailing: Text(_tokenBalance.toString()),
                 // ),
-                ListTile(
-                  title: const Text(
-                    'Dark Mode',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  trailing: Switch(
-                    value: _darkMode,
-                    onChanged: (bool value) {
-                      _updateSetting('darkMode', value);
-                      // (value)
-                      //     ? toggleTheme(ThemeMode.dark)
-                      //     : toggleTheme(ThemeMode.light);
-                    },
-                  ),
-                ),
                 // ListTile(
                 //   title: const Text(
-                //     'Hints',
+                //     'Dark Mode',
                 //     style: TextStyle(fontSize: 20),
                 //   ),
                 //   trailing: Switch(
-                //     value: _hintsEnabled,
+                //     value: _darkMode,
+                //     activeColor: Theme.of(context).colorScheme.onSecondary,
+                //     inactiveThumbColor:
+                //         Theme.of(context).colorScheme.scrim.withAlpha(200),
                 //     onChanged: (bool value) {
-                //       _updateSetting('hintsEnabled', value);
+                //       if (ctrl.isPaid) {
+                //         _updateSetting('darkMode', value);
+                //       } else {
+                //         showFullScreenModal(context);
+                //       }
+                //       // (value)
+                //       //     ? toggleTheme(ThemeMode.dark)
+                //       //     : toggleTheme(ThemeMode.light);
                 //     },
                 //   ),
                 // ),
+                ListTile(
+                  title: const Text(
+                    'Auto Advance After Answer',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  trailing: Switch(
+                    value: _autoAdvance,
+                    activeColor: Theme.of(context).colorScheme.onSecondary,
+                    inactiveThumbColor:
+                        Theme.of(context).colorScheme.scrim.withAlpha(200),
+                    onChanged: (bool value) {
+                      if (ctrl.isPaid) {
+                        _updateSetting('autoAdvance', value);
+                      } else {
+                        showFullScreenModal(context);
+                      }
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: const Text(
+                    'Show Explanations Button',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  trailing: Switch(
+                    value: _showExplanations,
+                    activeColor: Theme.of(context).colorScheme.onSecondary,
+                    inactiveThumbColor:
+                        Theme.of(context).colorScheme.scrim.withAlpha(200),
+                    onChanged: (bool value) {
+                      if (ctrl.isPaid) {
+                        _updateSetting('showExplanations', value);
+                      } else {
+                        showFullScreenModal(context);
+                      }
+                    },
+                  ),
+                ),
                 // ListTile(
                 //   title: const Text(
                 //     'Secure Scan',

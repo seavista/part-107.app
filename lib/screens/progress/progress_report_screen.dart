@@ -70,6 +70,13 @@ class ProgressReportScreen extends StatelessWidget {
                 animate: true,
                 barGroupingType: charts.BarGroupingType.grouped,
                 behaviors: [charts.SeriesLegend()],
+                primaryMeasureAxis: charts.NumericAxisSpec(
+                  renderSpec: charts.SmallTickRendererSpec(
+                    labelStyle: charts.TextStyleSpec(
+                        fontSize: 12,
+                        color: charts.Color.fromHex(code: '#FFFFFF')),
+                  ),
+                ),
                 domainAxis: charts.OrdinalAxisSpec(
                   renderSpec: charts.SmallTickRendererSpec(
                     labelRotation: 60,

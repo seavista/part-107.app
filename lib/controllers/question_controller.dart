@@ -25,6 +25,13 @@ class QuestionController extends GetxController
     update();
   }
 
+  String _orderID = "";
+  String get orderID => this._orderID;
+  void updateOrderId(String orderId) {
+    _orderID = orderId;
+    update();
+  }
+
   bool get isLastQuestion => (questionNumber == questions.length);
 
   bool _isAnswered = false;
@@ -56,6 +63,12 @@ class QuestionController extends GetxController
     initQuestions();
   }
 
+  bool _showExplanations = false;
+  bool get showExplanations => this._showExplanations;
+
+  bool _autoAdvance = false;
+  bool get autoAdvance => this._autoAdvance;
+
   List<bool> isSelected = List.generate(7, (index) {
     if (index == 0) {
       return true;
@@ -71,6 +84,7 @@ class QuestionController extends GetxController
   void onInit() async {
     super.onInit();
     print('onInit called'); // Logging
+    _loadSettings();
     _initializeController();
   }
 
@@ -84,6 +98,13 @@ class QuestionController extends GetxController
       });
 
     _pageController = PageController();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    _showExplanations = prefs.getBool('showExplanations') ?? false;
+    _autoAdvance = prefs.getBool('autoAdvance') ?? false;
+    update();
   }
 
   Future<void> initQuestions() async {
@@ -245,13 +266,15 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    Future.delayed(Duration(seconds: 3), () {
-      try {
-        nextQuestion();
-      } catch (e) {
-        print("Error during nextQuestion: $e");
-      }
-    });
+    if (_autoAdvance) {
+      Future.delayed(Duration(seconds: 3), () {
+        try {
+          nextQuestion();
+        } catch (e) {
+          print("Error during nextQuestion: $e");
+        }
+      });
+    }
   }
 
   void _updatePerformanceByTopic(String category, bool isCorrect) {

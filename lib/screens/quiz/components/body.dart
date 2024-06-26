@@ -6,6 +6,21 @@ import 'package:quiz_app/screens/quiz/components/figure.dart';
 import 'progress_bar.dart';
 import 'question_card.dart';
 
+void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        color: Theme.of(context).colorScheme.primary,
+        height: 200,
+        child: Center(
+          child: Text('Explanations Coming Soon!'),
+        ),
+      );
+    },
+  );
+}
+
 class Body extends StatelessWidget {
   const Body({
     required Key key,
@@ -74,12 +89,19 @@ class Body extends StatelessWidget {
                             ],
                           ),
                         ),
+                        if (_questionController.showExplanations)
+                          IconButton(
+                            onPressed: () {
+                              _showBottomSheet(context);
+                            },
+                            icon: Icon(Icons.question_mark),
+                          ),
                         if (!_questionController.isLastQuestion)
                           ImageThumbnail(
                               assetPath:
                                   '${_questionController.questions[_questionController.questionNumber.value - 1].figure}',
                               figureName:
-                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}')
+                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}'),
                       ],
                     ),
                   ),

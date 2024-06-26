@@ -50,11 +50,13 @@ class ScoreScreen extends StatelessWidget {
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
+                        // width: MediaQuery.of(context).size.width * 0.5,
+                        // height: MediaQuery.of(context).size.width * 0.5,
                         child: MultiCircularSlider(
-                          size: MediaQuery.of(context).size.width * 0.5,
+                          size: MediaQuery.of(context).size.width * 0.45,
                           progressBarType: MultiCircularSliderType.circular,
                           values: const [1.0, 0.1, 0.3, 0.18, 0.5],
                           colors: const [
@@ -84,15 +86,17 @@ class ScoreScreen extends StatelessWidget {
                           animationCurve: Curves.easeInOutCirc,
                           innerIcon: const Icon(Icons.integration_instructions),
                           trackColor: Colors.transparent,
-                          progressBarWidth: 56.0,
-                          trackWidth: 56.0,
+                          progressBarWidth:
+                              MediaQuery.of(context).size.width * 0.1,
+                          trackWidth: MediaQuery.of(context).size.width * 0.1,
                           labelTextStyle: const TextStyle(),
                           percentageTextStyle: TextStyle(
                               color: Theme.of(context).colorScheme.background,
                               fontSize: 36),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1),
                       Text(
                         "${_qnController.numOfCorrectAns}/${_qnController.numOfQuestions} Correct Answers",
                         style: Theme.of(context).textTheme.headline4!.copyWith(
@@ -123,6 +127,7 @@ class ScoreScreen extends StatelessWidget {
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.25,
+                        height: MediaQuery.of(context).size.width * 0.1,
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(kDefaultPadding * 0.55), // 15
                         decoration: BoxDecoration(

@@ -47,6 +47,15 @@ class AuthGate extends StatelessWidget {
                 } else if (querySnapshot.hasData) {
                   final isPaidUser = querySnapshot.data!.docs.isNotEmpty;
                   ctrl.updateIsPaid(isPaidUser);
+                  if (isPaidUser) {
+                    // Access the orderData.receipt_url field from the first document
+                    var receiptUrl = querySnapshot.data!.docs.first
+                        .get("orderData.receipt_url");
+
+                    // Update the orderId or any other required field
+                    ctrl.updateOrderId(receiptUrl);
+                  }
+
                   return WelcomeScreen();
                 } else {
                   return LoginScreen(); // Default fallback

@@ -25,13 +25,19 @@ class QuizScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          TextButton(
-              onPressed: _controller.nextQuestion,
-              child: Text(
-                "Skip",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton(
+                onPressed: _controller.nextQuestion,
+                style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                        Theme.of(context).colorScheme.primary)),
+                child: Text(
+                  (!_controller.autoAdvance) ? "Next" : "Skip",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                )),
+          ),
         ],
       ),
       body: Body(
