@@ -49,7 +49,7 @@ class Option extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
-                    child: SelectableText(
+                    child: Text(
                       "${index + 1}. $text",
                       style: TextStyle(color: getTheRightColor(), fontSize: 16),
                     ),
