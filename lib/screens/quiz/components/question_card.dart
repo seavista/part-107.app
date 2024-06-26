@@ -27,7 +27,7 @@ class QuestionCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
+          SelectableText(
             question.question,
             style: Theme.of(context)
                 .textTheme

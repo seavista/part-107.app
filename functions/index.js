@@ -40,6 +40,10 @@ const fulfillOrder = async (session) => {
   const metaData = session.metadata;
   const firebaseUserEmail = session.metadata.firebaseUserEmail;
   console.log(firebaseUserEmail);
+
+  const stripeReceiptUrl = session.receipt_url;
+  console.log(stripeReceiptUrl);
+
  
   const db = admin.firestore();
   await db.collection('Orders').doc(session.id).set({
@@ -58,7 +62,7 @@ const fulfillOrder = async (session) => {
     const response = await axios.post(`https://us-central1-${process.env.MY_FIREBASE_PROJECT_ID}.cloudfunctions.net/sendEmail`, {
       to: userEmail,
       subject: 'Order Confirmation',
-      text: `Your Part-107.app order with ID ${session.id} has been successfully fulfilled.`
+      text: `Your Part-107.app order with ID ${session.id} has been successfully fulfilled. \n\nView or Print Receipt : ${stripeReceiptUrl}`
     });
 
     if (response.status === 200) {
@@ -240,12 +244,58 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
 exports.sendEmail = functions.https.onRequest((req, res) => {
   const { to, subject, text } = req.body;
 
+  const htmlContent = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>${subject}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Part-107.app</h1>
+      </div>
+      <p>${text}</p>
+      <div class="footer">
+        <p>&copy; ${new Date().getFullYear()} Part-107.app. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+`;
+
+
   const msg = {
     to: to, // Change to your recipient
     from: '"Part-107.app" <jason@seavista.co>', // Change to your verified sender
     subject: subject,
     text: text,
-    html: `<strong>${text}</strong>`,
+    html: htmlContent,
   }
   sgMail
     .send(msg)
