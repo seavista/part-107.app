@@ -1,0 +1,24 @@
+2024/06/26-13:42:30.149 9507 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.NxRYpk/flutter_tools_chrome_device.cygDO7/Default/IndexedDB/http_localhost_60276.indexeddb.leveldb/MANIFEST-000001
+2024/06/26-13:42:30.150 9507 Recovering log #14
+2024/06/26-13:42:30.150 9507 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.NxRYpk/flutter_tools_chrome_device.cygDO7/Default/IndexedDB/http_localhost_60276.indexeddb.leveldb/000014.log 
+2024/06/26-13:42:30.179 b903 Level-0 table #19: started
+2024/06/26-13:42:30.184 b903 Level-0 table #19: 8500 bytes OK
+2024/06/26-13:42:30.192 b903 Delete type=0 #14
+2024/06/26-13:42:30.194 8f03 Manual compaction at level-0 from '\x00\x0c\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0d\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/26-13:42:30.796 b903 Level-0 table #21: started
+2024/06/26-13:42:30.800 b903 Level-0 table #21: 3795 bytes OK
+2024/06/26-13:42:30.809 b903 Delete type=0 #18
+2024/06/26-13:42:30.809 9507 Manual compaction at level-0 from '\x00\x0d\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0e\x00\x00\x00' @ 0 : 0; will stop at '\x00\x0d\x00\x00\x05' @ 564 : 1
+2024/06/26-13:42:30.809 9507 Compacting 1@0 + 1@1 files
+2024/06/26-13:42:30.814 9507 Generated table #22@0: 36 keys, 4092 bytes
+2024/06/26-13:42:30.814 9507 Compacted 1@0 + 1@1 files => 4092 bytes
+2024/06/26-13:42:30.822 9507 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/26-13:42:30.824 9507 Delete type=2 #21
+2024/06/26-13:42:30.824 9507 Manual compaction at level-0 from '\x00\x0d\x00\x00\x05' @ 564 : 1 .. '\x00\x0e\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/26-13:43:10.180 8f03 Compacting 1@1 + 1@2 files
+2024/06/26-13:43:10.186 8f03 Generated table #23@1: 53 keys, 4480 bytes
+2024/06/26-13:43:10.186 8f03 Compacted 1@1 + 1@2 files => 4480 bytes
+2024/06/26-13:43:10.197 8f03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/06/26-13:43:10.198 8f03 Delete type=2 #16
+2024/06/26-13:43:10.198 8f03 Delete type=2 #22
+2024/06/26-13:43:10.198 8f03 Delete type=2 #19
