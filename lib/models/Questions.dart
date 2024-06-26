@@ -4954,11 +4954,11 @@ const List airspace_weather_minimums_charts_data = [
   {
     "id": 15,
     "question":
-        "Which airspace class is depicted by a dashed blue line on sectional charts? (Refer to Figure 34)",
+        "Which airspace class is depicted by a dashed blue line on sectional charts? (Refer to Figure 26)",
     "options": ["Class B", "Class C", "Class D", "Class E"],
     "answer_index": 2,
     "category": "Airspace, Weather Minimums, and Charts",
-    "figure": "Fig34.jpg",
+    "figure": "Fig26.jpg",
     "area": 7
   },
   {
@@ -5004,7 +5004,7 @@ const List airspace_weather_minimums_charts_data = [
   {
     "id": 19,
     "question":
-        "What does a magenta vignette on a sectional chart represent? (Refer to Figure 9)",
+        "What does a magenta vignette on a sectional chart represent? (Refer to Figure 21)",
     "options": [
       "Class B airspace",
       "Class C airspace",
@@ -5013,7 +5013,7 @@ const List airspace_weather_minimums_charts_data = [
     ],
     "answer_index": 3,
     "category": "Airspace, Weather Minimums, and Charts",
-    "figure": "Fig9.jpg",
+    "figure": "Fig21.jpg",
     "area": 8
   },
   {

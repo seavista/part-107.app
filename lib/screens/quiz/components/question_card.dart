@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/screens/quiz/components/figure.dart';
 
 import '../../../constants.dart';
 import 'option.dart';
@@ -26,6 +27,7 @@ class QuestionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SelectableText(
             question.question,
@@ -44,6 +46,17 @@ class QuestionCard extends StatelessWidget {
               key: null,
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          if (question.figure != null)
+            Expanded(
+              child: ImageThumbnail(
+                  assetPath:
+                      '${_controller.questions[_controller.questionNumber.value - 1].figure}',
+                  figureName:
+                      '${_controller.questions[_controller.questionNumber.value - 1].figure.toString()}'),
+            ),
         ],
       ),
     );

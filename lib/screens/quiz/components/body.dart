@@ -96,12 +96,6 @@ class Body extends StatelessWidget {
                             },
                             icon: Icon(Icons.question_mark),
                           ),
-                        if (!_questionController.isLastQuestion)
-                          ImageThumbnail(
-                              assetPath:
-                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure}',
-                              figureName:
-                                  '${_questionController.questions[_questionController.questionNumber.value - 1].figure.toString()}'),
                       ],
                     ),
                   ),

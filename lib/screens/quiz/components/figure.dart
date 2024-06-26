@@ -28,9 +28,7 @@ class ImageThumbnail extends StatelessWidget {
         },
         child: Image.asset(
           'assets/figures/${this.assetPath!}',
-          width: 100,
-          height: 80,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
     );
