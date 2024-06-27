@@ -100344,7 +100344,7 @@ d=A.K(a6).p3.e
 d.toString
 d=A.aR(a3,A.cD(A.a([g,i,e,A.aX("Prepare for and pass the FAA Part 107 drone license exam with ease!",a3,a3,a3,a3,a3,d.Xs(A.K(a6).ax.c,B.ar),a3,a3,a3)],l),B.G,B.J,B.F),B.j,a3,a3,a3,a3,a3,a3,a3,new A.af(40,0,40,0),a3,a3,a3)
 e=A.aH(a6,a3,h).w
-return A.hr(a3,s.ax.CW,new A.Eh(4,q.ax.CW,k,1.8,r.ax.CW,new A.aev(a6),m,n,A.a([j,f,d,A.aR(a3,new A.bb(B.Hv,A.cD(A.a([A.bi(A.aR(a3,a3,B.j,a3,a3,new A.bE(B.x,A.qV(B.cn,new A.ig(a5,a3,a3),a3),a3,a3,a3,a3,B.C),a3,a3,a3,a3,a3,a3,a3,a3),e.a.b/3,a3),A.cD(A.a([A.Q3(new A.bb(B.dn,A.aX("Test Flight Sign-In Anonomously",a3,a3,a3,a3,a3,a3,a3,a3,a3),a3),new A.aew(a6),a3),A.bi(a3,50,a3),B.a3a,A.bi(A.hq(A.a([A.Rm(a3,A.dP("assets/icons/google.png",a3,a3,a3,a3,a3),A.aH(a6,a3,h).w.a.a/2,new A.aex(this,a6),a3,a3)],l),B.G,B.eV,B.F),150,a3)],l),B.G,B.J,B.F)],l),B.ct,B.J,B.F),a3),B.j,a3,a3,a3,a3,300,a3,a3,a3,a3,a3,a3)],l),new A.aey(a6),new A.aeT(o,p),"Register",!0,a3),a3,!1,!1,a3,a3,!0)}}
+return A.hr(a3,s.ax.CW,new A.Eh(4,q.ax.CW,k,1.8,r.ax.CW,new A.aev(a6),m,n,A.a([j,f,d,A.aR(a3,new A.bb(B.Hv,A.cD(A.a([A.bi(A.aR(a3,a3,B.j,a3,a3,new A.bE(B.x,A.qV(B.cn,new A.ig(a5,a3,a3),a3),a3,a3,a3,a3,B.C),a3,a3,a3,a3,a3,a3,a3,a3),e.a.b/3,a3),A.cD(A.a([A.Q3(new A.bb(B.dn,A.aX("Take Test Flight",a3,a3,a3,a3,a3,a3,a3,a3,a3),a3),new A.aew(a6),a3),A.bi(a3,50,a3),B.a3a,A.bi(A.hq(A.a([A.Rm(a3,A.dP("assets/icons/google.png",a3,a3,a3,a3,a3),A.aH(a6,a3,h).w.a.a/2,new A.aex(this,a6),a3,a3)],l),B.G,B.eV,B.F),150,a3)],l),B.G,B.J,B.F)],l),B.ct,B.J,B.F),a3),B.j,a3,a3,a3,a3,300,a3,a3,a3,a3,a3,a3)],l),new A.aey(a6),new A.aeT(o,p),"Register",!0,a3),a3,!1,!1,a3,a3,!0)}}
 A.aev.prototype={
 $0(){A.amj(this.a,"/register",t.X)},
 $S:3}
