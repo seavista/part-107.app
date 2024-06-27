@@ -11,7 +11,7 @@ cp -r build/web/* temp_build/
 
 # Deploy to gh-pages
 git checkout gh-pages --force
-git reset --hard origin/gh-pages
+# git reset --hard origin/gh-pages
 cp -rf temp_build/* .
 rm -rf temp_build
 git add .
