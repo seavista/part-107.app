@@ -89,10 +89,10 @@ class FullScreenModal extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Unlock Full Lifetime Access Pass only \$9.95',
+                            'Unlock Full Lifetime Access Pass only \$29',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
