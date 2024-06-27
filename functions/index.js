@@ -221,6 +221,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
           firebaseUserEmail: userEmail
         
         },
+        allow_promotion_codes: true
       }
 
 

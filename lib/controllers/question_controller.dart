@@ -84,7 +84,7 @@ class QuestionController extends GetxController
   void onInit() async {
     super.onInit();
     print('onInit called'); // Logging
-    _loadSettings();
+    await _loadSettings();
     _initializeController();
   }
 
