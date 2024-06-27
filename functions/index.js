@@ -204,9 +204,9 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
             currency: 'usd',
             product_data: {
               name: 'Part-107.app Full Access Pass',
-              images: [`https://part-107.app/images/logo-dark.png`] // Logo URL
+              images: [`https://part-107.app/images/logo.png`] // Logo URL
             },
-            unit_amount: 995,
+            unit_amount: 2900,
           },
           quantity: 1,
 
