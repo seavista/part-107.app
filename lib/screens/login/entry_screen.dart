@@ -278,7 +278,7 @@ class EntryScreen extends StatelessWidget {
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Text('Test Flight Sign-In Anonomously'),
+                          child: Text('Take Test Flight'),
                         ),
                       ),
                       SizedBox(height: 50),
