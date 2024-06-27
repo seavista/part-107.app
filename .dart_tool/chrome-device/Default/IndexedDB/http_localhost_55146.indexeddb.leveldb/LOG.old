@@ -1,0 +1,25 @@
+2024/06/27-09:39:33.173 6c07 Reusing MANIFEST /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.dGHiLq/flutter_tools_chrome_device.5yBLIM/Default/IndexedDB/http_localhost_55146.indexeddb.leveldb/MANIFEST-000001
+2024/06/27-09:39:33.174 6c07 Recovering log #9
+2024/06/27-09:39:33.174 6c07 Reusing old log /private/var/folders/y2/wnw6r5rn25b2mqwwyjpqhxkr0000gn/T/flutter_tools.dGHiLq/flutter_tools_chrome_device.5yBLIM/Default/IndexedDB/http_localhost_55146.indexeddb.leveldb/000009.log 
+2024/06/27-09:39:33.175 6c07 Delete type=2 #7
+2024/06/27-09:39:33.212 b803 Level-0 table #14: started
+2024/06/27-09:39:33.216 b803 Level-0 table #14: 3020 bytes OK
+2024/06/27-09:39:33.224 b803 Delete type=0 #9
+2024/06/27-09:39:33.226 6c07 Manual compaction at level-0 from '\x00\x08\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x09\x00\x00\x00' @ 0 : 0; will stop at '\x00\x08\x00\x00\x05' @ 317 : 1
+2024/06/27-09:39:33.226 6c07 Compacting 1@0 + 1@1 files
+2024/06/27-09:39:33.230 6c07 Generated table #15@0: 107 keys, 2535 bytes
+2024/06/27-09:39:33.230 6c07 Compacted 1@0 + 1@1 files => 2535 bytes
+2024/06/27-09:39:33.250 6c07 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/27-09:39:33.251 6c07 Delete type=2 #14
+2024/06/27-09:39:33.252 6c07 Manual compaction at level-0 from '\x00\x08\x00\x00\x05' @ 317 : 1 .. '\x00\x09\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/06/27-09:39:34.026 6c07 Level-0 table #17: started
+2024/06/27-09:39:34.043 6c07 Level-0 table #17: 766 bytes OK
+2024/06/27-09:39:34.051 6c07 Delete type=0 #13
+2024/06/27-09:39:34.051 6c07 Delete type=2 #11
+2024/06/27-09:39:34.051 6c07 Manual compaction at level-0 from '\x00\x09\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at '\x00\x09\x00\x00\x05' @ 350 : 1
+2024/06/27-09:39:34.051 6c07 Compacting 1@0 + 1@1 files
+2024/06/27-09:39:34.056 6c07 Generated table #18@0: 107 keys, 2424 bytes
+2024/06/27-09:39:34.056 6c07 Compacted 1@0 + 1@1 files => 2424 bytes
+2024/06/27-09:39:34.065 6c07 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/06/27-09:39:34.145 6c07 Delete type=2 #17
+2024/06/27-09:39:34.146 6c07 Manual compaction at level-0 from '\x00\x09\x00\x00\x05' @ 350 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at (end)
