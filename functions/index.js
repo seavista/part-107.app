@@ -213,6 +213,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
         },
       ],
       mode: 'payment',
+      allow_promotion_codes: true,
       success_url: `https://part-107.app/?sessionId={CHECKOUT_SESSION_ID}`,
       cancel_url: `https://part-107.app`,
       payment_intent_data: {
@@ -221,7 +222,7 @@ exports.createPaymentLink = functions.https.onRequest(async (req, res) => {
           firebaseUserEmail: userEmail
         
         },
-        allow_promotion_codes: true
+       
       }
 
 
